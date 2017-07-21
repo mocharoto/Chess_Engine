@@ -46,9 +46,3 @@ int getyCoordinate()
 {
 	return yCoordinate;
 }
-
-void move()
-{
-	//This is going to be an overloaded function. I don't know what to 
-	//do here. 
-}

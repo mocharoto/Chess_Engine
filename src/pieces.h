@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-class Pieces 
+class Pieces
 {
 	protected:
 		string pieceColor = 'NULL';
@@ -21,7 +21,6 @@ class Pieces
 		int getxCoordinate();
 		void setyCoordinate(int location);
 		int getyCoordinate();
-		void move();
+		virtual void move(int newXLocation, int newYLocation) = 0;
 
 } Pieces;
-

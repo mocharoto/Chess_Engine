@@ -10,6 +10,8 @@
 #include <vector>
 #include "coord.h"
 
+using coordList = std::vector<coord>;
+
 class Pieces
 {
 	public:
@@ -23,7 +25,7 @@ class Pieces
 
 		virtual void move(coord newPos) = 0;
 		// Returns a list of all possible coordinates to move to.
-		//virtual std::vector< calculateMoves();
+		virtual coordList calculateMoves(coord boundary) const;
 	protected:
 		//std::string is not a ptr, you can't make them a null
 		std::string pieceColor = "";

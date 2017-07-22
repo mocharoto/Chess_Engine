@@ -36,3 +36,9 @@ coord Pieces::getPosition() const
 {
 	return position;
 }
+
+coordList Pieces::calculateMoves(coord boundary) const
+{
+	coordList moveList;
+	return moveList;
+}

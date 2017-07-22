@@ -12,6 +12,7 @@ class Pawn : public Pieces
 	private:
 	public:
 		void move(coord newPos);
+		coordList calculateMoves(coord boundary) const;
 		void promote();
 };
 

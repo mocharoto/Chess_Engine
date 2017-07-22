@@ -13,9 +13,11 @@
 int main(){
 	auto test = new Pawn();
 	test->setPosition(coord{1, 3});
-	std::cout << test->getPosition().x << " " << test->getPosition().y << std::endl;
+	std::cout << "Pawn at: " << test->getPosition().x << " " << test->getPosition().y << std::endl;
 
-	coord c;
-	std::cout << "Coord: x: " << c.x << ", y: " << c.y << std::endl;
+	auto validMoves = test->calculateMoves(coord{10, 10});
+	for (auto& move : validMoves) {
+		std::cout << "Can move to: " << move.x << " " << move.y << std::endl;
+	}
 	return 0;
 }

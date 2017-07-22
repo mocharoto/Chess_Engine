@@ -12,9 +12,8 @@
 
 int main(){
 	auto test = new Pawn();
-	test->setyCoordinate(1);
-	test->setxCoordinate(3);
-	std::cout << test->getxCoordinate() << " " << test->getyCoordinate() << std::endl;
+	test->setPosition(coord{1, 3});
+	std::cout << test->getPosition().x << " " << test->getPosition().y << std::endl;
 
 	coord c;
 	std::cout << "Coord: x: " << c.x << ", y: " << c.y << std::endl;

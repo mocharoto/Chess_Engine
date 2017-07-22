@@ -8,10 +8,10 @@
 
 using namespace std;
 
-void Pawn::move(int newXCoordinate, int newYCoordinate)
+void Pawn::move(coord newPos)
 {
-	setxCoordinate(newXCoordinate);
-	setyCoordinate(newYCoordinate);
+	setPosition(newPos);
+
 }
 
 void Pawn::promote()

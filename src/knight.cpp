@@ -6,10 +6,8 @@
 #include "pieces.h"
 #include "knight.h"
 
-void Knight::move(int newXCoordinate, int newYCoordinate)
+void Knight::move(coord newPos)
 {
-	setxCoordinate(newXCoordinate);
-	setyCoordinate(newYCoordinate);
+	setPosition(newPos);
 	//TODO: Set Rules for how a knight moves
 }
-

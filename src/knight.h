@@ -13,7 +13,7 @@ class Knight : public Pieces
 {
 	private:
 	public:
-		void move(int newXCoordinate, int newyCoordinate);
+		void move(coord newPos);
 };
 
 #endif

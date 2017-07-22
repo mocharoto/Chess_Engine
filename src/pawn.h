@@ -4,11 +4,14 @@
 
 #ifndef PAWN_H
 #define PAWN_H
+
+#include "pieces.h"
+
 class Pawn : public Pieces
 {
 	private:
 	public:
-		void move(int newXLocation, int newYLocation);
+		void move(coord newPos);
 		void promote();
 };
 

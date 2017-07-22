@@ -7,25 +7,28 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include "coord.h"
 
 class Pieces
 {
 	public:
+		// Setters & Getters
 		void setPieceColor(std::string newColor);
-		std::string getPieceColor();
+		std::string getPieceColor() const;
 		void setPieceName(std::string newName);
-		std::string getPieceName();
-		void setxCoordinate(int location);
-		int getxCoordinate();
-		void setyCoordinate(int location);
-		int getyCoordinate();
-		virtual void move(int newXLocation, int newYLocation) = 0;
+		std::string getPieceName() const;
+		void setPosition(coord newPos);
+		coord getPosition() const;
+
+		virtual void move(coord newPos) = 0;
+		// Returns a list of all possible coordinates to move to.
+		//virtual std::vector< calculateMoves();
 	protected:
 		//std::string is not a ptr, you can't make them a null
 		std::string pieceColor = "";
 		std::string pieceName = "";
-		int xCoordinate = 0;
-		int yCoordinate = 0;
+		coord position;
 };
 
 #endif

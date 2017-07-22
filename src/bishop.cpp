@@ -6,10 +6,9 @@
 #include "pieces.h"
 #include "bishop.h"
 
-void Bishop::move(int newXCoordinate, int newYCoordinate)
+void Bishop::move(coord newPos)
 {
-	setxCoordinate(newXCoordinate);
-	setyCoordinate(newYCoordinate);
+	setPosition(newPos);
 	//TO DO:
 	//Make rules to only allow Bishops to move in a diagonal.
 }

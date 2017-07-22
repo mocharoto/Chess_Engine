@@ -12,7 +12,7 @@ void Pieces::setPieceColor(string newColor)
 	pieceColor = newColor;
 }
 
-string Pieces::getPieceColor()
+string Pieces::getPieceColor() const
 {
 	return pieceColor;
 }
@@ -22,27 +22,17 @@ void Pieces::setPieceName(string newName)
 	pieceName = newName;
 }
 
-string Pieces::getPieceName()
+string Pieces::getPieceName() const
 {
 	return pieceName;
 }
 
-void Pieces::setxCoordinate(int location)
+void Pieces::setPosition(coord newPos)
 {
-	xCoordinate = location;
+	position = newPos;
 }
 
-int Pieces::getxCoordinate()
+coord Pieces::getPosition() const
 {
-	return xCoordinate;
-}
-
-void Pieces::setyCoordinate(int location)
-{
-	yCoordinate = location;
-}
-
-int Pieces::getyCoordinate()
-{
-	return yCoordinate;
+	return position;
 }

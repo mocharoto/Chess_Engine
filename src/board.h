@@ -1,7 +1,10 @@
 //Author: Julian Yi
 //Date: 14 July 2017
 //Header file for the board
-#pragma once
+
+#ifndef BOARD_H
+#define BOARD_H
+
 #include <iostream>
 #include "pieces.h"
 
@@ -21,3 +24,6 @@ struct Position {
 	int x = 0;
 	int y = 0;
 };
+
+
+#endif

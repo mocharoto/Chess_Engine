@@ -6,7 +6,7 @@
 #include "pieces.h"
 #include "knight.h"
 
-void move(int newXCoordinate, int newYCoordinate)
+void Knight::move(int newXCoordinate, int newYCoordinate)
 {
 	setxCoordinate(newXCoordinate);
 	setyCoordinate(newYCoordinate);

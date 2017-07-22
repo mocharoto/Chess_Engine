@@ -1,11 +1,13 @@
 //Author: Julian Yi
 //Date Created: 18 July 2017
 //File Description: Header file for Bishop class
-#pragma once
+
+#ifndef BISHOP_H
+#define BISHOP_H
 
 #include <iostream>
 #include <string>
-#include "piece.h"
+#include "pieces.h"
 
 class Bishop : public Pieces
 {
@@ -13,3 +15,5 @@ class Bishop : public Pieces
 	public:
 		void move(int newXCoordinate, int newyCoordinate);
 } Bishop;
+
+#endif

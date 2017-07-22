@@ -3,10 +3,10 @@
 //File Description: .cpp for the Bishop class
 #include <iostream>
 #include <string>
-#include "bishop.h"
 #include "pieces.h"
+#include "bishop.h"
 
-void move(int newXCoordinate, int newYCoordinate)
+void Bishop::move(int newXCoordinate, int newYCoordinate)
 {
 	setxCoordinate(newXCoordinate);
 	setyCoordinate(newYCoordinate);

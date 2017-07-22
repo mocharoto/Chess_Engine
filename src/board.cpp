@@ -48,7 +48,8 @@ void printBoard(Square **Chessboard)
 	}
 }
 
-int main() {
+
+int test() {
 
 
 	//allocate 2d memory for the squares

@@ -10,9 +10,10 @@
 
 int main(void)
 {
-	Piece test;
-	test.setyLocation(1);
-	test.setxLocation(3);
-	std::cout << test.getxLocation() << " " << test.getyLocation() << std::endl;
+
+	Pieces *test = nullptr;
+	test->setyCoordinate(1);
+	test->setxCoordinate(3);
+	std::cout << test->getxCoordinate() << " " << test->getyCoordinate() << std::endl;
 	return 0;
 }

@@ -1,7 +1,9 @@
 //Author: Julian Yi
 //Date: 16 July 2017
 //Definitions file
-#pragma once
+
+#ifndef DEFS_H
+#define DEFS_H
 
 enum { EMPTY, wP, wN, wB, wR, wQ, wK, bP, bN, bB, bR, bQ, bK };
 enum { FILE_A, FILE_B, FILE_C, FILE_D, FILE_E, FILE_F, FILE_G, FILE_H, FILE_NONE };
@@ -19,3 +21,5 @@ enum {
 };
 
 enum { FALSE, TRUE };
+
+#endif

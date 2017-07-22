@@ -7,42 +7,42 @@
 
 using namespace std;
 
-void setPieceColor(string newColor)
+void Pieces::setPieceColor(string newColor)
 {
 	pieceColor = newColor;
 }
 
-string getPieceColor()
+string Pieces::getPieceColor()
 {
 	return pieceColor;
 }
 
-void setPieceName(string newName)
+void Pieces::setPieceName(string newName)
 {
 	pieceName = newName;
 }
 
-string getPieceName()
+string Pieces::getPieceName()
 {
 	return pieceName;
 }
 
-void setxCoordinate(int location)
+void Pieces::setxCoordinate(int location)
 {
 	xCoordinate = location;
 }
 
-int getxCoordinate()
+int Pieces::getxCoordinate()
 {
 	return xCoordinate;
 }
 
-void setyCoordinate(int location)
+void Pieces::setyCoordinate(int location)
 {
 	yCoordinate = location;
 }
 
-int getyCoordinate()
+int Pieces::getyCoordinate()
 {
 	return yCoordinate;
 }

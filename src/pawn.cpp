@@ -8,12 +8,13 @@
 
 using namespace std;
 
-void move(int newXCoordinate, int newYCoordinate)
+void Pawn::move(int newXCoordinate, int newYCoordinate)
 {
 	setxCoordinate(newXCoordinate);
 	setyCoordinate(newYCoordinate);
 }
 
-void promote()
+void Pawn::promote()
 {
+	//do things
 }

@@ -6,6 +6,7 @@
 #include <memory>
 #include "board.h"
 #include "pawn.h"
+#include "coord.h"
 
 
 
@@ -14,5 +15,8 @@ int main(){
 	test->setyCoordinate(1);
 	test->setxCoordinate(3);
 	std::cout << test->getxCoordinate() << " " << test->getyCoordinate() << std::endl;
+
+	coord c;
+	std::cout << "Coord: x: " << c.x << ", y: " << c.y << std::endl;
 	return 0;
 }

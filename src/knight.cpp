@@ -11,3 +11,27 @@ void Knight::move(coord newPos)
 	setPosition(newPos);
 	//TODO: Set Rules for how a knight moves
 }
+
+coordList Knight::calculateMoves(coord boundary) const
+{
+	coordList validMoves;
+
+	// Create a vector of coords representing the moves of a knight.
+	// A knight can also move to the swapped form of these. (i.e. { 2, 1 })
+	coordList moves = {
+		{ 1, 2 }, { 1, -2 }, { -1, 2 }, { -1, -2 },
+	};
+
+	for (auto& move : moves) {
+		// Check if the move is valid.
+		if (position.x + move.x <= boundary.x && position.x + move.x <= boundary.x) {
+			validMoves.push_back(position + move);
+		}
+		// Check if the swapped move is valid.
+		if (position.x + move.y <= boundary.x && position.x + move.y <= boundary.x) {
+			validMoves.push_back(position + move.swap());
+		}
+	}
+
+	return validMoves;
+}

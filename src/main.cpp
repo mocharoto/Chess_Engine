@@ -6,16 +6,28 @@
 #include <memory>
 #include "board.h"
 #include "pawn.h"
+#include "knight.h"
 #include "coord.h"
 
 
 
 int main(){
-	auto test = new Pawn();
-	test->setPosition(coord{1, 3});
-	std::cout << "Pawn at: " << test->getPosition().x << " " << test->getPosition().y << std::endl;
+	auto testPawn = new Pawn();
+	testPawn->setPosition(coord{0, 3});
+	std::cout << "Pawn at: " << testPawn->getPosition().x << " " << testPawn->getPosition().y << std::endl;
 
-	auto validMoves = test->calculateMoves(coord{10, 10});
+	coordList validMoves;
+
+	validMoves = testPawn->calculateMoves(coord{10, 10});
+	for (auto& move : validMoves) {
+		std::cout << "Can move to: " << move.x << " " << move.y << std::endl;
+	}
+
+	auto testKnight = new Knight();
+	testKnight->setPosition(coord{2, 3});
+	std::cout << "Knight at: " << testKnight->getPosition().x << " " << testKnight->getPosition().y << std::endl;
+
+	validMoves = testKnight->calculateMoves(coord{10, 10});
 	for (auto& move : validMoves) {
 		std::cout << "Can move to: " << move.x << " " << move.y << std::endl;
 	}

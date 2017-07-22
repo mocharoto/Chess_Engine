@@ -13,6 +13,8 @@ public:
   coord();
   coord(int newX, int newY);
 
+  coord swap();
+
   // Adder and subtractor helpers.
   friend coord operator+(const coord& left, const coord& right);
   friend coord operator-(const coord& left, const coord& right);

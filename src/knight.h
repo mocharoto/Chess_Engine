@@ -9,11 +9,11 @@
 #include <iostream>
 #include <string>
 
-class Knight : public Pieces 
+class Knight : public Pieces
 {
 	private:
 	public:
 		void move(int newXCoordinate, int newyCoordinate);
-} Knight;
+};
 
 #endif

@@ -4,12 +4,12 @@
 
 #ifndef PAWN_H
 #define PAWN_H
-class Pawn : public Pieces 
+class Pawn : public Pieces
 {
 	private:
 	public:
 		void move(int newXLocation, int newYLocation);
 		void promote();
-} Pawn;
+};
 
 #endif

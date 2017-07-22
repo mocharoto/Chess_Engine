@@ -3,15 +3,14 @@
 //Purpose: This is a project to create a working chess engine and gui using C++.
 //File: This is the main file.
 #include <iostream>
+#include <memory>
 #include "board.h"
-#include "pieces.h"
+#include "pawn.h"
 
 
 
-int main(void)
-{
-
-	Pieces *test = nullptr;
+int main(){
+	auto test = new Pawn();
 	test->setyCoordinate(1);
 	test->setxCoordinate(3);
 	std::cout << test->getxCoordinate() << " " << test->getyCoordinate() << std::endl;

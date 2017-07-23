@@ -7,6 +7,7 @@
 #include "board.h"
 #include "pawn.h"
 #include "knight.h"
+#include "bishop.h"
 #include "coord.h"
 
 
@@ -28,6 +29,15 @@ int main(){
 	std::cout << "Knight at: " << testKnight->getPosition().x << " " << testKnight->getPosition().y << std::endl;
 
 	validMoves = testKnight->calculateMoves(coord{10, 10});
+	for (auto& move : validMoves) {
+		std::cout << "Can move to: " << move.x << " " << move.y << std::endl;
+	}
+
+	auto testBishop = new Bishop();
+	testBishop->setPosition(coord{2, 2});
+	std::cout << "Bishop at: " << testBishop->getPosition().x << " " << testBishop->getPosition().y << std::endl;
+
+	validMoves = testBishop->calculateMoves(coord{10, 10});
 	for (auto& move : validMoves) {
 		std::cout << "Can move to: " << move.x << " " << move.y << std::endl;
 	}

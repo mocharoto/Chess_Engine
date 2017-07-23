@@ -5,6 +5,10 @@
 #include <string>
 #include "pieces.h"
 #include "pawn.h"
+#include "queen.h"
+#include "rook.h"
+#include "bishop.h"
+#include "knight.h"
 
 using namespace std;
 
@@ -36,5 +40,41 @@ coordList Pawn::calculateMoves(coord boundary) const
 
 void Pawn::promote()
 {
-	//do things
+	//to do
+	//check y coordinate
+	//if y coordinate == 8
+	//then piece should be promoted
+	//in order for that to happen, the pawn object must be destroyed
+	//and then it should be replaced with the promoted piece object. 
+	string promotedPiece = "";
+
+	if (position.y == 8)
+	{
+		std::cout << "Promote pawn to: ";
+		std::cin >> promotedPiece;
+		if(promotedPiece == "Queen" || promotedPiece == "queen")
+		{
+			//create queen object
+			//give queen pawn's coordinates
+			//destroy pawn
+		}
+		if(promotedPiece == "Rook" || promotedPiece == "rook")
+		{
+			//create rook object
+			//give rook pawn's coordinates
+			//destroy pawn
+		}
+		if(promotedPiece == "Bishop" || promotedPiece == "bishop")
+		{
+			//create bishop object
+			//give bishop pawn's coordinates
+			//destroy pawn
+		}
+		if(promotedPiece == "Knight" || promotedPiece == "knight")
+		{
+			//create knight object
+			//give knight pawn's coordinates
+			//destroy pawn
+		}
+	}
 }

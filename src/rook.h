@@ -6,4 +6,4 @@ class Rook
 {
 	private:
 	public:
-} Rook;
+};

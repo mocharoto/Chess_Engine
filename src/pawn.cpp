@@ -36,5 +36,26 @@ coordList Pawn::calculateMoves(coord boundary) const
 
 void Pawn::promote()
 {
-	//do things
+	string promotedPiece = "";
+	if(position.y == 8)
+	{
+		std::cout << "What would you like to promote to? ";
+		std::cin >> promotedPiece;
+		if(promotedPiece == "Queen" || promotedPiece == "queen")
+		{
+			//Promote to Queen
+		}	
+		if(promotedPiece == "Rook" || promotedPiece == "rook")
+		{
+			//Promote to Rook
+		}	
+		if(promotedPiece == "Knight" || promotedPiece == "knight")
+		{
+			//Promote to Knight
+		}
+		if(promotedPiece == "Bishop" || promotedPiece == "bishop")
+		{
+			//Promote to Bishop
+		}
+	}
 }

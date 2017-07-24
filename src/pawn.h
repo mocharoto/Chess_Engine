@@ -9,11 +9,17 @@
 
 class Pawn : public Pieces
 {
-	private:
 	public:
-		void move(coord newPos);
+		void move(coord newPos, board::Square ** Chessboard);
 		coordList calculateMoves(coord boundary) const;
 		void promote();
+		Pawn()
+		{
+			pieceName = "Pawn";
+			pieceColor = "White";
+			position.x = 0;
+			position.y = 0;
+		}
 };
 
 #endif

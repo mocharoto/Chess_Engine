@@ -8,9 +8,9 @@
 
 using namespace std;
 
-void Pawn::move(coord newPos)
+void Pawn::move(coord newPos, board::Square ** Chessboard)
 {
-	setPosition(newPos);
+	setPosition(newPos, Chessboard);
 
 }
 

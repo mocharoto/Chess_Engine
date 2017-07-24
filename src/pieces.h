@@ -8,7 +8,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
+
 #include "coord.h"
+#include "board.h"
 
 using coordList = std::vector<coord>;
 
@@ -20,10 +22,10 @@ class Pieces
 		std::string getPieceColor() const;
 		void setPieceName(std::string newName);
 		std::string getPieceName() const;
-		void setPosition(coord newPos);
+		void setPosition(coord newPos, board::Square ** Chessboard);
 		coord getPosition() const;
 
-		virtual void move(coord newPos) = 0;
+		virtual void move(coord newPos, board::Square ** Chessboard) = 0;
 		// Returns a list of all possible coordinates to move to.
 		virtual coordList calculateMoves(coord boundary) const;
 	protected:

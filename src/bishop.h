@@ -13,7 +13,14 @@ class Bishop : public Pieces
 {
 	private:
 	public:
-		void move(coord newPos);
+		void move(coord newPos, board::Square ** Chessboard);
+		Bishop()
+		{
+			pieceName = "Bishop";
+			pieceColor = "White";
+			position.x = 0;
+			position.y = 0;
+		}
 };
 
 #endif

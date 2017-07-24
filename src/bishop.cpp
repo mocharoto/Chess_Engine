@@ -6,9 +6,9 @@
 #include "pieces.h"
 #include "bishop.h"
 
-void Bishop::move(coord newPos)
+void Bishop::move(coord newPos, board::Square ** Chessboard)
 {
-	setPosition(newPos);
+	setPosition(newPos, Chessboard);
 	//TO DO:
 	//Make rules to only allow Bishops to move in a diagonal.
 }

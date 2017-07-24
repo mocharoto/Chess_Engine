@@ -6,9 +6,9 @@
 #include "pieces.h"
 #include "knight.h"
 
-void Knight::move(coord newPos)
+void Knight::move(coord newPos, board::Square ** Chessboard)
 {
-	setPosition(newPos);
+	setPosition(newPos, Chessboard);
 	//TODO: Set Rules for how a knight moves
 }
 

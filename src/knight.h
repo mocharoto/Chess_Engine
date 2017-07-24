@@ -13,8 +13,15 @@ class Knight : public Pieces
 {
 	private:
 	public:
-		void move(coord newPos);
+		void move(coord newPos, board::Square ** Chessboard);
 		coordList calculateMoves(coord boundary) const;
+		Knight()
+		{
+			pieceName = "Knight";
+			pieceColor = "White";
+			position.x = 0;
+			position.y = 0;
+		}
 };
 
 #endif

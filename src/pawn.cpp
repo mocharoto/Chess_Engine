@@ -37,25 +37,52 @@ coordList Pawn::calculateMoves(coord boundary) const
 void Pawn::promote()
 {
 	string promotedPiece = "";
-	if(position.y == 8)
+	if (position.y == 8)
 	{
 		std::cout << "What would you like to promote to? ";
 		std::cin >> promotedPiece;
-		if(promotedPiece == "Queen" || promotedPiece == "queen")
+		if (promotedPiece == "Queen" || promotedPiece == "queen")
 		{
 			//Promote to Queen
-		}	
-		if(promotedPiece == "Rook" || promotedPiece == "rook")
+			//New Queen
+			//Queen newQueen = new Queen();
+			//sets the position of the Queen
+			//I don't know if this is the correct way.
+			//newQueen->setPosition(this->getPosition(), tile);
+			//Destroys the Pawn piece
+			//I don't know if we have a destructor...
+			//~:Pawn();
+
+		}
+		if (promotedPiece == "Rook" || promotedPiece == "rook")
 		{
 			//Promote to Rook
-		}	
-		if(promotedPiece == "Knight" || promotedPiece == "knight")
+			//New Rook
+			//Rook newRook = new Rook();
+			//sets the position of the Rook
+			//newRook->setPostion(this->getPosition(), tile);
+			//Destroys Pawn
+			//~:Pawn();
+		}
+		if (promotedPiece == "Knight" || promotedPiece == "knight")
 		{
 			//Promote to Knight
+			//New Knight
+			//Knight newKnight = new Knight();
+			//sets the position of the Knight
+			//newKnight->setPosition(this->getPostion(), tile);
+			//Destroys the Pawn piece
+			//~:Pawn();
 		}
-		if(promotedPiece == "Bishop" || promotedPiece == "bishop")
+		if (promotedPiece == "Bishop" || promotedPiece == "bishop")
 		{
 			//Promote to Bishop
+			//New Bishop
+			//Bishop newBishop = new Bishop();
+			//sets the position of the Bishop
+			//newBishop->setPosition(this->getPosition(), tile);
+			//Destroys the Pawn piece
+			//~:Pawn();
 		}
 	}
 }

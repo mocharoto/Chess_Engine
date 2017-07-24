@@ -23,19 +23,29 @@ void Pawn::move(coord newPos, board::Square ** Chessboard)
 coordList Pawn::calculateMoves(coord boundary) const
 {
 	coordList validMoves;
-	// Pawn can move in 4 directions left, right, down, and up by 1.
-	if (position.x + 1 <= boundary.x) {
-		validMoves.push_back(coord{position.x + 1, position.y});
-	}
-	if (position.x - 1 >= 0) {
-		validMoves.push_back(coord{position.x - 1, position.y});
-	}
-
-	if (position.y + 1 <= boundary.y) {
-		validMoves.push_back(coord{position.x, position.y + 1});
-	}
-	if (position.y - 1 >= 0) {
-		validMoves.push_back(coord{position.x, position.y - 1});
+	
+	// Pawn can move in y direction away from its start.
+	// The pawn can also only attack diagonally (not implemented).
+	
+	// Vertical move.
+	if (pieceColor == "White") {
+		if (position.y + 1 <= boundary.y) {
+			validMoves.push_back(coord{position.x, position.y + 1});
+			// Check diagonal via x direction. (Check for occupied enemy in future).
+			if (position.x + 1 <= boundary.x) // && position.x + 1 occupied
+				validMoves.push_back(coord{position.x + 1, position.y + 1});
+			if (position.x - 1 <= boundary.x) // && position.x - 1 occupied
+				validMoves.push_back(coord{position.x - 1, position.y + 1});
+		}
+	} else { // pieceColor == "Black"
+		if (position.y - 1 >= 0) {
+			validMoves.push_back(coord{position.x, position.y - 1});
+			// Check diagonal via x direction. (Check for occupied enemy in future).
+			if (position.x + 1 <= boundary.x) // && position.x + 1 occupied
+				validMoves.push_back(coord{position.x + 1, position.y - 1});
+			if (position.x - 1 <= boundary.x) // && position.x - 1 occupied
+				validMoves.push_back(coord{position.x - 1, position.y - 1});
+		}
 	}
 	return validMoves;
 }

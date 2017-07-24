@@ -5,6 +5,12 @@
 #include <string>
 #include "pieces.h"
 #include "pawn.h"
+#include "queen.h"
+#include "rook.h"
+#include "bishop.h"
+#include "knight.h"
+#include "board.h"
+#include "coord.h"
 
 using namespace std;
 

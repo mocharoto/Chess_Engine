@@ -12,8 +12,6 @@
 #include "coord.h"
 #include "board.h"
 
-using coordList = std::vector<coord>;
-
 class Pieces
 {
 	public:

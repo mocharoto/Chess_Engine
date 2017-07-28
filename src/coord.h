@@ -5,6 +5,8 @@
 #ifndef COORD_H
 #define COORD_H
 
+#include <vector>
+
 class coord
 {
 public:
@@ -21,5 +23,6 @@ public:
 
 };
 
+using coordList = std::vector<coord>;
 
 #endif

@@ -11,9 +11,9 @@
 
 class Knight : public Pieces
 {
-	private:
 	public:
-		void move(coord newPos);
+		Knight();
+
 		coordList calculateMoves(coord boundary) const;
 };
 

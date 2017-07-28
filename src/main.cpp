@@ -10,12 +10,24 @@
 #include "bishop.h"
 #include "coord.h"
 
+#define sizeY 8
+#define sizeX 8
 
+int main()
+{
+	board Chessboard;
+	board::Square **tile = new board::Square*[sizeY];
 
-int main(){
+	for (int index = 0; index < sizeY; ++index)
+	{
+		tile[index] = new board::Square[sizeX];
+	}
+
+	Chessboard.initializeBoard(tile);
+
 	auto testPawn = new Pawn();
-	testPawn->setPosition(coord{0, 3});
-	std::cout << "Pawn at: " << testPawn->getPosition().x << " " << testPawn->getPosition().y << std::endl;
+	testPawn->setPosition(coord{0, 3}, tile);
+	std::cout << testPawn->getPieceName() << " " << testPawn->getPosition().x << " " << testPawn->getPosition().y << std::endl;
 
 	coordList validMoves;
 
@@ -25,7 +37,7 @@ int main(){
 	}
 
 	auto testKnight = new Knight();
-	testKnight->setPosition(coord{2, 3});
+	testKnight->setPosition(coord{0, 3}, tile);
 	std::cout << "Knight at: " << testKnight->getPosition().x << " " << testKnight->getPosition().y << std::endl;
 
 	validMoves = testKnight->calculateMoves(coord{10, 10});
@@ -34,12 +46,27 @@ int main(){
 	}
 
 	auto testBishop = new Bishop();
-	testBishop->setPosition(coord{2, 2});
+	testBishop->setPosition(coord{2, 2}, tile);
 	std::cout << "Bishop at: " << testBishop->getPosition().x << " " << testBishop->getPosition().y << std::endl;
 
 	validMoves = testBishop->calculateMoves(coord{10, 10});
 	for (auto& move : validMoves) {
 		std::cout << "Can move to: " << move.x << " " << move.y << std::endl;
 	}
+	//Chessboard.placePiece("Pawn1", testPawn->getPosition().x, testPawn->getPosition().y, tile);
+	//Chessboard.placePiece("Knight1", testPawn->getPosition().x, testPawn->getPosition().y, tile);
+
+	std::cout << "pause here" << std::endl;
+
+
+	for (int index = 0; index < sizeY; ++index)
+	{
+		delete[] tile[index];
+	}
+
+	delete[] tile;
+
+
+
 	return 0;
 }

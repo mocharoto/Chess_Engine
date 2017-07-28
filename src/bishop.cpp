@@ -3,14 +3,14 @@
 //File Description: .cpp for the Bishop class
 #include <iostream>
 #include <string>
-#include "pieces.h"
 #include "bishop.h"
 
-void Bishop::move(coord newPos)
+Bishop::Bishop() : Pieces()
 {
-	setPosition(newPos);
-	//TO DO:
-	//Make rules to only allow Bishops to move in a diagonal.
+	pieceName = "Bishop";
+	pieceColor = "White";
+	position.x = 0;
+	position.y = 0;
 }
 
 coordList Bishop::calculateMoves(coord boundary) const

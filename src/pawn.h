@@ -7,11 +7,12 @@
 
 #include "pieces.h"
 
+
 class Pawn : public Pieces
 {
-	private:
 	public:
-		void move(coord newPos);
+		Pawn();
+
 		coordList calculateMoves(coord boundary) const;
 		void promote();
 };

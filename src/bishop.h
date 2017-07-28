@@ -11,9 +11,9 @@
 
 class Bishop : public Pieces
 {
-	private:
 	public:
-		void move(coord newPos);
+		Bishop();
+
 		coordList calculateMoves(coord boundary) const;
 };
 

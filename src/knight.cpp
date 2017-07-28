@@ -3,13 +3,14 @@
 //File Description: .cpp file for the Knight class
 #include <iostream>
 #include <string>
-#include "pieces.h"
 #include "knight.h"
 
-void Knight::move(coord newPos)
+Knight::Knight() : Pieces()
 {
-	setPosition(newPos);
-	//TODO: Set Rules for how a knight moves
+	pieceName = "Knight";
+	pieceColor = "White";
+	position.x = 0;
+	position.y = 0;
 }
 
 coordList Knight::calculateMoves(coord boundary) const

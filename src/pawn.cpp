@@ -9,72 +9,98 @@
 #include "rook.h"
 #include "bishop.h"
 #include "knight.h"
+#include "board.h"
+#include "coord.h"
 
 using namespace std;
 
-void Pawn::move(coord newPos)
+Pawn::Pawn()
 {
-	setPosition(newPos);
-
+	pieceName = "Pawn";
+	pieceColor = "White";
+	position.x = 0;
+	position.y = 0;
 }
 
 coordList Pawn::calculateMoves(coord boundary) const
 {
 	coordList validMoves;
-	// Pawn can move in 4 directions left, right, down, and up by 1.
-	if (position.x + 1 <= boundary.x) {
-		validMoves.push_back(coord{position.x + 1, position.y});
-	}
-	if (position.x - 1 >= 0) {
-		validMoves.push_back(coord{position.x - 1, position.y});
-	}
 
-	if (position.y + 1 <= boundary.y) {
-		validMoves.push_back(coord{position.x, position.y + 1});
-	}
-	if (position.y - 1 >= 0) {
-		validMoves.push_back(coord{position.x, position.y - 1});
+	// Pawn can move in y direction away from its start.
+	// The pawn can also only attack diagonally (not implemented).
+
+	// Vertical move.
+	if (pieceColor == "White") {
+		if (position.y + 1 <= boundary.y) {
+			validMoves.push_back(coord{position.x, position.y + 1});
+			// Check diagonal via x direction. (Check for occupied enemy in future).
+			if (position.x + 1 <= boundary.x) // && position.x + 1 occupied
+				validMoves.push_back(coord{position.x + 1, position.y + 1});
+			if (position.x - 1 <= boundary.x) // && position.x - 1 occupied
+				validMoves.push_back(coord{position.x - 1, position.y + 1});
+		}
+	} else { // pieceColor == "Black"
+		if (position.y - 1 >= 0) {
+			validMoves.push_back(coord{position.x, position.y - 1});
+			// Check diagonal via x direction. (Check for occupied enemy in future).
+			if (position.x + 1 <= boundary.x) // && position.x + 1 occupied
+				validMoves.push_back(coord{position.x + 1, position.y - 1});
+			if (position.x - 1 <= boundary.x) // && position.x - 1 occupied
+				validMoves.push_back(coord{position.x - 1, position.y - 1});
+		}
 	}
 	return validMoves;
 }
 
 void Pawn::promote()
 {
-	//to do
-	//check y coordinate
-	//if y coordinate == 8
-	//then piece should be promoted
-	//in order for that to happen, the pawn object must be destroyed
-	//and then it should be replaced with the promoted piece object. 
 	string promotedPiece = "";
-
 	if (position.y == 8)
 	{
-		std::cout << "Promote pawn to: ";
+		std::cout << "What would you like to promote to? ";
 		std::cin >> promotedPiece;
-		if(promotedPiece == "Queen" || promotedPiece == "queen")
+		if (promotedPiece == "Queen" || promotedPiece == "queen")
 		{
-			//create queen object
-			//give queen pawn's coordinates
-			//destroy pawn
+			//Promote to Queen
+			//New Queen
+			//Queen newQueen = new Queen();
+			//sets the position of the Queen
+			//I don't know if this is the correct way.
+			//newQueen->setPosition(this->getPosition(), tile);
+			//Destroys the Pawn piece
+			//I don't know if we have a destructor...
+			//~:Pawn();
+
 		}
-		if(promotedPiece == "Rook" || promotedPiece == "rook")
+		if (promotedPiece == "Rook" || promotedPiece == "rook")
 		{
-			//create rook object
-			//give rook pawn's coordinates
-			//destroy pawn
+			//Promote to Rook
+			//New Rook
+			//Rook newRook = new Rook();
+			//sets the position of the Rook
+			//newRook->setPostion(this->getPosition(), tile);
+			//Destroys Pawn
+			//~:Pawn();
 		}
-		if(promotedPiece == "Bishop" || promotedPiece == "bishop")
+		if (promotedPiece == "Knight" || promotedPiece == "knight")
 		{
-			//create bishop object
-			//give bishop pawn's coordinates
-			//destroy pawn
+			//Promote to Knight
+			//New Knight
+			//Knight newKnight = new Knight();
+			//sets the position of the Knight
+			//newKnight->setPosition(this->getPostion(), tile);
+			//Destroys the Pawn piece
+			//~:Pawn();
 		}
-		if(promotedPiece == "Knight" || promotedPiece == "knight")
+		if (promotedPiece == "Bishop" || promotedPiece == "bishop")
 		{
-			//create knight object
-			//give knight pawn's coordinates
-			//destroy pawn
+			//Promote to Bishop
+			//New Bishop
+			//Bishop newBishop = new Bishop();
+			//sets the position of the Bishop
+			//newBishop->setPosition(this->getPosition(), tile);
+			//Destroys the Pawn piece
+			//~:Pawn();
 		}
 	}
 }

@@ -33,8 +33,3 @@ coordList Bishop::calculateMoves(coord boundary) const
 
 	return validMoves;
 }
-
-void calculateByCast(coordList& coords, coord boundary)
-{
-
-}

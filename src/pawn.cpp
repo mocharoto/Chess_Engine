@@ -14,7 +14,7 @@
 
 using namespace std;
 
-Pawn::Pawn()
+Pawn::Pawn() : Pieces()
 {
 	pieceName = "Pawn";
 	pieceColor = "White";

@@ -7,7 +7,6 @@
 
 #include "pieces.h"
 
-
 class Pawn : public Pieces
 {
 	public:

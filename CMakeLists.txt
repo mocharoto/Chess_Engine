@@ -15,7 +15,14 @@ cmake_minimum_required(VERSION 2.6)
 
 project ( Chess )
 
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
 # Add a subdirectory to the project. The CMakeLists.txt file in that subdirectory
 # will be used for further setting up the project.
-
 add_subdirectory( src )
+INCLUDE_DIRECTORIES( ${CMAKE_BINARY_DIR}/inc )
+LINK_DIRECTORIES( ${CMAKE_BINARY_DIR}/res )
+#TARGET_LINK_LIBRARIES( Chess BearLibTerminal )
+

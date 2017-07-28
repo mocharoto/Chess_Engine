@@ -5,10 +5,11 @@
 
 #include "board.h"
 
-#define sizeY 8
-#define sizeX 8
+
 
 using namespace std;
+
+board::board() { }
 
 bool board::placePiece(std::string pieceName, int x, int y, board::Square ** Chessboard)
 {
@@ -19,7 +20,7 @@ bool board::placePiece(std::string pieceName, int x, int y, board::Square ** Che
 		Chessboard[x][y].isOccupied = true;
 		Chessboard[x][y].canMove = false;
 		Chessboard[x][y].pieceTag = pieceName;
-		
+
 		flag = true;
 	}
 	else
@@ -35,9 +36,9 @@ board::Square board::initializeBoard(board::Square ** Chessboard)
 	int Ascii = 65;
 	string boardTag = "";
 
-	for (int index = 0; index < sizeY; ++index)
+	for (int index = 0; index < board::sizeY; ++index)
 	{
-		for (int jindex = 0; jindex < sizeX; ++jindex)
+		for (int jindex = 0; jindex < board::sizeX; ++jindex)
 		{
 			boardTag = (char(Ascii));
 			boardTag += to_string(jindex);
@@ -57,9 +58,9 @@ board::Square board::initializeBoard(board::Square ** Chessboard)
 //created for testing purpose
 void printBoard(board::Square **Chessboard)
 {
-	for (int index = 0; index < sizeY; ++index)
+	for (int index = 0; index < board::sizeY; ++index)
 	{
-		for (int jindex = 0; jindex < sizeX; ++jindex)
+		for (int jindex = 0; jindex < board::sizeX; ++jindex)
 		{
 			cout << Chessboard[index][jindex].tag;
 		}
@@ -67,5 +68,3 @@ void printBoard(board::Square **Chessboard)
 		cout << endl;
 	}
 }
-
-

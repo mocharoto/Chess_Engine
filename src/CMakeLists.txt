@@ -14,3 +14,4 @@ file( GLOB SRCS *.cpp *.h )
 # and header files needed for the executable.
 
 add_executable( Chess ${SRCS})
+TARGET_LINK_LIBRARIES( Chess BearLibTerminal )

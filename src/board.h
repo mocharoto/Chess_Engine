@@ -14,15 +14,11 @@
 	tag is the name of the given square
 */
 
-#define sizeY 8
-#define sizeX 8
-
 class board
 {
-	private:
-
-
 	public:
+		board();
+
 		struct Square {
 			bool isOccupied;
 			bool canMove;
@@ -33,10 +29,8 @@ class board
 		bool placePiece(std::string pieceName, int x, int y, board::Square **Chessboard);
 		board::Square initializeBoard(board::Square **Chessboard);
 
-		board()
-		{
-
-		}
+		static constexpr int sizeY = 8;
+		static constexpr int sizeX = 8;
 
 };
 

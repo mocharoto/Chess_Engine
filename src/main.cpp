@@ -9,6 +9,7 @@
 #include "knight.h"
 #include "bishop.h"
 #include "coord.h"
+#include "BearLibTerminal.h"
 
 #define sizeY 8
 #define sizeX 8
@@ -66,7 +67,16 @@ int main()
 
 	delete[] tile;
 
+	terminal_open();
 
+	// Printing text
+    terminal_print(1, 1, "Hello, world!");
+    terminal_refresh();
+  
+    // Wait until user close the window
+    while (terminal_read() != TK_CLOSE);
+  
+    terminal_close();
 
 	return 0;
 }

@@ -9,8 +9,6 @@ Knight::Knight() : Pieces()
 {
 	pieceName = "Knight";
 	pieceColor = "White";
-	position.x = 0;
-	position.y = 0;
 }
 
 coordList Knight::calculateMoves(coord boundary) const

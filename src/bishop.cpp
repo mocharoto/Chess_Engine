@@ -9,8 +9,6 @@ Bishop::Bishop() : Pieces()
 {
 	pieceName = "Bishop";
 	pieceColor = "White";
-	position.x = 0;
-	position.y = 0;
 }
 
 coordList Bishop::calculateMoves(coord boundary) const

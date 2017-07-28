@@ -18,8 +18,6 @@ Pawn::Pawn()
 {
 	pieceName = "Pawn";
 	pieceColor = "White";
-	position.x = 0;
-	position.y = 0;
 }
 
 coordList Pawn::calculateMoves(coord boundary) const

@@ -13,7 +13,7 @@ class Pawn : public Pieces
 		Pawn();
 
 		coordList calculateMoves(coord boundary) const;
-		Pieces* Pawn::promote(std::string Command, coord Position, board::Square ** tile, Pieces * testPawn);
+		Pieces* promote(std::string Command, coord Position, board::Square ** tile, Pieces * testPawn);
 };
 
 #endif

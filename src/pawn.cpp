@@ -50,12 +50,15 @@ coordList Pawn::calculateMoves(coord boundary) const
 	return validMoves;
 }
 
-Pieces* Pawn::promote(string Command, coord Position, board::Square ** tile, Pawn * testPawn)
+
+//remember that index starts from 0 and ends at 7, so when we create 8x8 chessboard end point is 7,7 not 8,8
+//TO DO:: make the promote function trigger when you set the pawn's y position to 7 (or 0 depending on color) 
+Pieces* Pawn::promote(string Command, coord Position, board::Square ** tile, Pieces * thisPiece)
 {
 	Pieces *returnValue = this;
 
 	//this erases the original pawn object
-	delete testPawn;
+	delete thisPiece;
 	
 	//and it will replace it with the promoted pieces.
 	if (Command.compare("Queen") == 0)
@@ -68,7 +71,7 @@ Pieces* Pawn::promote(string Command, coord Position, board::Square ** tile, Paw
 		//I will follow along with your stupid joke Sean
 		auto kylee = new Queen();
 
-		kylee->setPosition(Position, tile);
+		kylee->setPosition(Position, tile, kylee);
 		tempBoard.placePiece("Queen", Position.x, Position.y, tile);
 
 		returnValue = kylee;
@@ -83,7 +86,7 @@ Pieces* Pawn::promote(string Command, coord Position, board::Square ** tile, Paw
 		//I will follow along with your stupid joke Sean
 		auto testBishop = new Bishop();
 
-		testBishop->setPosition(Position, tile);
+		testBishop->setPosition(Position, tile, testBishop);
 		tempBoard.placePiece("Bishop", Position.x, Position.y, tile);
 
 		returnValue = testBishop;
@@ -98,7 +101,7 @@ Pieces* Pawn::promote(string Command, coord Position, board::Square ** tile, Paw
 		//I will follow along with your stupid joke Sean
 		auto testRook = new Rook();
 
-		testRook->setPosition(Position, tile);
+		testRook->setPosition(Position, tile, testRook);
 		tempBoard.placePiece("Rook", Position.x, Position.y, tile);
 
 		returnValue = testRook;
@@ -113,7 +116,7 @@ Pieces* Pawn::promote(string Command, coord Position, board::Square ** tile, Paw
 		//I will follow along with your stupid joke Sean
 		auto testKnight = new Knight();
 
-		testKnight->setPosition(Position, tile);
+		testKnight->setPosition(Position, tile, testKnight);
 		tempBoard.placePiece("Knight", Position.x, Position.y, tile);
 
 		returnValue = testKnight;

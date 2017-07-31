@@ -22,7 +22,7 @@ class Pieces
 		std::string getPieceColor() const;
 		void setPieceName(std::string newName);
 		std::string getPieceName() const;
-		void setPosition(coord newPos, board::Square ** Chessboard);
+		void setPosition(coord newPos, board::Square ** Chessboard, Pieces * thisPiece);
 		coord getPosition() const;
 
 		// Returns a list of all possible coordinates to move to.

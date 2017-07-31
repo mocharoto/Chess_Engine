@@ -5,6 +5,7 @@
 #include <string>
 #include "pieces.h"
 #include "board.h"
+#include "pawn.h"
 
 using namespace std;
 
@@ -30,7 +31,7 @@ string Pieces::getPieceName() const
 	return pieceName;
 }
 
-void Pieces::setPosition(coord newPos, board::Square ** Chessboard)
+void Pieces::setPosition(coord newPos, board::Square ** Chessboard, Pieces * thisPiece)
 {
 	bool canPlace = true;
 	board thisBoard;
@@ -44,6 +45,19 @@ void Pieces::setPosition(coord newPos, board::Square ** Chessboard)
 	else if(canPlace == false)
 	{
 		cout << "can't place a " << pieceName << " at " << Chessboard[newPos.x][newPos.y].tag << " " << Chessboard[newPos.x][newPos.y].pieceTag << " is there" << endl;
+	}
+
+	//if a piece named Pawn gets placed in position 8 or 0 call promote function 
+	if(pieceName.compare("Pawn") == 0 && (newPos.y == 7 || newPos.y == 0))
+	{
+		Pawn callthis;
+
+		string Command = "";
+
+		cout << "Pawn reached the promotion area, choose one of the options (Queen, Bishop, Rook, Knight)" << endl;
+		cin >> Command;
+
+		callthis.promote(Command, newPos, Chessboard, thisPiece);
 	}
 }
 

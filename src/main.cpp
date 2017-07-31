@@ -24,26 +24,35 @@ int main()
 	Chessboard.initializeBoard(tile);
 
 	auto testPawn = new Pawn();
-	testPawn->setPosition(coord{0, 3}, tile);
+	auto testPawn2 = new Pawn();
+	auto testPawn3 = new Pawn();
+	 
+	testPawn->setPosition(coord{0, 3}, tile, testPawn);
 	std::cout << testPawn->getPieceName() << " " << testPawn->getPosition().x << " " << testPawn->getPosition().y << std::endl;
+
+	testPawn2->setPosition(coord{ 7,7 }, tile, testPawn2);
 
 	coordList validMoves;
 
-	validMoves = testPawn->calculateMoves(coord{10, 10});
+	validMoves = testPawn2->calculateMoves(coord{10, 10});
 	for (auto& move : validMoves) {
 		std::cout << "Can move to: " << move.x << " " << move.y << std::endl;
 	}
 
-	//remember that index starts from 0 and ends at 7, so when we create 8x8 chessboard end point is 7,7 not 8,8
-	//TO DO:: make the promote function trigger when you set the pawn's y position to 7 (or 0 depending on color) 
+	/*testing cases for promote
 	testPawn->promote("Queen", coord{ 7,7 }, tile, testPawn);
-
+	testPawn2->promote("Bishop", coord{ 7,6 }, tile, testPawn2);
+	testPawn3->promote("Knight", coord{ 7,5 }, tile, testPawn3);
 
 	std::cout << "The Piece placed at tile[7][7] is " << tile[7][7].pieceTag << std::endl;
+	std::cout << "The Piece placed at tile[7][6] is " << tile[7][6].pieceTag << std::endl;
+	std::cout << "The Piece placed at tile[7][5] is " << tile[7][5].pieceTag << std::endl;
+	*/
 
+	Chessboard.deletePiece(7,7, tile);
 
 	auto testKnight = new Knight();
-	testKnight->setPosition(coord{0, 3}, tile);
+	testKnight->setPosition(coord{7, 7}, tile, testKnight);
 	std::cout << "Knight at: " << testKnight->getPosition().x << " " << testKnight->getPosition().y << std::endl;
 
 	validMoves = testKnight->calculateMoves(coord{10, 10});
@@ -52,7 +61,7 @@ int main()
 	}
 
 	auto testBishop = new Bishop();
-	testBishop->setPosition(coord{2, 2}, tile);
+	testBishop->setPosition(coord{2, 2}, tile, testBishop);
 	std::cout << "Bishop at: " << testBishop->getPosition().x << " " << testBishop->getPosition().y << std::endl;
 
 	validMoves = testBishop->calculateMoves(coord{10, 10});

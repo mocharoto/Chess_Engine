@@ -7,8 +7,7 @@
 
 Rook::Rook() : Pieces()
 {
-  pieceName = "Rook";
-  pieceColor = "White";
+	type = PieceType::Rook;
 }
 
 coordList Rook::calculateMoves(coord boundary) const

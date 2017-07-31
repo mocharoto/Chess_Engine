@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <string>
+#include "defs.h"
 /*
 	structure of a square
 	isOccupied will check if a piece is placed on the square
@@ -23,16 +24,15 @@ class board
 			bool isOccupied;
 			bool canMove;
 			std::string tag;
-			std::string pieceTag;
+			PieceType pieceType;
 		};
 
-		bool placePiece(std::string pieceName, int x, int y, board::Square **Chessboard);
+		bool placePiece(PieceType pieceType, int x, int y, board::Square **Chessboard);
 		void deletePiece(int x, int y, board::Square **Chessboard);
 		board::Square initializeBoard(board::Square **Chessboard);
 
 		static constexpr int sizeY = 8;
 		static constexpr int sizeX = 8;
-
 };
 
 #endif

@@ -5,6 +5,108 @@
 #ifndef DEFS_H
 #define DEFS_H
 
+#include <string>
+#include <algorithm>
+#include <string>
+
+
+enum class PieceType
+{
+	Pawn,
+	Knight,
+	Rook,
+	Bishop,
+	Queen,
+	King,
+	None
+};
+
+inline PieceType pieceFromString(std::string pieceStr)
+{
+	PieceType result;
+
+	// Make the input string all lowercase.
+	std::transform(pieceStr.begin(), pieceStr.end(), pieceStr.begin(), ::tolower);
+
+	if (pieceStr == "pawn")
+		result = PieceType::Pawn;
+	else if (pieceStr == "knight")
+		result = PieceType::Knight;
+	else if (pieceStr == "rook")
+		result = PieceType::Rook;
+	else if (pieceStr == "bishop")
+		result = PieceType::Bishop;
+	else if (pieceStr == "queen")
+		result = PieceType::Queen;
+	else if (pieceStr == "king")
+		result = PieceType::King;
+	else
+		result = PieceType::None;
+
+	return result;
+}
+
+inline std::string pieceToString(PieceType type)
+{
+	std::string result;
+
+	if (type == PieceType::Pawn)
+		result = "Pawn";
+	else if (type == PieceType::Knight)
+		result = "Knight";
+	else if (type == PieceType::Rook)
+		result = "Rook";
+	else if (type == PieceType::Bishop)
+		result = "Bishop";
+	else if (type == PieceType::Queen)
+		result = "Queen";
+	else if (type == PieceType::King)
+		result = "King";
+	else
+		result = "None";
+
+	return result;
+}
+
+enum class TeamColor
+{
+	White,
+	Black,
+	None
+};
+
+inline TeamColor colorFromString(std::string colorStr)
+{
+	TeamColor result;
+
+	// Make the input string all lowercase.
+	std::transform(colorStr.begin(), colorStr.end(), colorStr.begin(), ::tolower);
+
+	if (colorStr== "white")
+		result = TeamColor::White;
+	else if (colorStr == "black")
+			result = TeamColor::Black;
+	else
+		result = TeamColor::None;
+
+	return result;
+}
+
+inline std::string colorToString(TeamColor color)
+{
+	std::string result;
+
+	if (color == TeamColor::White)
+		result = "White";
+	else if (color == TeamColor::Black)
+			result = "Black";
+	else
+		result = "None";
+
+	return result;
+}
+
+/*
 enum { EMPTY, wP, wN, wB, wR, wQ, wK, bP, bN, bB, bR, bQ, bK };
 enum { FILE_A, FILE_B, FILE_C, FILE_D, FILE_E, FILE_F, FILE_G, FILE_H, FILE_NONE };
 enum { RANK_1, RANK_2, RANK_3, RANK_4, RANK_5, RANK_6, RANK_7, RANK_8, RANK_NONE };
@@ -21,5 +123,5 @@ enum {
 };
 
 enum { FALSE, TRUE };
-
+*/
 #endif

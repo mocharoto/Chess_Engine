@@ -7,8 +7,7 @@
 
 Knight::Knight() : Pieces()
 {
-	pieceName = "Knight";
-	pieceColor = "White";
+	type = PieceType::Knight;
 }
 
 coordList Knight::calculateMoves(coord boundary) const

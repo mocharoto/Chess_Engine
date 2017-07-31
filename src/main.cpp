@@ -9,7 +9,7 @@
 #include "bishop.h"
 #include "coord.h"
 #include "BearLibTerminal.h"
-	
+
 int main()
 {
 	board Chessboard;
@@ -25,12 +25,11 @@ int main()
 
 	auto testPawn = new Pawn();
 	auto testPawn2 = new Pawn();
-	auto testPawn3 = new Pawn();
-	 
-	testPawn->setPosition(coord{0, 3}, tile, testPawn);
-	std::cout << testPawn->getPieceName() << " " << testPawn->getPosition().x << " " << testPawn->getPosition().y << std::endl;
 
-	testPawn2->setPosition(coord{ 7,7 }, tile, testPawn2);
+	testPawn->setPosition(coord{0, 3}, tile);
+	std::cout << pieceToString(testPawn->type)<< " " << testPawn->getPosition().x << " " << testPawn->getPosition().y << std::endl;
+
+	testPawn2->setPosition(coord{ 7,7 }, tile);
 
 	coordList validMoves;
 
@@ -52,7 +51,7 @@ int main()
 	Chessboard.deletePiece(7,7, tile);
 
 	auto testKnight = new Knight();
-	testKnight->setPosition(coord{7, 7}, tile, testKnight);
+	testKnight->setPosition(coord{7, 7}, tile);
 	std::cout << "Knight at: " << testKnight->getPosition().x << " " << testKnight->getPosition().y << std::endl;
 
 	validMoves = testKnight->calculateMoves(coord{10, 10});
@@ -61,7 +60,7 @@ int main()
 	}
 
 	auto testBishop = new Bishop();
-	testBishop->setPosition(coord{2, 2}, tile, testBishop);
+	testBishop->setPosition(coord{2, 2}, tile);
 	std::cout << "Bishop at: " << testBishop->getPosition().x << " " << testBishop->getPosition().y << std::endl;
 
 	validMoves = testBishop->calculateMoves(coord{10, 10});
@@ -118,17 +117,5 @@ int main()
 	// We're done here.
 	terminal_close();
 
-	// Do we need to delete pointers if we are exiting?
-	/*
-	std::cout << "pause here" << std::endl;
-
-
-	for (int index = 0; index < board::sizeY; ++index)
-	{
-		delete[] tile[index];
-	}
-
-	delete[] tile;
-	*/
 	return 0;
 }

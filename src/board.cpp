@@ -2,16 +2,13 @@
 //Date: 14 July 2017
 //board functions
 
-
 #include "board.h"
-
-
 
 using namespace std;
 
 board::board() { }
 
-bool board::placePiece(std::string pieceName, int x, int y, board::Square ** Chessboard)
+bool board::placePiece(PieceType pieceType, int x, int y, board::Square ** Chessboard)
 {
 	bool flag = false;
 
@@ -19,7 +16,7 @@ bool board::placePiece(std::string pieceName, int x, int y, board::Square ** Che
 	{
 		Chessboard[x][y].isOccupied = true;
 		Chessboard[x][y].canMove = false;
-		Chessboard[x][y].pieceTag = pieceName;
+		Chessboard[x][y].pieceType = pieceType;
 
 		flag = true;
 	}
@@ -36,7 +33,7 @@ void board::deletePiece(int x, int y, board::Square ** Chessboard)
 	Chessboard[x][y].isOccupied = false;
 	Chessboard[x][y].canMove = true;
 	//don't change the boardTag
-	Chessboard[x][y].pieceTag = "";
+	Chessboard[x][y].pieceType = PieceType::None;
 }
 
 board::Square board::initializeBoard(board::Square ** Chessboard)
@@ -55,7 +52,7 @@ board::Square board::initializeBoard(board::Square ** Chessboard)
 			Chessboard[index][jindex].canMove = true;
 			//Chessboard[index]->tag = (char(Ascii) + '-' + char(index));
 			Chessboard[index][jindex].tag = boardTag;
-			Chessboard[index][jindex].pieceTag = "";
+			Chessboard[index][jindex].pieceType = PieceType::None;
 		}
 
 		Ascii++;

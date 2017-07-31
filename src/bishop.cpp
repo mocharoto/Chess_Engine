@@ -7,8 +7,7 @@
 
 Bishop::Bishop() : Pieces()
 {
-	pieceName = "Bishop";
-	pieceColor = "White";
+	type = PieceType::Bishop; 
 }
 
 coordList Bishop::calculateMoves(coord boundary) const

@@ -6,49 +6,30 @@
 #include "pieces.h"
 #include "board.h"
 #include "pawn.h"
+#include "defs.h"
 
 using namespace std;
 
-Pieces::Pieces() : pieceColor(""), pieceName(""), position({0, 0}) { }
+Pieces::Pieces() : team(TeamColor::None), type(PieceType::None), position({0, 0}) { }
 
-void Pieces::setPieceColor(string newColor)
-{
-	pieceColor = newColor;
-}
-
-string Pieces::getPieceColor() const
-{
-	return pieceColor;
-}
-
-void Pieces::setPieceName(string newName)
-{
-	pieceName = newName;
-}
-
-string Pieces::getPieceName() const
-{
-	return pieceName;
-}
-
-void Pieces::setPosition(coord newPos, board::Square ** Chessboard, Pieces * thisPiece)
+void Pieces::setPosition(coord newPos, board::Square ** Chessboard)
 {
 	bool canPlace = true;
 	board thisBoard;
-	canPlace = thisBoard.placePiece(pieceName, newPos.x, newPos.y, Chessboard);
+	canPlace = thisBoard.placePiece(type, newPos.x, newPos.y, Chessboard);
 
 	if (canPlace == true)
 	{
 		position = newPos;
-		cout << pieceName << " is Placed at " << Chessboard[position.x][position.y].tag << endl;
+		cout << pieceToString(type) << " is Placed at " << Chessboard[position.x][position.y].tag << endl;
 	}
 	else if(canPlace == false)
 	{
-		cout << "can't place a " << pieceName << " at " << Chessboard[newPos.x][newPos.y].tag << " " << Chessboard[newPos.x][newPos.y].pieceTag << " is there" << endl;
+		cout << "can't place a " << pieceToString(type) << " at " << Chessboard[newPos.x][newPos.y].tag << " " << pieceToString(Chessboard[newPos.x][newPos.y].pieceType) << " is there" << endl;
 	}
 
-	//if a piece named Pawn gets placed in position 8 or 0 call promote function 
-	if(pieceName.compare("Pawn") == 0 && (newPos.y == 7 || newPos.y == 0))
+	//if a piece named Pawn gets placed in position 8 or 0 call promote function
+	if(type == PieceType::Pawn && (newPos.y == 7 || newPos.y == 0))
 	{
 		Pawn callthis;
 
@@ -57,7 +38,7 @@ void Pieces::setPosition(coord newPos, board::Square ** Chessboard, Pieces * thi
 		cout << "Pawn reached the promotion area, choose one of the options (Queen, Bishop, Rook, Knight)" << endl;
 		cin >> Command;
 
-		callthis.promote(Command, newPos, Chessboard, thisPiece);
+		callthis.promote(Command, newPos, Chessboard, this);
 	}
 }
 

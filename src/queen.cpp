@@ -7,8 +7,7 @@
 
 Queen::Queen() : Pieces()
 {
-  pieceName = "Queen";
-  pieceColor = "White";
+  type = PieceType::Queen;
 }
 
 coordList Queen::calculateMoves(coord boundary) const

@@ -9,7 +9,7 @@
 #include "bishop.h"
 #include "coord.h"
 #include "BearLibTerminal.h"
-
+	
 int main()
 {
 	board Chessboard;
@@ -33,6 +33,14 @@ int main()
 	for (auto& move : validMoves) {
 		std::cout << "Can move to: " << move.x << " " << move.y << std::endl;
 	}
+
+	//remember that index starts from 0 and ends at 7, so when we create 8x8 chessboard end point is 7,7 not 8,8
+	//TO DO:: make the promote function trigger when you set the pawn's y position to 7 (or 0 depending on color) 
+	testPawn->promote("Queen", coord{ 7,7 }, tile, testPawn);
+
+
+	std::cout << "The Piece placed at tile[7][7] is " << tile[7][7].pieceTag << std::endl;
+
 
 	auto testKnight = new Knight();
 	testKnight->setPosition(coord{0, 3}, tile);

@@ -27,6 +27,7 @@ class board
 		};
 
 		bool placePiece(std::string pieceName, int x, int y, board::Square **Chessboard);
+		void deletePiece(int x, int y, board::Square **Chessboard);
 		board::Square initializeBoard(board::Square **Chessboard);
 
 		static constexpr int sizeY = 8;

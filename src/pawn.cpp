@@ -50,13 +50,104 @@ coordList Pawn::calculateMoves(coord boundary) const
 	return validMoves;
 }
 
-void Pawn::promote()
+Pieces* Pawn::promote(string Command, coord Position, board::Square ** tile, Pawn * testPawn)
 {
-	string promotedPiece = "";
-	if (position.y == 8)
+	Pieces *returnValue = this;
+
+	//this erases the original pawn object
+	delete testPawn;
+	
+	//and it will replace it with the promoted pieces.
+	if (Command.compare("Queen") == 0)
 	{
-		std::cout << "What would you like to promote to? ";
-		std::cin >> promotedPiece;
+		cout << "Promoting a Pawn to " << Command << endl;
+		board tempBoard;
+		tempBoard.deletePiece(Position.x, Position.y, tile);
+
+		//create a new Queen object
+		//I will follow along with your stupid joke Sean
+		auto kylee = new Queen();
+
+		kylee->setPosition(Position, tile);
+		tempBoard.placePiece("Queen", Position.x, Position.y, tile);
+
+		returnValue = kylee;
+	}
+	else if (Command.compare("Bishop") == 0)
+	{
+		cout << "Promoting a Pawn to " << Command << endl;
+		board tempBoard;
+		tempBoard.deletePiece(Position.x, Position.y, tile);
+
+		//create a new Queen object
+		//I will follow along with your stupid joke Sean
+		auto kylee = new Queen();
+
+		kylee->setPosition(Position, tile);
+		tempBoard.placePiece("Queen", Position.x, Position.y, tile);
+
+		returnValue = kylee;
+	}
+	else if (Command.compare("Bishop") == 0)
+	{
+		cout << "Promoting a Pawn to " << Command << endl;
+		board tempBoard;
+		tempBoard.deletePiece(Position.x, Position.y, tile);
+
+		//create a new Bishop object
+		//I will follow along with your stupid joke Sean
+		auto testBishop = new Bishop();
+
+		testBishop->setPosition(Position, tile);
+		tempBoard.placePiece("Bishop", Position.x, Position.y, tile);
+
+		returnValue = testBishop;
+	}
+	else if (Command.compare("Rook") == 0)
+	{
+		cout << "Promoting a Pawn to " << Command << endl;
+		board tempBoard;
+		tempBoard.deletePiece(Position.x, Position.y, tile);
+
+		//create a new Queen object
+		//I will follow along with your stupid joke Sean
+		auto testRook = new Rook();
+
+		testRook->setPosition(Position, tile);
+		tempBoard.placePiece("Rook", Position.x, Position.y, tile);
+
+		returnValue = testRook;
+	}
+	else if (Command.compare("Knight") == 0)
+	{
+		cout << "Promoting a Pawn to " << Command << endl;
+		board tempBoard;
+		tempBoard.deletePiece(Position.x, Position.y, tile);
+
+		//create a new Queen object
+		//I will follow along with your stupid joke Sean
+		auto testKnight = new Knight();
+
+		testKnight->setPosition(Position, tile);
+		tempBoard.placePiece("Knight", Position.x, Position.y, tile);
+
+		returnValue = testKnight;
+	}
+	else
+	{
+		cout << "Not a correct Command" << endl;
+	}
+
+
+	return returnValue;
+	//string promotedPiece = "";
+	/*
+	if (position.y == 8)
+	{	
+		
+			std::cout << "What would you like to promote to? ";
+			std::cin >> promotedPiece;
+		
 		if (promotedPiece == "Queen" || promotedPiece == "queen")
 		{
 			//Promote to Queen
@@ -101,4 +192,5 @@ void Pawn::promote()
 			//~:Pawn();
 		}
 	}
+	*/
 }

@@ -15,7 +15,7 @@ bool board::placePiece(std::string pieceName, int x, int y, board::Square ** Che
 {
 	bool flag = false;
 
-	if (Chessboard[x][y].isOccupied != false && Chessboard[x][y].canMove == true)
+	if (Chessboard[x][y].isOccupied == false && Chessboard[x][y].canMove == true)
 	{
 		Chessboard[x][y].isOccupied = true;
 		Chessboard[x][y].canMove = false;
@@ -31,6 +31,14 @@ bool board::placePiece(std::string pieceName, int x, int y, board::Square ** Che
 	return flag;
 }
 
+void board::deletePiece(int x, int y, board::Square ** Chessboard)
+{
+	Chessboard[x][y].isOccupied = false;
+	Chessboard[x][y].canMove = true;
+	//don't change the boardTag
+	Chessboard[x][y].pieceTag = "";
+}
+
 board::Square board::initializeBoard(board::Square ** Chessboard)
 {
 	int Ascii = 65;
@@ -43,7 +51,7 @@ board::Square board::initializeBoard(board::Square ** Chessboard)
 			boardTag = (char(Ascii));
 			boardTag += to_string(jindex);
 
-			Chessboard[index][jindex].isOccupied = true;
+			Chessboard[index][jindex].isOccupied = false;
 			Chessboard[index][jindex].canMove = true;
 			//Chessboard[index]->tag = (char(Ascii) + '-' + char(index));
 			Chessboard[index][jindex].tag = boardTag;

@@ -79,21 +79,6 @@ Pieces* Pawn::promote(string Command, coord Position, board::Square ** tile, Paw
 		board tempBoard;
 		tempBoard.deletePiece(Position.x, Position.y, tile);
 
-		//create a new Queen object
-		//I will follow along with your stupid joke Sean
-		auto kylee = new Queen();
-
-		kylee->setPosition(Position, tile);
-		tempBoard.placePiece("Queen", Position.x, Position.y, tile);
-
-		returnValue = kylee;
-	}
-	else if (Command.compare("Bishop") == 0)
-	{
-		cout << "Promoting a Pawn to " << Command << endl;
-		board tempBoard;
-		tempBoard.deletePiece(Position.x, Position.y, tile);
-
 		//create a new Bishop object
 		//I will follow along with your stupid joke Sean
 		auto testBishop = new Bishop();

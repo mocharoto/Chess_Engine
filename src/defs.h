@@ -68,6 +68,30 @@ inline std::string pieceToString(PieceType type)
 	return result;
 }
 
+inline int pieceDrawCode(PieceType type)
+{
+	int result;
+
+	if (type == PieceType::Pawn)
+		result = 0x50; // P
+	else if (type == PieceType::Knight)
+		result = 0x4B;
+	else if (type == PieceType::Rook)
+		result = 0x52;
+	else if (type == PieceType::Bishop)
+		result = 0x42;
+	else if (type == PieceType::Queen)
+		result = 0x51;
+	else if (type == PieceType::King)
+		result = 0x4B;
+	else if (type == PieceType::None)
+		result = 0xAD;
+	else
+		result = 0x40;
+
+	return result;
+}
+
 enum class TeamColor
 {
 	White,

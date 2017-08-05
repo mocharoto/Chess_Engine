@@ -9,25 +9,37 @@
 #include "bishop.h"
 #include "coord.h"
 #include "BearLibTerminal.h"
+
+void handleInput(board& Chessboard);
+
 int main()
 {
 	board Chessboard;
 
 	Chessboard.initializeBoard();
 
-	Chessboard.placePiece(PieceType::Pawn, {5, 5}, TeamColor::White);
-	Chessboard.placePiece(PieceType::Knight, {1, 2}, TeamColor::White);
-	Chessboard.placePiece(PieceType::Bishop, {2, 3}, TeamColor::Black);
+	for (int i = 0; i < 8; i++) {
+		Chessboard.placePiece(PieceType::Pawn, {i, 1}, TeamColor::White);
+	}
+	Chessboard.placePiece(PieceType::Rook, {0, 0}, TeamColor::White);
+	Chessboard.placePiece(PieceType::Rook, {7, 0}, TeamColor::White);
+	Chessboard.placePiece(PieceType::Knight, {1, 0}, TeamColor::White);
+	Chessboard.placePiece(PieceType::Knight, {6, 0}, TeamColor::White);
+	Chessboard.placePiece(PieceType::Bishop, {2, 0}, TeamColor::White);
+	Chessboard.placePiece(PieceType::Bishop, {5, 0}, TeamColor::White);
+	Chessboard.placePiece(PieceType::Queen, {3, 0}, TeamColor::White);
 
-	// Test deleting.
-	Chessboard.deletePiece({5, 5});
+	for (int i = 0; i < 8; i++) {
+		Chessboard.placePiece(PieceType::Pawn, {i, 6}, TeamColor::Black);
+	}
+	Chessboard.placePiece(PieceType::Rook, {0, 7}, TeamColor::Black);
+	Chessboard.placePiece(PieceType::Rook, {7, 7}, TeamColor::Black);
+	Chessboard.placePiece(PieceType::Knight, {1, 7}, TeamColor::Black);
+	Chessboard.placePiece(PieceType::Knight, {6, 7}, TeamColor::Black);
+	Chessboard.placePiece(PieceType::Bishop, {2, 7}, TeamColor::Black);
+	Chessboard.placePiece(PieceType::Bishop, {5, 7}, TeamColor::Black);
+	Chessboard.placePiece(PieceType::Queen, {3, 7}, TeamColor::Black);
 
-	// Test a regular move.
-	Chessboard.movePiece({2, 3}, {3, 4});
-
-	// Test an attack.
-	Chessboard.movePiece({3, 4}, {1, 2});
-	
 	// Open the terminal. Since no terminal_set() method is called,
 	// the terminal will use default settings.
 	terminal_open();
@@ -39,6 +51,7 @@ int main()
 	terminal_refresh();
 
 	bool running = true;
+	bool drawBoard = false;
 	while (running) {
 		// Check for input. termnial_read() is blocking, meaning the
 		// program will wait until it reads a key press.
@@ -59,11 +72,21 @@ int main()
 				running = false;
 				break;
 			case TK_ENTER:
-				terminal_print(1, 2, "Simon is king; Kylee is queen.");
+				drawBoard = true;
 				break;
 			default:
 				terminal_print(1, 2, "The key pressed has no function.");
 				break;
+		}
+
+
+		// Draw the board.
+		if (drawBoard) {
+			for (int y = 0; y < boardSize::y; y++) {
+				for (int x = 0; x < boardSize::x; x++) {
+					terminal_put( 2 + x, 5 + y, pieceDrawCode(Chessboard.getSquareType({x, y})) );
+				}
+			}
 		}
 
 		// Commit the buffer and draw it.

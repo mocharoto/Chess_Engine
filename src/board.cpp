@@ -122,8 +122,24 @@ void board::initializeBoard()
 	}
 }
 
+PieceType board::getSquareType(coord pos) const
+{
+	if (squares[pos.x][pos.y].occupied()) {
+		return squares[pos.x][pos.y].pieces.front()->type;
+	}
+	return PieceType::None;
+}
+
+TeamColor board::getSquareColor(coord pos) const
+{
+	if (squares[pos.x][pos.y].occupied()) {
+		return squares[pos.x][pos.y].pieces.front()->team;
+	}
+	return TeamColor::None;
+}
+
 //created for testing purpose
-void printBoard(Square **squares)
+void board::printBoard()
 {
 	for (int index = 0; index < boardSize::y; ++index)
 	{

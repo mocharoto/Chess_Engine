@@ -24,7 +24,7 @@ struct Square {
 	bool canMove = true;
 	std::string tag = "";
 	std::vector< std::shared_ptr<Pieces> > pieces;
-	bool occupied() {
+	bool occupied() const {
 		return !pieces.empty();
 	}
 };
@@ -42,12 +42,20 @@ class board
 	public:
 		board();
 
+		// Game play methods.
 		bool movePiece(coord oldPos, coord newPos);
 		bool placePiece(PieceType pieceType, coord pos, TeamColor color);
 		bool deletePiece(coord pos);
+
+		// Startup.
 		void initializeBoard();
 
+		// Debug.
+		void printBoard();
 
+		// Squares access for drawing
+		PieceType getSquareType(coord pos) const;
+		TeamColor getSquareColor(coord pos) const;
 
 	private:
 		squareGrid squares;

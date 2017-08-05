@@ -13,15 +13,23 @@ bool board::placePiece(PieceType piece, coord pos, TeamColor color)
 {
 	auto current = &squares[pos.x][pos.y];
 
-	if (current->occupied() == false)
+	if (!current->occupied())
 	{
 		current->canMove = false;
 		current->pieces.push_back(PieceUtils::pieceFromType(piece, pos));
-		current->pieces.back()->team = color;
+		current->pieces.front()->team = color;
+		
+		std::cout << pieceToString(piece) << " is Placed at (" << pos.x << ", " << pos.y << ")" << std::endl;
+		
 		return true;
 	}
+	else
+	{
+		std::cout << "unable to place Piece " << pieceToString(piece) << " at (" << pos.x << ", " << pos.y << "). "
+				  << pieceToString(current->pieces.front()->type) << " is Occupying the space." << std::endl;
 
-	return false;
+		return false;
+	}
 }
 
 bool board::movePiece(coord oldPos, coord newPos)
@@ -71,14 +79,16 @@ bool board::movePiece(coord oldPos, coord newPos)
 				 std::cout << "Friendly piece at (" << newPos.x << ", " << newPos.y << "), against the rules." << std::endl;
 				 return false;
 			}
-
-			std::cout << "Piece destroyed at (" << newPos.x << ", " << newPos.y << ")" << std::endl;
+			
+			std::cout << pieceToString(oldS->pieces.front()->type) << " Attempting to move to (" << newPos.x << ", " << newPos.y << ")" << std::endl;
+			std::cout << pieceToString(newS->pieces.front()->type) << " destroyed at (" << newPos.x << ", " << newPos.y << ")" << std::endl;
 			newS->pieces.clear();
 		}
 
 		newS->pieces.push_back(oldS->pieces.front());
 		oldS->pieces.clear();
-		std::cout << "Successful move." << std::endl;
+		std::cout << "Successful move. " << pieceToString(newS->pieces.front()->type) << " was moved to (" << newPos.x << ", " << newPos.y << ")" << std::endl;
+		
 
 	} else {
 		// Not in the move list.

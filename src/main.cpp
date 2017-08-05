@@ -40,6 +40,30 @@ int main()
 	Chessboard.placePiece(PieceType::Bishop, {5, 7}, TeamColor::Black);
 	Chessboard.placePiece(PieceType::Queen, {3, 7}, TeamColor::Black);
 
+	// Test an attack.
+	Chessboard.movePiece({3, 4}, {1, 2});
+
+	// Test creating a piece into the occupied coordinate (same color) 
+	// Expected Output : failure
+	Chessboard.placePiece(PieceType::Rook, { 3,3 }, TeamColor::White);
+	Chessboard.placePiece(PieceType::Pawn, { 3,3 }, TeamColor::White);
+
+	// Test creating a piece into the occupied coordinate (different color)
+	// Expected Output : failure
+	Chessboard.deletePiece({ 3,3 });
+	Chessboard.placePiece(PieceType::Pawn, { 3,3 }, TeamColor::White);
+	Chessboard.placePiece(PieceType::Bishop, { 3,3 }, TeamColor::Black);
+
+	// Test Moving a piece into the occupied coordinate (same color)
+	// Expected Output : failure
+	Chessboard.placePiece(PieceType::Pawn, { 3,2 }, TeamColor::White);
+	Chessboard.movePiece({ 3,2 }, { 3,3 });
+
+	// Test Pawn's valid moves
+
+
+
+
 	// Open the terminal. Since no terminal_set() method is called,
 	// the terminal will use default settings.
 	terminal_open();

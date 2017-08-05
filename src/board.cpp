@@ -58,12 +58,12 @@ bool board::movePiece(coord oldPos, coord newPos)
 		std::cout << "No available moves for (" << oldPos.x << ", " << oldPos.y << ")" << std::endl;
 		return false;
 	}
-
+	/*
 	for (auto move : availableMoves) {
 		std::cout << "(" << move.x << ", " << move.y << ") ";
 	}
 	std::cout << std::endl;
-
+	*/
 	if (std::find(availableMoves.begin(), availableMoves.end(), newPos) != availableMoves.end()) {
 		// move to newpos.
 		if (!newS->pieces.empty()) {

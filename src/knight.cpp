@@ -5,9 +5,10 @@
 #include <string>
 #include "knight.h"
 
-Knight::Knight() : Pieces()
+Knight::Knight(coord pos) : Pieces()
 {
 	type = PieceType::Knight;
+	position = pos;
 }
 
 coordList Knight::calculateMoves(coord boundary) const

@@ -7,7 +7,7 @@
 class Rook : public Pieces
 {
 	public:
-		Rook();
+		Rook(coord pos);
 
 		coordList calculateMoves(coord boundary) const;
 };

@@ -7,7 +7,10 @@
 
 #include <iostream>
 #include <string>
+#include <array>
+#include <memory>
 #include "defs.h"
+#include "coord.h"
 /*
 	structure of a square
 	isOccupied will check if a piece is placed on the square
@@ -15,24 +18,39 @@
 	tag is the name of the given square
 */
 
+class Pieces;
+
+struct Square {
+	bool canMove = true;
+	std::string tag = "";
+	std::vector< std::shared_ptr<Pieces> > pieces;
+	bool occupied() {
+		return !pieces.empty();
+	}
+};
+
+namespace boardSize
+{
+	static constexpr int y = 8;
+	static constexpr int x = 8;
+}
+
+using squareGrid = std::array<std::array<Square, boardSize::y>, boardSize::x>;
+
 class board
 {
 	public:
 		board();
 
-		struct Square {
-			bool isOccupied;
-			bool canMove;
-			std::string tag;
-			PieceType pieceType;
-		};
+		bool movePiece(coord oldPos, coord newPos);
+		bool placePiece(PieceType pieceType, coord pos, TeamColor color);
+		bool deletePiece(coord pos);
+		void initializeBoard();
 
-		bool placePiece(PieceType pieceType, int x, int y, board::Square **Chessboard);
-		void deletePiece(int x, int y, board::Square **Chessboard);
-		board::Square initializeBoard(board::Square **Chessboard);
 
-		static constexpr int sizeY = 8;
-		static constexpr int sizeX = 8;
+
+	private:
+		squareGrid squares;
 };
 
 #endif

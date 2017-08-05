@@ -12,7 +12,7 @@
 class Knight : public Pieces
 {
 	public:
-		Knight();
+		Knight(coord pos);
 
 		coordList calculateMoves(coord boundary) const;
 };

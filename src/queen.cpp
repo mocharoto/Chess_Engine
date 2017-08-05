@@ -5,9 +5,10 @@
 #include <string>
 #include "queen.h"
 
-Queen::Queen() : Pieces()
+Queen::Queen(coord pos) : Pieces()
 {
   type = PieceType::Queen;
+	position = pos;
 }
 
 coordList Queen::calculateMoves(coord boundary) const

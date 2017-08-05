@@ -8,7 +8,7 @@
 class Queen : public Pieces
 {
 	public:
-		Queen();
+		Queen(coord pos);
 
 		coordList calculateMoves(coord boundary) const;
 };

@@ -12,7 +12,7 @@
 class Bishop : public Pieces
 {
 	public:
-		Bishop();
+		Bishop(coord pos);
 
 		coordList calculateMoves(coord boundary) const;
 };

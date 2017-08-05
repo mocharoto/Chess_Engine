@@ -18,6 +18,7 @@ public:
   coord swap();
 
   // Adder and subtractor helpers.
+	friend bool operator==(const coord& left, const coord& right);
   friend coord operator+(const coord& left, const coord& right);
   friend coord operator-(const coord& left, const coord& right);
 

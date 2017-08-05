@@ -14,11 +14,11 @@
 #include "defs.h"
 
 class Pieces
-{ 
+{
 	public:
 		Pieces();
 
-		void setPosition(coord newPos, board::Square ** Chessboard);
+		void setPosition(coord newPos);
 		coord getPosition() const;
 
 		// Returns a list of all possible coordinates to move to.

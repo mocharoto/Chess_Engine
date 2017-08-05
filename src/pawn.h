@@ -10,10 +10,10 @@
 class Pawn : public Pieces
 {
 	public:
-		Pawn();
+		Pawn(coord pos);
 
 		coordList calculateMoves(coord boundary) const;
-		Pieces* promote(std::string Command, coord Position, board::Square ** tile, Pieces * testPawn);
+		//void promote(std::string Command, coord Position,);
 };
 
 #endif

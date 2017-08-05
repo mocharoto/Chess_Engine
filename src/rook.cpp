@@ -5,9 +5,10 @@
 #include <string>
 #include "rook.h"
 
-Rook::Rook() : Pieces()
+Rook::Rook(coord pos) : Pieces()
 {
 	type = PieceType::Rook;
+	position = pos;
 }
 
 coordList Rook::calculateMoves(coord boundary) const

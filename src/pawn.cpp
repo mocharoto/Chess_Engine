@@ -14,9 +14,10 @@
 
 using namespace std;
 
-Pawn::Pawn() : Pieces()
+Pawn::Pawn(coord pos) : Pieces()
 {
 	type = PieceType::Pawn;
+	position = pos;
 }
 
 coordList Pawn::calculateMoves(coord boundary) const
@@ -54,6 +55,7 @@ coordList Pawn::calculateMoves(coord boundary) const
 
 //remember that index starts from 0 and ends at 7, so when we create 8x8 chessboard end point is 7,7 not 8,8
 //TODO: make the promote function trigger when you set the pawn's y position to 7 (or 0 depending on color)
+/*
 Pieces* Pawn::promote(string Command, coord Position, board::Square ** tile, Pieces * thisPiece)
 {
 	//this erases the original pawn object
@@ -97,3 +99,4 @@ Pieces* Pawn::promote(string Command, coord Position, board::Square ** tile, Pie
 
 	return promotedPiece;
 }
+*/

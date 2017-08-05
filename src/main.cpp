@@ -9,68 +9,25 @@
 #include "bishop.h"
 #include "coord.h"
 #include "BearLibTerminal.h"
-
 int main()
 {
 	board Chessboard;
-	// Do these need to be on the heap?
-	board::Square **tile = new board::Square*[board::sizeY];
 
-	for (int index = 0; index < board::sizeY; ++index)
-	{
-		tile[index] = new board::Square[board::sizeX];
-	}
+	Chessboard.initializeBoard();
 
-	Chessboard.initializeBoard(tile);
+	Chessboard.placePiece(PieceType::Pawn, {5, 5}, TeamColor::White);
+	Chessboard.placePiece(PieceType::Knight, {1, 2}, TeamColor::White);
+	Chessboard.placePiece(PieceType::Bishop, {2, 3}, TeamColor::Black);
 
-	auto testPawn = new Pawn();
-	auto testPawn2 = new Pawn();
+	// Test deleting.
+	Chessboard.deletePiece({5, 5});
 
-	testPawn->setPosition(coord{0, 3}, tile);
-	std::cout << pieceToString(testPawn->type)<< " " << testPawn->getPosition().x << " " << testPawn->getPosition().y << std::endl;
+	// Test a regular move.
+	Chessboard.movePiece({2, 3}, {3, 4});
 
-	testPawn2->setPosition(coord{ 7,7 }, tile);
-
-	coordList validMoves;
-
-	validMoves = testPawn2->calculateMoves(coord{10, 10});
-	for (auto& move : validMoves) {
-		std::cout << "Can move to: " << move.x << " " << move.y << std::endl;
-	}
-
-	/*testing cases for promote
-	testPawn->promote("Queen", coord{ 7,7 }, tile, testPawn);
-	testPawn2->promote("Bishop", coord{ 7,6 }, tile, testPawn2);
-	testPawn3->promote("Knight", coord{ 7,5 }, tile, testPawn3);
-
-	std::cout << "The Piece placed at tile[7][7] is " << tile[7][7].pieceTag << std::endl;
-	std::cout << "The Piece placed at tile[7][6] is " << tile[7][6].pieceTag << std::endl;
-	std::cout << "The Piece placed at tile[7][5] is " << tile[7][5].pieceTag << std::endl;
-	*/
-
-	Chessboard.deletePiece(7,7, tile);
-
-	auto testKnight = new Knight();
-	testKnight->setPosition(coord{7, 7}, tile);
-	std::cout << "Knight at: " << testKnight->getPosition().x << " " << testKnight->getPosition().y << std::endl;
-
-	validMoves = testKnight->calculateMoves(coord{10, 10});
-	for (auto& move : validMoves) {
-		std::cout << "Can move to: " << move.x << " " << move.y << std::endl;
-	}
-
-	auto testBishop = new Bishop();
-	testBishop->setPosition(coord{2, 2}, tile);
-	std::cout << "Bishop at: " << testBishop->getPosition().x << " " << testBishop->getPosition().y << std::endl;
-
-	validMoves = testBishop->calculateMoves(coord{10, 10});
-	for (auto& move : validMoves) {
-		std::cout << "Can move to: " << move.x << " " << move.y << std::endl;
-	}
-	//Chessboard.placePiece("Pawn1", testPawn->getPosition().x, testPawn->getPosition().y, tile);
-	//Chessboard.placePiece("Knight1", testPawn->getPosition().x, testPawn->getPosition().y, tile);
-
-
+	// Test an attack.
+	Chessboard.movePiece({3, 4}, {1, 2});
+	
 	// Open the terminal. Since no terminal_set() method is called,
 	// the terminal will use default settings.
 	terminal_open();

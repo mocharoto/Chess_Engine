@@ -8,6 +8,12 @@ coord coord::swap()
 {
   return coord{ y, x };
 }
+
+bool operator==(const coord& left, const coord& right)
+{
+	return left.x == right.x && left.y == right.y;
+}
+
 coord operator+(const coord& left, const coord& right)
 {
   coord result;

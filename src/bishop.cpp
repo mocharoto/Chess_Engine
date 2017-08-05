@@ -5,11 +5,12 @@
 #include <string>
 #include "bishop.h"
 
-Bishop::Bishop() : Pieces()
+Bishop::Bishop(coord pos) : Pieces()
 {
-	type = PieceType::Bishop; 
+	type = PieceType::Bishop;
+	position = pos;
 }
-
+ 
 coordList Bishop::calculateMoves(coord boundary) const
 {
 	coordList validMoves;

@@ -20,9 +20,12 @@ Pawn::Pawn(coord pos) : Pieces()
 	position = pos;
 }
 
-coordList Pawn::calculateMoves(coord boundary) const
+coordList Pawn::calculateMoves(coord boundary, squareGrid &square) const
 {
 	coordList validMoves;
+
+
+	// (Chessboard.getSquareColor(coord{ position.x + 1, position.y + 1 }) == TeamColor::Black
 
 	// Pawn can move in y direction away from its start.
 	// The pawn can also only attack diagonally (not implemented).
@@ -30,21 +33,30 @@ coordList Pawn::calculateMoves(coord boundary) const
 	// Vertical move.
 	if (team == TeamColor::White) {
 		if (position.y + 1 <= boundary.y) {
-			validMoves.push_back(coord{position.x, position.y + 1});
+			validMoves.push_back(coord{ position.x, position.y + 1 });
 			// Check diagonal via x direction. (Check for occupied enemy in future).
-			if (position.x + 1 <= boundary.x) // && position.x + 1 occupied
-				validMoves.push_back(coord{position.x + 1, position.y + 1});
-			if (position.x - 1 <= boundary.x) // && position.x - 1 occupied
-				validMoves.push_back(coord{position.x - 1, position.y + 1});
+			if ((position.x + 1 <= boundary.x) && (square[position.x + 1][position.y + 1].occupied() == true)) //(position.x + 1 <= boundary.x) &&   position.x + 1 occupied
+			{
+				//no need to check for the color of the occupying piece since it's going to be checked at the move function.
+				validMoves.push_back(coord{ position.x + 1, position.y + 1 });
+			}
+			else if ((position.x - 1 <= boundary.x) && (square[position.x - 1][position.y + 1].occupied() == true)) //(position.x - 1 <= boundary.x) &&  && position.x - 1 occupied
+			{
+				validMoves.push_back(coord{ position.x - 1, position.y + 1 });
+			}
 		}
 	} else if (team == TeamColor::Black) {
 		if (position.y - 1 >= 0) {
 			validMoves.push_back(coord{position.x, position.y - 1});
 			// Check diagonal via x direction. (Check for occupied enemy in future).
-			if (position.x + 1 <= boundary.x) // && position.x + 1 occupied
+			if ((position.x + 1 <= boundary.x) && (square[position.x + 1][position.y - 1].occupied() == true)) // && position.x + 1 occupied
+			{
 				validMoves.push_back(coord{position.x + 1, position.y - 1});
-			if (position.x - 1 <= boundary.x) // && position.x - 1 occupied
-				validMoves.push_back(coord{position.x - 1, position.y - 1});
+			}
+			if ((position.x - 1 <= boundary.x) && (square[position.x - 1][position.y - 1].occupied() == true)) // && position.x - 1 occupied
+			{
+				validMoves.push_back(coord{ position.x - 1, position.y - 1 });
+			}
 		}
 	} else {
 		std::cout << "Error: Pawn team unset in calculateMoves." << std::endl;

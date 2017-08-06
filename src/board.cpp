@@ -19,7 +19,7 @@ bool board::placePiece(PieceType piece, coord pos, TeamColor color)
 		current->pieces.push_back(PieceUtils::pieceFromType(piece, pos));
 		current->pieces.front()->team = color;
 		
-		std::cout << pieceToString(piece) << " is Placed at (" << pos.x << ", " << pos.y << ")" << std::endl;
+		std::cout << colorToString(color) << " " << pieceToString(piece) << " is Placed at (" << pos.x << ", " << pos.y << ")" << std::endl;
 		
 		return true;
 	}
@@ -61,7 +61,7 @@ bool board::movePiece(coord oldPos, coord newPos)
 	auto newS = &squares[newPos.x][newPos.y];
 
 	// Get the moves for the piece located in the old square
-	auto availableMoves = oldS->pieces.front()->calculateMoves({boardSize::x, boardSize::y});
+	auto availableMoves = oldS->pieces.front()->calculateMoves({boardSize::x, boardSize::y}, squares);
 	if (availableMoves.empty()) {
 		std::cout << "No available moves for (" << oldPos.x << ", " << oldPos.y << ")" << std::endl;
 		return false;
@@ -74,20 +74,29 @@ bool board::movePiece(coord oldPos, coord newPos)
 	*/
 	if (std::find(availableMoves.begin(), availableMoves.end(), newPos) != availableMoves.end()) {
 		// move to newpos.
+		std::cout << colorToString(oldS->pieces.front()->team) << " " << pieceToString(oldS->pieces.front()->type) << " Attempting to move to (" << newPos.x << ", " << newPos.y << ")" << std::endl;
+
 		if (!newS->pieces.empty()) {
 			if (newS->pieces.front()->team == oldS->pieces.front()->team) {
 				 std::cout << "Friendly piece at (" << newPos.x << ", " << newPos.y << "), against the rules." << std::endl;
 				 return false;
 			}
 			
-			std::cout << pieceToString(oldS->pieces.front()->type) << " Attempting to move to (" << newPos.x << ", " << newPos.y << ")" << std::endl;
-			std::cout << pieceToString(newS->pieces.front()->type) << " destroyed at (" << newPos.x << ", " << newPos.y << ")" << std::endl;
+			std::cout << "(" << newPos.x << ", " << newPos.y << ") " << "is occupied by " << colorToString(newS->pieces.front()->team) << " "  << pieceToString(newS->pieces.front()->type) << std::endl;
+			std::cout << colorToString(newS->pieces.front()->team) << " " << pieceToString(newS->pieces.front()->type) << " destroyed at (" << newPos.x << ", " << newPos.y << ")" << std::endl;
 			newS->pieces.clear();
 		}
 
+
 		newS->pieces.push_back(oldS->pieces.front());
+		newS->pieces.front()->setPosition(newPos); //position needs to change to the new position otherwise the piece pointer will still have the old positions
 		oldS->pieces.clear();
-		std::cout << "Successful move. " << pieceToString(newS->pieces.front()->type) << " was moved to (" << newPos.x << ", " << newPos.y << ")" << std::endl;
+
+		/* made for testing purpose
+			coord pos = newS->pieces.front()->getPosition(); 
+			std::cout << pos.x << pos.y;
+		*/
+		std::cout << "Successful move. " << colorToString(newS->pieces.front()->team) << " " << pieceToString(newS->pieces.front()->type) << " was moved to (" << newPos.x << ", " << newPos.y << ")" << std::endl;
 		
 
 	} else {

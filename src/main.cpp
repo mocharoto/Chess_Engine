@@ -43,7 +43,7 @@ int main()
 	// Test an attack.
 	Chessboard.movePiece({3, 4}, {1, 2});
 
-	// Test creating a piece into the occupied coordinate (same color) 
+	// Test creating a piece into the occupied coordinate (same color)
 	// Expected Output : failure
 	Chessboard.placePiece(PieceType::Rook, { 3,3 }, TeamColor::White);
 	Chessboard.placePiece(PieceType::Pawn, { 3,3 }, TeamColor::White);
@@ -67,6 +67,9 @@ int main()
 	// Open the terminal. Since no terminal_set() method is called,
 	// the terminal will use default settings.
 	terminal_open();
+
+	// Font setup.
+	//terminal_set("window: title='Chess'; font: ./font/FSEX300.ttf, size=16x16");
 
 	// Print intro text.
 	terminal_print(1, 1, "Chess Engine");

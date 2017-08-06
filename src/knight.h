@@ -14,7 +14,7 @@ class Knight : public Pieces
 	public:
 		Knight(coord pos);
 
-		coordList calculateMoves(coord boundary) const;
+		coordList calculateMoves(coord boundary, const squareGrid& square) const override;
 };
 
 #endif

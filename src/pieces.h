@@ -22,7 +22,7 @@ class Pieces
 		coord getPosition() const;
 
 		// Returns a list of all possible coordinates to move to.
-		virtual coordList calculateMoves(coord boundary, squareGrid &square) const;
+		virtual coordList calculateMoves(coord boundary, const squareGrid& square) const = 0;
 
 		TeamColor team;
 		PieceType type;

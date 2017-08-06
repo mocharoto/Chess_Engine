@@ -11,7 +11,7 @@ Bishop::Bishop(coord pos) : Pieces()
 	position = pos;
 }
  
-coordList Bishop::calculateMoves(coord boundary) const
+coordList Bishop::calculateMoves(coord boundary, const squareGrid& square) const
 {
 	coordList validMoves;
 

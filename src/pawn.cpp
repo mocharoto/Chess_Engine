@@ -20,7 +20,7 @@ Pawn::Pawn(coord pos) : Pieces()
 	position = pos;
 }
 
-coordList Pawn::calculateMoves(coord boundary, squareGrid &square) const
+coordList Pawn::calculateMoves(coord boundary, const squareGrid& square) const
 {
 	coordList validMoves;
 

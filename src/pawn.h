@@ -12,7 +12,7 @@ class Pawn : public Pieces
 	public:
 		Pawn(coord pos);
 
-		coordList calculateMoves(coord boundary, squareGrid &square) const;
+		coordList calculateMoves(coord boundary, const squareGrid& square) const override;
 		//void promote(std::string Command, coord Position,);
 };
 

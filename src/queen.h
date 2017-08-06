@@ -10,5 +10,5 @@ class Queen : public Pieces
 	public:
 		Queen(coord pos);
 
-		coordList calculateMoves(coord boundary) const;
+		coordList calculateMoves(coord boundary, const squareGrid& square) const override;
 };

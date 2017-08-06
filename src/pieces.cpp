@@ -22,7 +22,7 @@ coord Pieces::getPosition() const
 	return position;
 }
 
-coordList Pieces::calculateMoves(coord boundary, squareGrid &square) const
+coordList Pieces::calculateMoves(coord boundary, const squareGrid& square) const
 {
 	coordList moveList;
 	return moveList;

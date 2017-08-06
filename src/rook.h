@@ -9,5 +9,5 @@ class Rook : public Pieces
 	public:
 		Rook(coord pos);
 
-		coordList calculateMoves(coord boundary) const;
+		coordList calculateMoves(coord boundary, const squareGrid& square) const override;
 };

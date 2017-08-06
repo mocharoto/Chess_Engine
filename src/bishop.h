@@ -14,7 +14,7 @@ class Bishop : public Pieces
 	public:
 		Bishop(coord pos);
 
-		coordList calculateMoves(coord boundary) const;
+		coordList calculateMoves(coord boundary, const squareGrid& square) const override;
 };
 
 #endif

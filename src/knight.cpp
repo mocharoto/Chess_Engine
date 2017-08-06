@@ -11,7 +11,7 @@ Knight::Knight(coord pos) : Pieces()
 	position = pos;
 }
 
-coordList Knight::calculateMoves(coord boundary) const
+coordList Knight::calculateMoves(coord boundary, const squareGrid& square) const
 {
 	coordList validMoves;
 

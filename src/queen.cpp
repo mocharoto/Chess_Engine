@@ -11,7 +11,7 @@ Queen::Queen(coord pos) : Pieces()
 	position = pos;
 }
 
-coordList Queen::calculateMoves(coord boundary) const
+coordList Queen::calculateMoves(coord boundary, const squareGrid& square) const
 {
 	coordList validMoves;
 

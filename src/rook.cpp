@@ -11,7 +11,7 @@ Rook::Rook(coord pos) : Pieces()
 	position = pos;
 }
 
-coordList Rook::calculateMoves(coord boundary) const
+coordList Rook::calculateMoves(coord boundary, const squareGrid& square) const
 {
 	coordList validMoves;
 

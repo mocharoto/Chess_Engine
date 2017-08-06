@@ -40,7 +40,20 @@ int main()
 	Chessboard.placePiece(PieceType::Bishop, {5, 7}, TeamColor::Black);
 	Chessboard.placePiece(PieceType::Queen, {3, 7}, TeamColor::Black);
 
+	Chessboard.placePiece(PieceType::Pawn, { 2,3 }, TeamColor::Black);
+
+
+	Chessboard.movePiece({ 1,1 }, { 1,2 }); //success
+	Chessboard.movePiece({ 1,2 }, { 2,3 }); //success
+	Chessboard.movePiece({ 2,3 }, { 3,3 }); //fail
+
+	Chessboard.placePiece(PieceType::Pawn, { 3,4 }, TeamColor::Black);
+	Chessboard.movePiece({ 3,4 }, { 2,3 }); //success
+
+	/*
+	it all works
 	// Test an attack.
+	// Expected Output : success, knight is destroyed
 	Chessboard.movePiece({3, 4}, {1, 2});
 
 	// Test creating a piece into the occupied coordinate (same color)
@@ -58,8 +71,10 @@ int main()
 	// Expected Output : failure
 	Chessboard.placePiece(PieceType::Pawn, { 3,2 }, TeamColor::White);
 	Chessboard.movePiece({ 3,2 }, { 3,3 });
-
+	*/
+	
 	// Test Pawn's valid moves
+
 
 
 

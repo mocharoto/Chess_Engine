@@ -21,6 +21,7 @@ int main()
 	for (int i = 0; i < 8; i++) {
 		Chessboard.placePiece(PieceType::Pawn, {i, 1}, TeamColor::White);
 	}
+
 	Chessboard.placePiece(PieceType::Rook, {0, 0}, TeamColor::White);
 	Chessboard.placePiece(PieceType::Rook, {7, 0}, TeamColor::White);
 	Chessboard.placePiece(PieceType::Knight, {1, 0}, TeamColor::White);
@@ -49,6 +50,9 @@ int main()
 
 	Chessboard.placePiece(PieceType::Pawn, { 3,4 }, TeamColor::Black);
 	Chessboard.movePiece({ 3,4 }, { 2,3 }); //success
+	Chessboard.movePiece({ 2,3 }, { 2,2 });
+	Chessboard.movePiece({ 2,2 }, { 2,1 });
+	Chessboard.movePiece({ 2,1 }, { 2,0 });
 
 	/*
 	it all works

@@ -47,6 +47,8 @@ class board
 		bool placePiece(PieceType pieceType, coord pos, TeamColor color);
 		bool deletePiece(coord pos);
 
+		void promote(coord pos, TeamColor color);
+
 		// Startup.
 		void initializeBoard();
 

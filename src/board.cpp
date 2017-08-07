@@ -9,6 +9,22 @@
 board::board() : squares()
 { }
 
+void board::promote(coord pos, TeamColor color)
+{
+	std::string Command = "";
+
+	std::cout << "Pawn has reached a promotion area Pick a type: " << std::endl;
+	std::cin >> Command;
+	PieceType newType = pieceFromString(Command);
+
+	deletePiece(pos);	
+
+	std::cout << "You picked " << Command << std::endl;
+
+	placePiece(newType, pos, color);
+
+}
+
 bool board::placePiece(PieceType piece, coord pos, TeamColor color)
 {
 	auto current = &squares[pos.x][pos.y];
@@ -97,6 +113,21 @@ bool board::movePiece(coord oldPos, coord newPos)
 			std::cout << pos.x << pos.y;
 		*/
 		std::cout << "Successful move. " << colorToString(newS->pieces.front()->team) << " " << pieceToString(newS->pieces.front()->type) << " was moved to (" << newPos.x << ", " << newPos.y << ")" << std::endl;
+		
+		/*
+			call promote if a Pawn Piece type reaches a y coordinate of 0 or 7 depending on their color
+		*/
+		if (newS->pieces.front()->type == PieceType::Pawn)
+		{
+			if (newS->pieces.front()->team == TeamColor::White && newPos.y == 7)
+			{
+				promote(newPos, TeamColor::White);
+			}
+			else if (newS->pieces.front()->team == TeamColor::Black && newPos.y == 0)
+			{
+				promote(newPos, TeamColor::Black);
+			}
+		}
 		
 
 	} else {

@@ -4,6 +4,10 @@
 #ifndef KING_H
 #define KING_H
 
+#include <iostream>
+#include <string>
+#include "pieces.h"
+
 class King : public Pieces
 {
 	protected:
@@ -11,13 +15,11 @@ class King : public Pieces
 		bool checkMateFlag = false;
 	public:
 		King(coord pos);
+
 		coordList calculateMoves(coord boundary, const squareGrid& square) const override;
 		
-		//I think these should be inside the board class
-		void Check();
-		void Checkmate();
-		
 };
+
 
 #endif
 

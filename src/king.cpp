@@ -4,7 +4,6 @@
 //Fun Fact: Simon Kim is now Simon King 
 #include <iostream>
 #include <string>
-#include "pieces.h"
 #include "king.h"
 
 King::King(coord pos) : Pieces()
@@ -41,14 +40,3 @@ coordList King::calculateMoves(coord boundary, const squareGrid& square) const
 
 }
 
-
-
-void King::Check()
-{
-
-}
-
-void King::Checkmate()
-{
-
-}

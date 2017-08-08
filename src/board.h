@@ -21,7 +21,6 @@
 class Pieces;
 
 struct Square {
-	bool canMove = true;
 	std::string tag = "";
 	std::vector< std::shared_ptr<Pieces> > pieces;
 	bool occupied() const {

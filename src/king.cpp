@@ -4,15 +4,15 @@
 //Fun Fact: Simon Kim is now Simon King 
 #include <iostream>
 #include <string>
-#include "pieces.h"
 #include "king.h"
 
-void Check()
+King::King(coord pos) : Pieces()
 {
-
+	type = PieceType::King;
+	position = pos;
 }
 
-void Checkmate()
+coordList calculateMoves(coord boundary, const squareGrid& square) const override
 {
-
+	
 }

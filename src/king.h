@@ -4,12 +4,16 @@
 #ifndef KING_H
 #define KING_H
 
+#include <iostream>
+#include <string>
+#include "pieces.h"
+
 class King : public Pieces
 {
 	protected:
 	public:
-		void Check();
-		void Checkmate();
+		King(coord pos);
+		coordList calculateMove(coord boudary, const squareGrid& square) const override;
 }
 
 #endif

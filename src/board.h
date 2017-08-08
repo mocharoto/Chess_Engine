@@ -47,8 +47,6 @@ class board
 		bool placePiece(PieceType pieceType, coord pos, TeamColor color);
 		bool deletePiece(coord pos);
 
-		void promote(coord pos, TeamColor color);
-
 		// Startup.
 		void initializeBoard();
 
@@ -60,6 +58,7 @@ class board
 		TeamColor getSquareColor(coord pos) const;
 
 	private:
+		void promote(coord pos, TeamColor color);
 		squareGrid squares;
 };
 

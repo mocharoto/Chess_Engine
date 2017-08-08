@@ -103,15 +103,22 @@ int main()
 	terminal_refresh();
 
 	bool running = true;
-	bool drawBoard = false;
+	coord boardOffset{ 2, 5 };
+	
 	while (running) {
+		bool drawBoard = false;
+		bool drawPieces = false;
+		
 		// Check for input. termnial_read() is blocking, meaning the
 		// program will wait until it reads a key press.
 		auto key = terminal_read();
 
 		// Reset the terminal to blank state.
 		terminal_clear();
-
+		
+		// Text goes on layer 3.
+		terminal_layer(3);
+		
 		// Print instructions.
 		terminal_print(1, 1, "Press Enter to start...");
 
@@ -132,11 +139,38 @@ int main()
 		}
 
 
-		// Draw the board.
+		// Draw the board background.
 		if (drawBoard) {
+			terminal_layer(0);
+			//int checker = 0x2588; // Unicode character for a full tile.
+			int checker = 0xB7; // Unicode for a centered dot.
 			for (int y = 0; y < boardSize::y; y++) {
 				for (int x = 0; x < boardSize::x; x++) {
-					terminal_put( 2 + x, 5 + y, pieceDrawCode(Chessboard.getSquareType({x, y})) );
+					/*
+					Checkerboard pattern can be made by (y % 2) XNOR (x % 2). XNOR is the same as ==
+				  	/ 0 1 2 3
+					0 B W B W
+					1 W B W B
+					2 B W B W
+					For example, (0,0) is 0 XNOR 0 = 1, or easier to read 0 == 0 = 1. So (0,0) is black.
+					*/
+					std::string tileColor = y % 2 == x % 2 ? "black" : "white";
+					terminal_color( color_from_name(tileColor) );
+					terminal_put(boardOffset.x + x, boardOffset.y + y, checker);
+					}
+				}
+			}
+		}
+		
+		// Draw the pieces.
+		if (drawPieces) {
+			terminal_layer(1);
+			for (int y = 0; y < boardSize::y; y++) {
+				for (int x = 0; x < boardSize::x; x++) {
+					// TODO: Simplify all these type conversions.
+					std::string pieceColor = colorToString( Chessboard.getSquareColor({x,y}) );
+					terminal_color( color_from_name(pieceColor) );
+					terminal_put( boardOffset.x + x, boardOffset.y + y, pieceDrawCode(Chessboard.getSquareType({x, y})) );
 				}
 			}
 		}

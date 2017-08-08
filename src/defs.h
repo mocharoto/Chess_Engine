@@ -121,12 +121,13 @@ inline std::string colorToString(TeamColor color)
 	std::string result;
 
 	if (color == TeamColor::White)
-		result = "White";
+		result = "white";
 	else if (color == TeamColor::Black)
-			result = "Black";
-	else
+		result = "grey";
+	else {
+		std::cout << "Error: colorToString returned None color." << std::endl;
 		result = "None";
-
+	}
 	return result;
 }
 

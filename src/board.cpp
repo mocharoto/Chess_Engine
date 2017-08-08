@@ -33,7 +33,6 @@ bool board::placePiece(PieceType piece, coord pos, TeamColor color)
 
 	if (!current->occupied())
 	{
-		current->canMove = false;
 		current->pieces.push_back(PieceUtils::pieceFromType(piece, pos));
 		current->pieces.front()->team = color;
 		
@@ -146,7 +145,6 @@ bool board::deletePiece(coord pos)
 	auto current = &squares[pos.x][pos.y];
 	if (current->occupied())
 	{
-		current->canMove = true;
 		//don't change the boardTag
 		current->pieces.pop_back();
 		return true;
@@ -166,7 +164,6 @@ void board::initializeBoard()
 			boardTag = (char(Ascii));
 			boardTag += std::to_string(jindex);
 			auto current = &squares[index][jindex];
-			current->canMove = true;
 			//squares[index]->tag = (char(Ascii) + '-' + char(index));
 			current->tag = boardTag;
 		}

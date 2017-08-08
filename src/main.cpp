@@ -42,7 +42,7 @@ int main()
 	Chessboard.placePiece(PieceType::Queen, {3, 7}, TeamColor::Black);
 
 	Chessboard.placePiece(PieceType::Pawn, { 2,3 }, TeamColor::Black);
-
+	
 
 	Chessboard.movePiece({ 1,1 }, { 1,2 }); //success
 	Chessboard.movePiece({ 1,2 }, { 2,3 }); //success
@@ -50,9 +50,13 @@ int main()
 
 	Chessboard.placePiece(PieceType::Pawn, { 3,4 }, TeamColor::Black);
 	Chessboard.movePiece({ 3,4 }, { 2,3 }); //success
-	Chessboard.movePiece({ 2,3 }, { 2,2 });
-	Chessboard.movePiece({ 2,2 }, { 2,1 });
-	Chessboard.movePiece({ 2,1 }, { 2,0 });
+	
+	Chessboard.placePiece(PieceType::Pawn, { 1,2 }, TeamColor::White);
+	Chessboard.movePiece({ 2,3 }, { 1,2 });
+	Chessboard.movePiece({ 1,2 }, { 0,1 });
+	Chessboard.movePiece({ 0,1 }, { 1,0 });
+	//Chessboard.movePiece({ 1,1 }, { 1,0 });
+
 
 	/*
 	it all works

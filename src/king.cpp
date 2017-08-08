@@ -30,7 +30,6 @@ coordList King::calculateMoves(coord boundary, const squareGrid& square) const
 		coord newPos = position + move;
 
 		validMoves.push_back(newPos);
-		newPos = newPos + move;
 	}
 
 

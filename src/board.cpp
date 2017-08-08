@@ -11,9 +11,11 @@ board::board() : squares()
 
 void board::promote(coord pos, TeamColor color)
 {
+	auto current = &squares[pos.x][pos.y];
+
 	std::string Command = "";
 
-	std::cout << "Pawn has reached a promotion area Pick a type: " << std::endl;
+	std::cout << colorToString(current->pieces.front()->team) << " Pawn has reached a promotion area Pick a type: ";
 	std::cin >> Command;
 	PieceType newType = pieceFromString(Command);
 

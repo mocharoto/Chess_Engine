@@ -34,7 +34,7 @@ coordList Pawn::calculateMoves(coord boundary, const squareGrid& square) const
 	if (team == TeamColor::White) {
 		if (position.y + 1 <= boundary.y) 
 		{
-			//needs to check for all three and add them to validmoves if they are valid. 
+			// only move when there are no pieces in front no need to check for team here.
 			if ((square[position.x][position.y + 1].occupied() == false))
 			{
 				validMoves.push_back(coord{ position.x, position.y + 1 });
@@ -54,6 +54,7 @@ coordList Pawn::calculateMoves(coord boundary, const squareGrid& square) const
 	else if (team == TeamColor::Black) {
 		if (position.y - 1 >= 0) 
 		{
+			// only move when there are no pieces in front no need to check for team here.
 			if ((square[position.x][position.y - 1].occupied() == false))
 			{
 				validMoves.push_back(coord{ position.x, position.y - 1 });

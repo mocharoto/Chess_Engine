@@ -53,8 +53,9 @@ int main()
 	
 	Chessboard.placePiece(PieceType::Pawn, { 1,2 }, TeamColor::White);
 	Chessboard.movePiece({ 2,3 }, { 1,2 });
-	Chessboard.movePiece({ 1,2 }, { 1,1 });
-	Chessboard.movePiece({ 1,1 }, { 1,0 });
+	Chessboard.movePiece({ 1,2 }, { 0,1 });
+	Chessboard.movePiece({ 0,1 }, { 1,0 });
+	//Chessboard.movePiece({ 1,1 }, { 1,0 });
 
 
 	/*

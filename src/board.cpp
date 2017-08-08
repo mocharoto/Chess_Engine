@@ -101,7 +101,7 @@ bool board::movePiece(coord oldPos, coord newPos)
 			}
 			
 			std::cout << "(" << newPos.x << ", " << newPos.y << ") " << "is occupied by " << colorToString(newS->pieces.front()->team) << " "  << pieceToString(newS->pieces.front()->type) << std::endl;
-			std::cout << colorToString(newS->pieces.front()->team) << " " << pieceToString(newS->pieces.front()->type) << " destroyed at (" << newPos.x << ", " << newPos.y << ")" << std::endl;
+			std::cout << colorToString(newS->pieces.front()->team) << " " << pieceToString(newS->pieces.front()->type) << " destroyed by " << colorToString(oldS->pieces.front()->team) << " " << pieceToString(oldS->pieces.front()->type) << " at (" << newPos.x << ", " << newPos.y << ")" << std::endl;
 			newS->pieces.clear();
 		}
 
@@ -173,6 +173,7 @@ void board::initializeBoard()
 		Ascii++;
 	}
 }
+
 
 PieceType board::getSquareType(coord pos) const
 {

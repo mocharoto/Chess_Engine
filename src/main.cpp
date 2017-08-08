@@ -29,6 +29,7 @@ int main()
 	Chessboard.placePiece(PieceType::Bishop, {2, 0}, TeamColor::White);
 	Chessboard.placePiece(PieceType::Bishop, {5, 0}, TeamColor::White);
 	Chessboard.placePiece(PieceType::Queen, {3, 0}, TeamColor::White);
+	Chessboard.placePiece(PieceType::King, { 4,0 }, TeamColor::White);
 
 	for (int i = 0; i < 8; i++) {
 		Chessboard.placePiece(PieceType::Pawn, {i, 6}, TeamColor::Black);
@@ -40,6 +41,7 @@ int main()
 	Chessboard.placePiece(PieceType::Bishop, {2, 7}, TeamColor::Black);
 	Chessboard.placePiece(PieceType::Bishop, {5, 7}, TeamColor::Black);
 	Chessboard.placePiece(PieceType::Queen, {3, 7}, TeamColor::Black);
+	Chessboard.placePiece(PieceType::King, { 4,7 }, TeamColor::Black);
 
 	Chessboard.placePiece(PieceType::Pawn, { 2,3 }, TeamColor::Black);
 	

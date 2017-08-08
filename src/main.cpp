@@ -44,7 +44,7 @@ int main()
 	Chessboard.placePiece(PieceType::King, { 4,7 }, TeamColor::Black);
 
 	Chessboard.placePiece(PieceType::Pawn, { 2,3 }, TeamColor::Black);
-	
+
 
 	Chessboard.movePiece({ 1,1 }, { 1,2 }); //success
 	Chessboard.movePiece({ 1,2 }, { 2,3 }); //success
@@ -52,7 +52,7 @@ int main()
 
 	Chessboard.placePiece(PieceType::Pawn, { 3,4 }, TeamColor::Black);
 	Chessboard.movePiece({ 3,4 }, { 2,3 }); //success
-	
+
 	Chessboard.placePiece(PieceType::Pawn, { 1,2 }, TeamColor::White);
 	Chessboard.movePiece({ 2,3 }, { 1,2 });
 	Chessboard.movePiece({ 1,2 }, { 0,1 });
@@ -82,7 +82,7 @@ int main()
 	Chessboard.placePiece(PieceType::Pawn, { 3,2 }, TeamColor::White);
 	Chessboard.movePiece({ 3,2 }, { 3,3 });
 	*/
-	
+
 	// Test Pawn's valid moves
 
 
@@ -94,7 +94,7 @@ int main()
 	terminal_open();
 
 	// Font setup.
-	//terminal_set("window: title='Chess'; font: ./font/FSEX300.ttf, size=16x16");
+	terminal_set("window: title='Chess', size='46x24'; font: ./font/FSEX300.ttf, size=32x32");
 
 	// Print intro text.
 	terminal_print(1, 1, "Chess Engine");
@@ -104,21 +104,21 @@ int main()
 
 	bool running = true;
 	coord boardOffset{ 2, 5 };
-	
+
 	while (running) {
 		bool drawBoard = false;
 		bool drawPieces = false;
-		
+
 		// Check for input. termnial_read() is blocking, meaning the
 		// program will wait until it reads a key press.
 		auto key = terminal_read();
 
 		// Reset the terminal to blank state.
 		terminal_clear();
-		
+
 		// Text goes on layer 3.
 		terminal_layer(3);
-		
+
 		// Print instructions.
 		terminal_print(1, 1, "Press Enter to start...");
 
@@ -132,6 +132,7 @@ int main()
 				break;
 			case TK_ENTER:
 				drawBoard = true;
+				drawPieces = true;
 				break;
 			default:
 				terminal_print(1, 2, "The key pressed has no function.");
@@ -141,9 +142,9 @@ int main()
 
 		// Draw the board background.
 		if (drawBoard) {
-			terminal_layer(0);
-			//int checker = 0x2588; // Unicode character for a full tile.
-			int checker = 0xB7; // Unicode for a centered dot.
+		terminal_layer(0);
+		int checker = 0x2588; // Unicode character for a full tile.
+		//int checker = 0xB7; // Unicode for a centered dot.
 			for (int y = 0; y < boardSize::y; y++) {
 				for (int x = 0; x < boardSize::x; x++) {
 					/*
@@ -154,26 +155,26 @@ int main()
 					2 B W B W
 					For example, (0,0) is 0 XNOR 0 = 1, or easier to read 0 == 0 = 1. So (0,0) is black.
 					*/
-					std::string tileColor = y % 2 == x % 2 ? "black" : "white";
-					terminal_color( color_from_name(tileColor) );
+					std::string tileColor = y % 2 == x % 2 ? "black" : "grey";
+					terminal_color( color_from_name(tileColor.c_str()) );
 					terminal_put(boardOffset.x + x, boardOffset.y + y, checker);
 					}
 				}
 			}
-		}
-		
-		// Draw the pieces.
-		if (drawPieces) {
-			terminal_layer(1);
-			for (int y = 0; y < boardSize::y; y++) {
-				for (int x = 0; x < boardSize::x; x++) {
-					// TODO: Simplify all these type conversions.
-					std::string pieceColor = colorToString( Chessboard.getSquareColor({x,y}) );
-					terminal_color( color_from_name(pieceColor) );
-					terminal_put( boardOffset.x + x, boardOffset.y + y, pieceDrawCode(Chessboard.getSquareType({x, y})) );
+
+
+			// Draw the pieces.
+			if (drawPieces) {
+				terminal_layer(1);
+				for (int y = 0; y < boardSize::y; y++) {
+					for (int x = 0; x < boardSize::x; x++) {
+						// TODO: Simplify all these type conversions.
+						std::string pieceColor = colorToString( Chessboard.getSquareColor({x,y}) );
+						terminal_color( color_from_name(pieceColor.c_str()) );
+						terminal_put( boardOffset.x + x, boardOffset.y + y, pieceDrawCode(Chessboard.getSquareType({x, y})) );
+					}
 				}
 			}
-		}
 
 		// Commit the buffer and draw it.
 		terminal_refresh();

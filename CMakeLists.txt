@@ -15,6 +15,9 @@ cmake_minimum_required(VERSION 2.6)
 
 project ( Chess )
 
+# required for some compilers
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -23,7 +26,11 @@ configure_file(font/FSEX300.ttf ${CMAKE_BINARY_DIR}/bin/font/FSEX300.ttf COPYONL
 
 # Add a subdirectory to the project. The CMakeLists.txt file in that subdirectory
 # will be used for further setting up the project.
+
+# DO NOT CHANGE THIS ORDER
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/inc )
+LINK_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR}/res )
 add_subdirectory( src )
-INCLUDE_DIRECTORIES( ${CMAKE_BINARY_DIR}/inc )
-LINK_DIRECTORIES( ${CMAKE_BINARY_DIR}/res )
+
+
 #TARGET_LINK_LIBRARIES( Chess BearLibTerminal )

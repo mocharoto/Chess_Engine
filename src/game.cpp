@@ -46,8 +46,14 @@ game::game()
 void game::start_game()
 {
     // This while loop runs until the a plyer is checkmated
-    while () {
+    while (!current_checkmate()) {
 
+      // Current Player clicks a piece from thier color
+
+      // highlight the possible moves for the selected piece
+
+      // If the selected piece is moved into the highlight piece then end turn
+      // Otherwise the player can select an other piece
 
     }
 
@@ -55,7 +61,7 @@ void game::start_game()
 
 //Function: current_checkmate
 //Description: This function check to see if there are any checkmates
-void game::current_checkmate()
+bool game::current_checkmate()
 {
 
 

@@ -20,5 +20,5 @@ class game
   public:
     game();
     void start_game();
-    void current_checkmate();
+    bool current_checkmate();
 };

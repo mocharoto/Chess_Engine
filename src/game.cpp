@@ -46,7 +46,7 @@ game::game()
 void game::start_game()
 {
     // This while loop runs until the a plyer is checkmated
-    while () {
+    while (1) {
 
 
     }

@@ -1,5 +1,5 @@
 # Chess_Engine
-This is a Chess Engine written in C++ by Simon Kim, Sean Brock, and Julian Yi. 
+This is a Chess Engine written in C++ by Simon Kim, Sean Brock, Srujan Kanteti and Julian Yi. 
 
 ### Building from source
 

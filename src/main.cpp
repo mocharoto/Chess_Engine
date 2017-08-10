@@ -8,6 +8,7 @@
 #include "knight.h"
 #include "bishop.h"
 #include "coord.h"
+#include "game.h"
 #include "BearLibTerminal.h"
 
 void handleInput(board& Chessboard);

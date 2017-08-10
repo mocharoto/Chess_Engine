@@ -202,7 +202,7 @@ int main()
 			int select = 0x02C7;
 			terminal_layer(2);
 			terminal_color(color_from_name("green"));
-			terminal_put(xCursor, yCursor, highlight);
+			terminal_put(xCursor, yCursor, select);
 		}
 		/*
 		if(key == TK_MOUSE_MOVE)

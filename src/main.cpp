@@ -56,8 +56,8 @@ int main()
 
 	Chessboard.placePiece(PieceType::Pawn, { 1,2 }, TeamColor::White);
 	Chessboard.movePiece({ 2,3 }, { 1,2 });
-	Chessboard.movePiece({ 1,2 }, { 0,1 });
-	Chessboard.movePiece({ 0,1 }, { 1,0 });
+	//Chessboard.movePiece({ 1,2 }, { 0,1 });
+	//Chessboard.movePiece({ 0,1 }, { 1,0 });
 	//Chessboard.movePiece({ 1,1 }, { 1,0 });
 
 
@@ -97,6 +97,8 @@ int main()
 	// Font setup.
 	terminal_set("window: title='Chess', size='46x24'; font: ./font/FSEX300.ttf, size=32x32");
 
+	// Palette.
+	terminal_set("palette: whitepiece=#C2CCCF, blackpiece=#4D483C, whitetile=#02171F, blacktile=#000000;");
 	// Print intro text.
 	terminal_print(1, 1, "Chess Engine");
 	terminal_print(4, 2, "by Julian Yi, Sean Brock, and Simon Kim");
@@ -121,7 +123,7 @@ int main()
 		terminal_layer(3);
 
 		// Print instructions.
-		terminal_print(1, 1, "Press Enter to start...");
+		//terminal_print(1, 1, "Press Enter to start...");
 
 		// Handle key presses.
 		switch (key) {
@@ -143,9 +145,9 @@ int main()
 
 		// Draw the board background.
 		if (drawBoard) {
-		terminal_layer(0);
-		int checker = 0x2588; // Unicode character for a full tile.
-		//int checker = 0xB7; // Unicode for a centered dot.
+			terminal_layer(0);
+			int checker = 0x2588; // Unicode character for a full tile.
+			//int checker = 0xB7; // Unicode for a centered dot.
 			for (int y = 0; y < boardSize::y; y++) {
 				for (int x = 0; x < boardSize::x; x++) {
 					/*
@@ -156,26 +158,29 @@ int main()
 					2 B W B W
 					For example, (0,0) is 0 XNOR 0 = 1, or easier to read 0 == 0 = 1. So (0,0) is black.
 					*/
-					std::string tileColor = y % 2 == x % 2 ? "black" : "grey";
+					std::string tileColor = y % 2 == x % 2 ? "blacktile" : "whitetile";
 					terminal_color( color_from_name(tileColor.c_str()) );
 					terminal_put(boardOffset.x + x, boardOffset.y + y, checker);
-					}
 				}
 			}
+		}
 
 
-			// Draw the pieces.
-			if (drawPieces) {
-				terminal_layer(1);
-				for (int y = 0; y < boardSize::y; y++) {
-					for (int x = 0; x < boardSize::x; x++) {
-						// TODO: Simplify all these type conversions.
-						std::string pieceColor = colorToString( Chessboard.getSquareColor({x,y}) );
+		// Draw the pieces.
+		if (drawPieces) {
+			terminal_layer(1);
+			for (int y = 0; y < boardSize::y; y++) {
+				for (int x = 0; x < boardSize::x; x++) {
+					auto currentType = Chessboard.getSquareType({x, y});
+					if (currentType != PieceType::None) {
+						std::string pieceColor = colorToDraw( Chessboard.getSquareColor({x,y}) );
+						std::cout << "Color: " << pieceColor.c_str() << std::endl;
 						terminal_color( color_from_name(pieceColor.c_str()) );
-						terminal_put( boardOffset.x + x, boardOffset.y + y, pieceDrawCode(Chessboard.getSquareType({x, y})) );
+						terminal_put( boardOffset.x + x, boardOffset.y + y, pieceDrawCode(currentType) );
 					}
 				}
 			}
+		}
 
 		// Commit the buffer and draw it.
 		terminal_refresh();

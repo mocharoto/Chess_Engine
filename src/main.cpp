@@ -98,11 +98,22 @@ int main()
 
 	// Palette.
 	terminal_set("palette: whitepiece=#C2CCCF, blackpiece=#4D483C, whitetile=#02171F, blacktile=#000000;");
+
+	terminal_set(
+	    "input:"
+	    "cursor-symbol = 0x1F,"
+	    "cursor-blink-rate = 500,"
+	    "precise-mouse = false,"
+	    "mouse-cursor = true,"
+	    "filter=[keyboard];"
+	);
+
 	// Print intro text.
 	terminal_print(1, 1, "Chess Engine");
 	terminal_print(4, 2, "by Julian Yi, Sean Brock, and Simon Kim");
 	terminal_print(1, 4, "Press Enter to start...");
 	terminal_refresh();
+
 
 	bool running = true;
 	coord boardOffset{ 2, 5 };
@@ -110,11 +121,9 @@ int main()
 	while (running) {
 		bool drawBoard = false;
 		bool drawPieces = false;
-
 		// Check for input. termnial_read() is blocking, meaning the
 		// program will wait until it reads a key press.
 		auto key = terminal_read();
-
 		// Reset the terminal to blank state.
 		terminal_clear();
 
@@ -135,6 +144,7 @@ int main()
 			case TK_ENTER:
 				drawBoard = true;
 				drawPieces = true;
+				//input.cursor-symbol = false;
 				break;
 			default:
 				terminal_print(1, 2, "The key pressed has no function.");
@@ -146,7 +156,7 @@ int main()
 		if (drawBoard) {
 			terminal_layer(0);
 			int checker = 0x2588; // Unicode character for a full tile.
-			//int checker = 0xB7; // Unicode for a centered dot.
+			//int chiecker = 0xB7; // Unicode for a centered dot.
 			for (int y = 0; y < boardSize::y; y++) {
 				for (int x = 0; x < boardSize::x; x++) {
 					/*
@@ -180,6 +190,7 @@ int main()
 				}
 			}
 		}
+
 
 		// Commit the buffer and draw it.
 		terminal_refresh();

@@ -8,7 +8,6 @@
 #include "knight.h"
 #include "bishop.h"
 #include "coord.h"
-#include "game.h"
 #include "BearLibTerminal.h"
 
 void handleInput(board& Chessboard);
@@ -106,7 +105,7 @@ int main()
 	    "cursor-blink-rate = 500,"
 	    "precise-mouse = false,"
 	    "mouse-cursor = true,"
-	    "filter=[keyboard];"
+	    "filter=[keyboard, mouse];"
 	);
 
 	// Print intro text.
@@ -122,7 +121,10 @@ int main()
 	while (running) {
 		bool drawBoard = false;
 		bool drawPieces = false;
-		// Check for input. termnial_read() is blocking, meaning the
+		bool selectThis = false;
+		int xCursor = 0;
+		int yCursor = 0;
+	// Check for input. termnial_read() is blocking, meaning the
 		// program will wait until it reads a key press.
 		auto key = terminal_read();
 		// Reset the terminal to blank state.
@@ -143,22 +145,27 @@ int main()
 				running = false;
 				break;
 			case TK_ENTER:
-				drawBoard = true;
-				drawPieces = true;
-				//input.cursor-symbol = false;
+				break;
+			case TK_MOUSE_MOVE:
+				xCursor = terminal_state(TK_MOUSE_X);
+		 		yCursor = terminal_state(TK_MOUSE_Y);
 				break;
 			default:
 				terminal_print(1, 2, "The key pressed has no function.");
 				break;
 		}
+		drawBoard = true;
+		drawPieces = true;
+
+
 
 
 		// Draw the board background.
 		if (drawBoard) {
 			terminal_layer(0);
 			int checker = 0x2588; // Unicode character for a full tile.
-			//int chiecker = 0xB7; // Unicode for a centered dot.
 			for (int y = 0; y < boardSize::y; y++) {
+				//int chiecker = 0xB7; // Unicode for a centered dot.
 				for (int x = 0; x < boardSize::x; x++) {
 					/*
 					Checkerboard pattern can be made by (y % 2) XNOR (x % 2). XNOR is the same as ==
@@ -174,8 +181,6 @@ int main()
 				}
 			}
 		}
-
-
 		// Draw the pieces.
 		if (drawPieces) {
 			terminal_layer(1);
@@ -184,13 +189,32 @@ int main()
 					auto currentType = Chessboard.getSquareType({x, y});
 					if (currentType != PieceType::None) {
 						std::string pieceColor = colorToDraw( Chessboard.getSquareColor({x,y}) );
-						std::cout << "Color: " << pieceColor.c_str() << std::endl;
+						//std::cout << "Color: " << pieceColor.c_str() << std::endl;
 						terminal_color( color_from_name(pieceColor.c_str()) );
 						terminal_put( boardOffset.x + x, boardOffset.y + y, pieceDrawCode(currentType) );
 					}
 				}
 			}
 		}
+
+		if((2 <= xCursor && xCursor <=9) && (5 <= yCursor && yCursor <= 12))
+		{
+			int select = 0x02C7;
+			terminal_layer(2);
+			terminal_color(color_from_name("green"));
+			terminal_put(xCursor, yCursor, select);
+		}
+		/*
+		if(key == TK_MOUSE_MOVE)
+		{
+			xCursor = terminal_state(TK_MOUSE_X);
+			yCursor = terminal_state(TK_MOUSE_Y);
+
+			std::cout << xCursor << "," << yCursor << std::endl;
+		}
+		*/
+
+
 
 
 		// Commit the buffer and draw it.

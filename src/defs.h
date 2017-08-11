@@ -74,17 +74,17 @@ inline int pieceDrawCode(PieceType type)
 	int result;
 
 	if (type == PieceType::Pawn)
-		result = 0x50; // P
+		result = 0x2659; // P
 	else if (type == PieceType::Knight)
-		result = 0x4B;
+		result = 0x2658;
 	else if (type == PieceType::Rook)
-		result = 0x52;
+		result = 0x2656;
 	else if (type == PieceType::Bishop)
-		result = 0x42;
+		result = 0x2657;
 	else if (type == PieceType::Queen)
-		result = 0x51;
+		result = 0x2655;
 	else if (type == PieceType::King)
-		result = 0x4B;
+		result = 0x2654;
 	else if (type == PieceType::None)
 		result = 0xAD;
 	else

@@ -114,6 +114,11 @@ int main()
 	terminal_print(1, 4, "Press Enter to start...");
 	terminal_refresh();
 
+	int mouseClicks = 0;
+	int xCursor = 0;
+	int yCursor = 0;
+	coord current = {0, 0};
+	coord next = {0, 0};
 
 	bool running = true;
 	coord boardOffset{ 2, 5 };
@@ -121,10 +126,10 @@ int main()
 	while (running) {
 		bool drawBoard = false;
 		bool drawPieces = false;
-		bool selectThis = false;
-		int xCursor = 0;
-		int yCursor = 0;
-	// Check for input. termnial_read() is blocking, meaning the
+
+		//roughdraft until I figure out a better way to do this
+
+ 		// Check for input. termnial_read() is blocking, meaning the
 		// program will wait until it reads a key press.
 		auto key = terminal_read();
 		// Reset the terminal to blank state.
@@ -150,6 +155,25 @@ int main()
 				xCursor = terminal_state(TK_MOUSE_X);
 		 		yCursor = terminal_state(TK_MOUSE_Y);
 				break;
+			case TK_MOUSE_LEFT:
+				mouseClicks++;
+				if(mouseClicks == 1)
+				{
+					//select the piece
+					current = {(xCursor - boardOffset.x), (yCursor - boardOffset.y)};
+					std::cout << "first click" << current.x << "," << current.y << std::endl;
+				}
+				else if(mouseClicks == 2)
+				{
+					//do something with that piece
+					next = {(xCursor - boardOffset.x), (yCursor - boardOffset.y)};
+					std::cout << "second click" << next.x << "," << next.y << std::endl;
+					Chessboard.movePiece(current, next);
+					mouseClicks = 0;
+				}
+
+
+				break;
 			default:
 				terminal_print(1, 2, "The key pressed has no function.");
 				break;
@@ -169,7 +193,7 @@ int main()
 				for (int x = 0; x < boardSize::x; x++) {
 					/*
 					Checkerboard pattern can be made by (y % 2) XNOR (x % 2). XNOR is the same as ==
-				  	/ 0 1 2 3
+				  		/ 0 1 2 3
 					0 B W B W
 					1 W B W B
 					2 B W B W
@@ -204,17 +228,29 @@ int main()
 			terminal_color(color_from_name("green"));
 			terminal_put(xCursor, yCursor, select);
 		}
-		/*
-		if(key == TK_MOUSE_MOVE)
-		{
-			xCursor = terminal_state(TK_MOUSE_X);
-			yCursor = terminal_state(TK_MOUSE_Y);
 
-			std::cout << xCursor << "," << yCursor << std::endl;
+			 	//TK_MOUSE_CLICK
+		//set the flag
+		//flag true then call something.
+		/*
+		if (key == TK_MOUSE_LEFT)
+		{
+			int mouseClicks = terminal_state(TK_MOUSE_LEFT);
+			if(mouseClicks == 1)
+			{
+				//select the piece
+				current = {(xCursor - boardOffset.x), (yCursor - boardOffset.y)};
+				std::cout << "first click" << current.x << "," << current.y << std::endl;
+			}
+			else if(mouseClicks == 2)
+			{
+				//do something with that piece
+				next = {(xCursor - boardOffset.x), (yCursor - boardOffset.y)};
+				std::cout << "second click" << next.x << "," << next.y << std::endl;
+				Chessboard.movePiece(current, next);
+			}
 		}
 		*/
-
-
 
 
 		// Commit the buffer and draw it.

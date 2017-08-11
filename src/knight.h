@@ -12,7 +12,7 @@
 class Knight : public Pieces
 {
 	public:
-		Knight(coord pos);
+		Knight(coord pos, TeamColor color);
 
 		coordList calculateMoves(coord boundary, const squareGrid& square) const override;
 };

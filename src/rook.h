@@ -7,7 +7,7 @@
 class Rook : public Pieces
 {
 	public:
-		Rook(coord pos);
+		Rook(coord pos, TeamColor color);
 
 		coordList calculateMoves(coord boundary, const squareGrid& square) const override;
 };

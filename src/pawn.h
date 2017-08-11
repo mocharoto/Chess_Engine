@@ -10,10 +10,9 @@
 class Pawn : public Pieces
 {
 	public:
-		Pawn(coord pos);
+		Pawn(coord pos, TeamColor color);
 
 		coordList calculateMoves(coord boundary, const squareGrid& square) const override;
-		//void promote(std::string Command, coord Position,);
 };
 
 #endif

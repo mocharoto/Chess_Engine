@@ -5,10 +5,11 @@
 #include <string>
 #include "queen.h"
 
-Queen::Queen(coord pos) : Pieces()
+Queen::Queen(coord pos, TeamColor color) : Pieces()
 {
   type = PieceType::Queen;
 	position = pos;
+  team = color;
 }
 
 coordList Queen::calculateMoves(coord boundary, const squareGrid& square) const

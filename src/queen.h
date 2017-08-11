@@ -8,7 +8,7 @@
 class Queen : public Pieces
 {
 	public:
-		Queen(coord pos);
+		Queen(coord pos, TeamColor color);
 
 		coordList calculateMoves(coord boundary, const squareGrid& square) const override;
 };

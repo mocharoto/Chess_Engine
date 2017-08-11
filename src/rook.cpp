@@ -5,10 +5,11 @@
 #include <string>
 #include "rook.h"
 
-Rook::Rook(coord pos) : Pieces()
+Rook::Rook(coord pos, TeamColor color) : Pieces()
 {
 	type = PieceType::Rook;
 	position = pos;
+	team = color;
 }
 
 coordList Rook::calculateMoves(coord boundary, const squareGrid& square) const

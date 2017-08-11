@@ -22,6 +22,16 @@ coord Pieces::getPosition() const
 	return position;
 }
 
+TeamColor Pieces::getTeamColor() const
+{
+	return team;
+}
+
+PieceType Pieces::getPieceType() const
+{
+	return type;
+}
+
 coordList Pieces::calculateMoves(coord boundary, const squareGrid& square) const
 {
 	coordList moveList;

@@ -5,12 +5,13 @@
 #include <string>
 #include "bishop.h"
 
-Bishop::Bishop(coord pos) : Pieces()
+Bishop::Bishop(coord pos, TeamColor color) : Pieces()
 {
 	type = PieceType::Bishop;
 	position = pos;
+	team = color;
 }
- 
+
 coordList Bishop::calculateMoves(coord boundary, const squareGrid& square) const
 {
 	coordList validMoves;

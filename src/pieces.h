@@ -20,15 +20,16 @@ class Pieces
 
 		void setPosition(coord newPos);
 		coord getPosition() const;
+		TeamColor getTeamColor() const;
+		PieceType getPieceType() const;
 
 		// Returns a list of all possible coordinates to move to.
 		virtual coordList calculateMoves(coord boundary, const squareGrid& square) const = 0;
 
-		TeamColor team;
-		PieceType type;
-
 	protected:
 		coord position;
+		TeamColor team;
+		PieceType type;
 };
 
 #endif

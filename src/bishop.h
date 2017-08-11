@@ -12,7 +12,7 @@
 class Bishop : public Pieces
 {
 	public:
-		Bishop(coord pos);
+		Bishop(coord pos, TeamColor color);
 
 		coordList calculateMoves(coord boundary, const squareGrid& square) const override;
 };

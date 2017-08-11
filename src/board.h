@@ -23,6 +23,8 @@ class Pieces;
 struct Square {
 	std::string tag = "";
 	std::vector< std::shared_ptr<Pieces> > pieces;
+	int whiteAttack = 0;
+	int blackAttack = 0;
 	bool occupied() const {
 		return !pieces.empty();
 	}

@@ -15,11 +15,11 @@ void board::promote(coord pos, TeamColor color)
 
 	std::string Command = "";
 
-	std::cout << colorToString(current->pieces.front()->team) << " Pawn has reached a promotion area Pick a type: ";
+	std::cout << colorToString(current->pieces.front()->getTeamColor()) << " Pawn has reached a promotion area Pick a type: ";
 	std::cin >> Command;
 	PieceType newType = pieceFromString(Command);
 
-	deletePiece(pos);	
+	deletePiece(pos);
 
 	std::cout << "You picked " << Command << std::endl;
 
@@ -33,17 +33,16 @@ bool board::placePiece(PieceType piece, coord pos, TeamColor color)
 
 	if (!current->occupied())
 	{
-		current->pieces.push_back(PieceUtils::pieceFromType(piece, pos));
-		current->pieces.front()->team = color;
-		
+		current->pieces.push_back(PieceUtils::pieceFromType(piece, pos, color));
+
 		std::cout << colorToString(color) << " " << pieceToString(piece) << " is Placed at (" << pos.x << ", " << pos.y << ")" << std::endl;
-		
+
 		return true;
 	}
 	else
 	{
 		std::cout << "unable to place Piece " << pieceToString(piece) << " at (" << pos.x << ", " << pos.y << "). "
-				  << pieceToString(current->pieces.front()->type) << " is Occupying the space." << std::endl;
+				  << pieceToString(current->pieces.front()->getPieceType()) << " is Occupying the space." << std::endl;
 
 		return false;
 	}
@@ -91,16 +90,16 @@ bool board::movePiece(coord oldPos, coord newPos)
 	*/
 	if (std::find(availableMoves.begin(), availableMoves.end(), newPos) != availableMoves.end()) {
 		// move to newpos.
-		std::cout << colorToString(oldS->pieces.front()->team) << " " << pieceToString(oldS->pieces.front()->type) << " Attempting to move to (" << newPos.x << ", " << newPos.y << ")" << std::endl;
+		std::cout << colorToString(oldS->pieces.front()->getTeamColor()) << " " << pieceToString(oldS->pieces.front()->getPieceType()) << " Attempting to move to (" << newPos.x << ", " << newPos.y << ")" << std::endl;
 
 		if (!newS->pieces.empty()) {
-			if (newS->pieces.front()->team == oldS->pieces.front()->team) {
+			if (newS->pieces.front()->getTeamColor() == oldS->pieces.front()->getTeamColor()) {
 				 std::cout << "Friendly piece at (" << newPos.x << ", " << newPos.y << "), against the rules." << std::endl;
 				 return false;
 			}
-			
-			std::cout << "(" << newPos.x << ", " << newPos.y << ") " << "is occupied by " << colorToString(newS->pieces.front()->team) << " "  << pieceToString(newS->pieces.front()->type) << std::endl;
-			std::cout << colorToString(newS->pieces.front()->team) << " " << pieceToString(newS->pieces.front()->type) << " destroyed by " << colorToString(oldS->pieces.front()->team) << " " << pieceToString(oldS->pieces.front()->type) << " at (" << newPos.x << ", " << newPos.y << ")" << std::endl;
+
+			std::cout << "(" << newPos.x << ", " << newPos.y << ") " << "is occupied by " << colorToString(newS->pieces.front()->getTeamColor()) << " "  << pieceToString(newS->pieces.front()->getPieceType()) << std::endl;
+			std::cout << colorToString(newS->pieces.front()->getTeamColor()) << " " << pieceToString(newS->pieces.front()->getPieceType()) << " destroyed by " << colorToString(oldS->pieces.front()->getTeamColor()) << " " << pieceToString(oldS->pieces.front()->getPieceType()) << " at (" << newPos.x << ", " << newPos.y << ")" << std::endl;
 			newS->pieces.clear();
 		}
 
@@ -110,26 +109,26 @@ bool board::movePiece(coord oldPos, coord newPos)
 		oldS->pieces.clear();
 
 		/* made for testing purpose
-			coord pos = newS->pieces.front()->getPosition(); 
+			coord pos = newS->pieces.front()->getPosition();
 			std::cout << pos.x << pos.y;
 		*/
-		std::cout << "Successful move. " << colorToString(newS->pieces.front()->team) << " " << pieceToString(newS->pieces.front()->type) << " was moved to (" << newPos.x << ", " << newPos.y << ")" << std::endl;
-		
+		std::cout << "Successful move. " << colorToString(newS->pieces.front()->getTeamColor()) << " " << pieceToString(newS->pieces.front()->getPieceType()) << " was moved to (" << newPos.x << ", " << newPos.y << ")" << std::endl;
+
 		/*
 			call promote if a Pawn Piece type reaches a y coordinate of 0 or 7 depending on their color
 		*/
-		if (newS->pieces.front()->type == PieceType::Pawn)
+		if (newS->pieces.front()->getPieceType() == PieceType::Pawn)
 		{
-			if (newS->pieces.front()->team == TeamColor::White && newPos.y == 7)
+			if (newS->pieces.front()->getTeamColor() == TeamColor::White && newPos.y == 7)
 			{
 				promote(newPos, TeamColor::White);
 			}
-			else if (newS->pieces.front()->team == TeamColor::Black && newPos.y == 0)
+			else if (newS->pieces.front()->getTeamColor() == TeamColor::Black && newPos.y == 0)
 			{
 				promote(newPos, TeamColor::Black);
 			}
 		}
-		
+
 
 	} else {
 		// Not in the move list.
@@ -175,7 +174,7 @@ void board::initializeBoard()
 PieceType board::getSquareType(coord pos) const
 {
 	if (squares[pos.x][pos.y].occupied()) {
-		return squares[pos.x][pos.y].pieces.front()->type;
+		return squares[pos.x][pos.y].pieces.front()->getPieceType();
 	}
 	return PieceType::None;
 }
@@ -183,7 +182,7 @@ PieceType board::getSquareType(coord pos) const
 TeamColor board::getSquareColor(coord pos) const
 {
 	if (squares[pos.x][pos.y].occupied()) {
-		return squares[pos.x][pos.y].pieces.front()->team;
+		return squares[pos.x][pos.y].pieces.front()->getTeamColor();
 	}
 	return TeamColor::None;
 }

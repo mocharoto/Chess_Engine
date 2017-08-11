@@ -14,12 +14,11 @@ class King : public Pieces
 		bool checkFlag = false;
 		bool checkMateFlag = false;
 	public:
-		King(coord pos);
+		King(coord pos, TeamColor color);
 
 		coordList calculateMoves(coord boundary, const squareGrid& square) const override;
-		
+
 };
 
 
 #endif
-

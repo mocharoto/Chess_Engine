@@ -14,10 +14,11 @@
 
 using namespace std;
 
-Pawn::Pawn(coord pos) : Pieces()
+Pawn::Pawn(coord pos, TeamColor color) : Pieces()
 {
 	type = PieceType::Pawn;
 	position = pos;
+	team = color;
 }
 
 coordList Pawn::calculateMoves(coord boundary, const squareGrid& square) const
@@ -32,7 +33,7 @@ coordList Pawn::calculateMoves(coord boundary, const squareGrid& square) const
 
 	// Vertical move.
 	if (team == TeamColor::White) {
-		if (position.y + 1 <= boundary.y) 
+		if (position.y + 1 <= boundary.y)
 		{
 			// only move when there are no pieces in front no need to check for team here.
 			if ((square[position.x][position.y + 1].occupied() == false))
@@ -50,9 +51,9 @@ coordList Pawn::calculateMoves(coord boundary, const squareGrid& square) const
 				validMoves.push_back(coord{ position.x - 1, position.y + 1 });
 			}
 		}
-	} 
+	}
 	else if (team == TeamColor::Black) {
-		if (position.y - 1 >= 0) 
+		if (position.y - 1 >= 0)
 		{
 			// only move when there are no pieces in front no need to check for team here.
 			if ((square[position.x][position.y - 1].occupied() == false))

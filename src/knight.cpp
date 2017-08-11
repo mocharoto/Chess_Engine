@@ -5,10 +5,11 @@
 #include <string>
 #include "knight.h"
 
-Knight::Knight(coord pos) : Pieces()
+Knight::Knight(coord pos, TeamColor color) : Pieces()
 {
 	type = PieceType::Knight;
 	position = pos;
+	team = color;
 }
 
 coordList Knight::calculateMoves(coord boundary, const squareGrid& square) const

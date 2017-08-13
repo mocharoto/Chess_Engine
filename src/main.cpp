@@ -86,28 +86,30 @@ int main()
 
 	// Test Pawn's valid moves
 
-
-
-
-
 	// Open the terminal. Since no terminal_set() method is called,
 	// the terminal will use default settings.
-	terminal_open();
+	ui::openWindow();
 
 	// Font setup. ./font/FSEX300.ttf
-	terminal_set("window: title='Chess', size='46x24'; font: ./font/FSEX300.ttf, size=32x32");
-
-	// Palette.
-	terminal_set("palette: whitepiece=#C2CCCF, blackpiece=#4D483C, whitetile=#02171F, blacktile=#000000;");
-
-	terminal_set(
-	    "input:"
+	std::string settings =
+		"window:"
+			"title='Chess',"
+			"size='46x24';"
+		"font: ./font/FSEX300.ttf,"
+			"size=32x32;"
+		"palette:"
+			"whitepiece=#C2CCCF,"
+			"blackpiece=#4D483C,"
+			"whitetile=#02171F,"
+			"blacktile=#000000;"
+		"input:"
 	    "cursor-symbol = 0x1F,"
 	    "cursor-blink-rate = 500,"
 	    "precise-mouse = false,"
 	    "mouse-cursor = true,"
-	    "filter=[keyboard, mouse];"
-	);
+	    "filter=[keyboard, mouse];";
+
+ui::config(settings);
 
 	// Print intro text.
 	terminal_print(1, 1, "Chess Engine");

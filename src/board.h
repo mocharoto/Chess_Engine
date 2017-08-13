@@ -47,7 +47,7 @@ class board
 		bool movePiece(coord oldPos, coord newPos);
 		bool placePiece(PieceType pieceType, coord pos, TeamColor color);
 		bool deletePiece(coord pos);
-		bool isOccupied(coord pos);
+		bool occupied(coord pos);
 		// Startup.
 		void initializeBoard();
 

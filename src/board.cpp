@@ -177,16 +177,9 @@ void board::initializeBoard()
 	}
 }
 
-bool board::isOccupied(coord pos)
+bool board::occupied(coord pos)
 {
-	if (squares[pos.x][pos.y].occupied() == true)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return squares[pos.x][pos.y].occupied();
 }
 
 PieceType board::getSquareType(coord pos) const

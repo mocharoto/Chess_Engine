@@ -162,7 +162,7 @@ int main()
 				mouseClicks++; //amount of time something is clicked
 
 				//if the clicked square has something then set the object clicked flag to true and set the current coordinate
-				if (Chessboard->isOccupied({ (xCursor - boardOffset.x), (yCursor - boardOffset.y) }) == true && (mouseClicks == 1))
+				if (Chessboard->occupied({ (xCursor - boardOffset.x), (yCursor - boardOffset.y) }) == true && (mouseClicks == 1))
 				{
 					current = { (xCursor - boardOffset.x), (yCursor - boardOffset.y) };
 					std::cout << "first click" << current.x << "," << current.y << std::endl;
@@ -170,7 +170,7 @@ int main()
 					std::cout << mouseClicks;
 				}
 				//if clicked flag is false and there is nothing on the board don't do anything
-				else if(Chessboard->isOccupied({ (xCursor - boardOffset.x), (yCursor - boardOffset.y) }) == false && clicked == false)
+				else if(Chessboard->occupied({ (xCursor - boardOffset.x), (yCursor - boardOffset.y) }) == false && clicked == false)
 				{
 					current = { -1, -1 };
 					std::cout << "nothing was clicked" << std::endl;

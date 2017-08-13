@@ -161,32 +161,34 @@ int main()
 			case TK_MOUSE_LEFT:
 				mouseClicks++; //amount of time something is clicked
 
+				if ((2 <= xCursor && xCursor <= 9) && (5 <= yCursor && yCursor <= 12)){
 				//if the clicked square has something then set the object clicked flag to true and set the current coordinate
-				if (Chessboard->occupied({ (xCursor - boardOffset.x), (yCursor - boardOffset.y) }) == true && (mouseClicks == 1))
-				{
-					current = { (xCursor - boardOffset.x), (yCursor - boardOffset.y) };
-					std::cout << "first click" << current.x << "," << current.y << std::endl;
-					clicked = true;
-					std::cout << mouseClicks;
-				}
-				//if clicked flag is false and there is nothing on the board don't do anything
-				else if(Chessboard->occupied({ (xCursor - boardOffset.x), (yCursor - boardOffset.y) }) == false && clicked == false)
-				{
-					current = { -1, -1 };
-					std::cout << "nothing was clicked" << std::endl;
-					mouseClicks = 0;
-				}
-				//mouseClicks has to be higher than 1 to perform the move function. clicked flag also has to be true
-				//handles move
-				if(clicked == true && mouseClicks > 1)
-				{
-					//do something with that piece
-					next = {(xCursor - boardOffset.x), (yCursor - boardOffset.y)};
-					std::cout << "second click" << next.x << "," << next.y << std::endl;
-					Chessboard->movePiece(current, next);
-					clicked = false;
-					std::cout << mouseClicks;
-					mouseClicks = 0;
+					if (Chessboard->occupied({ (xCursor - boardOffset.x), (yCursor - boardOffset.y) }) == true && (mouseClicks == 1))
+					{
+						current = { (xCursor - boardOffset.x), (yCursor - boardOffset.y) };
+						std::cout << "first click" << current.x << "," << current.y << std::endl;
+						clicked = true;
+						std::cout << mouseClicks;
+					}
+					//if clicked flag is false and there is nothing on the board don't do anything
+					else if(Chessboard->occupied({ (xCursor - boardOffset.x), (yCursor - boardOffset.y) }) == false && clicked == false)
+					{
+						current = { -1, -1 };
+						std::cout << "nothing was clicked" << std::endl;
+						mouseClicks = 0;
+					}
+					//mouseClicks has to be higher than 1 to perform the move function. clicked flag also has to be true
+					//handles move
+					if(clicked == true && mouseClicks > 1)
+					{
+						//do something with that piece
+						next = {(xCursor - boardOffset.x), (yCursor - boardOffset.y)};
+						std::cout << "second click" << next.x << "," << next.y << std::endl;
+						Chessboard->movePiece(current, next);
+						clicked = false;
+						std::cout << mouseClicks;
+						mouseClicks = 0;
+					}
 				}
 				break;
 			default:

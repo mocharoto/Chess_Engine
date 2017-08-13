@@ -16,7 +16,7 @@ public:
 	element(coord newSize) : size(newSize) { }
 
 	// Draws the element data to BearLibTerminal.
-	virtual void draw() = 0;
+	virtual void draw(coord pos) = 0;
 
 	// Does nothing unless overidden. Use for clickable/selectable elements.
 	inline virtual void activate(coord pos) { }
@@ -41,14 +41,17 @@ class boardElement : public element
 {
 public:
 	boardElement() = delete;
-	boardElement(const board* newBoardRef) : element({boardSize::x, boardSize::y}) { };
+	boardElement(std::shared_ptr<board> newBoardRef)
+		: element({boardSize::x, boardSize::y})
+		, boardRef(newBoardRef)
+	{ }
 
 	// Inherited from element.
-	void draw();
+	void draw(coord pos) override;
 
 private:
 	// Const pointer. Used to draw the board.
-	const board* boardRef;
+	std::shared_ptr<board> boardRef;
 };
 
 #endif

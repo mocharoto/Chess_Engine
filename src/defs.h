@@ -10,6 +10,13 @@
 #include <string>
 #include <iostream>
 
+namespace TerminalLayer
+{
+	constexpr int Background 		= 0;
+	constexpr int Board					= 1;
+	constexpr int Pieces 				= 2;
+	constexpr int PiecesSelect 	= 3;
+};
 
 enum class PieceType
 {

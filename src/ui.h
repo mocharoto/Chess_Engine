@@ -11,17 +11,6 @@
 #include <memory>
 #include "element.h"
 
-// Attaches a position to a ui element.
-struct elementWrapper
-{
-	elementWrapper(std::shared_ptr<element> newElementPtr, coord newPos)
-		: elementPtr(newElementPtr), pos(newPos)
-		{ }
-
-	std::shared_ptr<element> elementPtr;
-	coord pos;
-};
-
 class ui
 {
 public:
@@ -46,12 +35,20 @@ public:
 
 	//// Draw logic ////
 
-	// Board draw logic.
-	static void drawBoard(const board& chessboard);
-	// Pieces draw logic.
-	static void drawPieces(const board& chessboard);
+	void draw();
 
 private:
+	// Attaches a position to a ui element.
+	struct elementWrapper
+	{
+		elementWrapper(std::shared_ptr<element> newElementPtr, coord newPos)
+			: elementPtr(newElementPtr), pos(newPos)
+			{ }
+
+		std::shared_ptr<element> elementPtr;
+		coord pos;
+	};
+
 	// List of ui elements and their locations.
 	std::vector<elementWrapper> elements;
 	static coord windowSize;

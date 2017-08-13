@@ -19,7 +19,7 @@ public:
 	virtual void draw(coord pos) = 0;
 
 	// Does nothing unless overidden. Use for clickable/selectable elements.
-	inline virtual void activate(std::string message) { }
+	inline virtual void activate(coord pos) { }
 
 	inline void resize(coord newSize)
 	{

@@ -27,18 +27,6 @@ void board::promote(coord pos, TeamColor color)
 
 }
 
-bool board::isOccupied(coord pos)
-{
-	if (squares[pos.x][pos.y].occupied() == true)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
 bool board::placePiece(PieceType piece, coord pos, TeamColor color)
 {
 	auto current = &squares[pos.x][pos.y];
@@ -82,7 +70,7 @@ bool board::movePiece(coord oldPos, coord newPos)
 	}
 	std::cout << "TEST2" ;
 
-	if (oldPos == newPos) {
+	if (oldPos ==  newPos) {
 		std::cout << "Not Valid both same items " << std::endl;
 		return false;
 	}
@@ -189,6 +177,17 @@ void board::initializeBoard()
 	}
 }
 
+bool board::isOccupied(coord pos)
+{
+	if (squares[pos.x][pos.y].occupied() == true)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 
 PieceType board::getSquareType(coord pos) const
 {

@@ -94,7 +94,7 @@ int main()
 	terminal_open();
 
 	// Font setup. ./font/FSEX300.ttf
-	terminal_set("window: title='Chess', size='46x24'; font: ./FSEX.ttf, size=32x32");
+	terminal_set("window: title='Chess', size='46x24'; font: ./font/FSEX300.ttf, size=32x32");
 
 	// Palette.
 	terminal_set("palette: whitepiece=#C2CCCF, blackpiece=#4D483C, whitetile=#02171F, blacktile=#000000;");
@@ -157,10 +157,10 @@ int main()
 		 		yCursor = terminal_state(TK_MOUSE_Y);
 				break;
 			case TK_MOUSE_LEFT:
-				mouseClicks++; //amount of time something is clicked 
+				mouseClicks++; //amount of time something is clicked
 
 				//if the clicked square has something then set the object clicked flag to true and set the current coordinate
-				if (Chessboard.isOccupied({ (xCursor - boardOffset.x), (yCursor - boardOffset.y) }) == true) 
+				if (Chessboard.isOccupied({ (xCursor - boardOffset.x), (yCursor - boardOffset.y) }) == true)
 				{
 					current = { (xCursor - boardOffset.x), (yCursor - boardOffset.y) };
 					std::cout << "first click" << current.x << "," << current.y << std::endl;

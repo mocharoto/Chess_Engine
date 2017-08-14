@@ -163,29 +163,28 @@ int main()
 				if (Chessboard.isOccupied({ (xCursor - boardOffset.x), (yCursor - boardOffset.y) }) == true) 
 				{
 					current = { (xCursor - boardOffset.x), (yCursor - boardOffset.y) };
-					//std::cout << "first click" << current.x << "," << current.y << std::endl;
+					std::cout << "first click" << current.x << "," << current.y << std::endl;
 					clicked = true;
-					//std::cout << mouseClicks;
+					std::cout << mouseClicks;
 				}
 				//if clicked flag is false and there is nothing on the board don't do anything
 				else if(Chessboard.isOccupied({ (xCursor - boardOffset.x), (yCursor - boardOffset.y) }) == false && clicked == false)
 				{
 					current = { -1, -1 };
 					std::cout << "nothing was clicked" << std::endl;
-					//mouseClicks = 0;
+					mouseClicks = 0;
 				}
 				//mouseClicks has to be higher than 1 to perform the move function. clicked flag also has to be true
 				if(clicked == true && mouseClicks > 1)
 				{
 					//do something with that piece
 					next = {(xCursor - boardOffset.x), (yCursor - boardOffset.y)};
-					//std::cout << "second click" << next.x << "," << next.y << std::endl;
+					std::cout << "second click" << next.x << "," << next.y << std::endl;
 					Chessboard.movePiece(current, next);
 					clicked = false;
-					//std::cout << mouseClicks;
+					std::cout << mouseClicks;
 					mouseClicks = 0;
 				}
-
 				break;
 			default:
 				terminal_print(1, 2, "The key pressed has no function.");

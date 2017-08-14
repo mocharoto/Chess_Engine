@@ -64,5 +64,5 @@ void game::start_game()
 bool game::current_checkmate()
 {
 
-
+	return 0;
 }

@@ -94,7 +94,7 @@ int main()
 	terminal_open();
 
 	// Font setup. ./font/FSEX300.ttf
-	terminal_set("window: title='Chess', size='46x24'; font: ./FSEX.ttf, size=32x32");
+	terminal_set("window: title='Chess', size='46x24'; font: ./font/FSEX300.ttf, size=32x32");
 
 	// Palette.
 	terminal_set("palette: whitepiece=#C2CCCF, blackpiece=#4D483C, whitetile=#02171F, blacktile=#000000;");

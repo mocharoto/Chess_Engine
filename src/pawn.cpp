@@ -45,7 +45,7 @@ coordList Pawn::calculateMoves(coord boundary, const squareGrid& square) const
 				//no need to check for the color of the occupying piece since it's going to be checked at the move function.
 				validMoves.push_back(coord{ position.x + 1, position.y + 1 });
 			}
-			if ((position.x - 1 <= 0) && (square[position.x - 1][position.y + 1].occupied() == true)) //(position.x - 1 <= boundary.x) &&  && position.x - 1 occupied
+			if ((position.x - 1 >= 0) && (square[position.x - 1][position.y + 1].occupied() == true)) //(position.x - 1 <= boundary.x) &&  && position.x - 1 occupied
 			{
 				validMoves.push_back(coord{ position.x - 1, position.y + 1 });
 			}
@@ -68,7 +68,7 @@ coordList Pawn::calculateMoves(coord boundary, const squareGrid& square) const
 			{
 				validMoves.push_back(coord{position.x + 1, position.y - 1});
 			}
-			if ((position.x - 1 <= 0) && (square[position.x - 1][position.y - 1].occupied() == true)) // && position.x - 1 occupied
+			if ((position.x - 1 >= 0) && (square[position.x - 1][position.y - 1].occupied() == true)) // && position.x - 1 occupied
 			{
 				validMoves.push_back(coord{ position.x - 1, position.y - 1 });
 			}
@@ -76,6 +76,7 @@ coordList Pawn::calculateMoves(coord boundary, const squareGrid& square) const
 	} else {
 		std::cout << "Error: Pawn team unset in calculateMoves." << std::endl;
 	}
+
 	return validMoves;
 }
 

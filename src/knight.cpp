@@ -24,11 +24,12 @@ coordList Knight::calculateMoves(coord boundary, const squareGrid& square) const
 
 	for (auto& move : moves) {
 		// Check if the move is valid.
-		if (position.x + move.x <= boundary.x && position.x + move.x <= boundary.x) {
+		if (position.x + move.x < boundary.x && position.x + move.x < boundary.x) {
+
 			validMoves.push_back(position + move);
 		}
 		// Check if the swapped move is valid.
-		if (position.x + move.y <= boundary.x && position.x + move.y <= boundary.x) {
+		if (position.x + move.y < boundary.x && position.x + move.y < boundary.x) {
 			validMoves.push_back(position + move.swap());
 		}
 	}

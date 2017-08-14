@@ -157,10 +157,10 @@ int main()
 		 		yCursor = terminal_state(TK_MOUSE_Y);
 				break;
 			case TK_MOUSE_LEFT:
-				mouseClicks++; //amount of time something is clicked 
+				mouseClicks++; //amount of time something is clicked
 
 				//if the clicked square has something then set the object clicked flag to true and set the current coordinate
-				if (Chessboard.isOccupied({ (xCursor - boardOffset.x), (yCursor - boardOffset.y) }) == true) 
+				if (Chessboard.isOccupied({ (xCursor - boardOffset.x), (yCursor - boardOffset.y) }) == true)
 				{
 					current = { (xCursor - boardOffset.x), (yCursor - boardOffset.y) };
 					std::cout << "first click" << current.x << "," << current.y << std::endl;

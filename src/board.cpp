@@ -27,6 +27,18 @@ void board::promote(coord pos, TeamColor color)
 
 }
 
+bool board::isOccupied(coord pos)
+{
+	if (squares[pos.x][pos.y].occupied() == true)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 bool board::placePiece(PieceType piece, coord pos, TeamColor color)
 {
 	auto current = &squares[pos.x][pos.y];

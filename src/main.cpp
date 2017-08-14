@@ -93,8 +93,8 @@ int main()
 	// the terminal will use default settings.
 	terminal_open();
 
-	// Font setup.
-	terminal_set("window: title='Chess', size='46x24'; font: ./font/FSEX300.ttf, size=32x32");
+	// Font setup. ./font/FSEX300.ttf
+	terminal_set("window: title='Chess', size='46x24'; font: ./FSEX.ttf, size=32x32");
 
 	// Palette.
 	terminal_set("palette: whitepiece=#C2CCCF, blackpiece=#4D483C, whitetile=#02171F, blacktile=#000000;");
@@ -114,11 +114,14 @@ int main()
 	terminal_print(1, 4, "Press Enter to start...");
 	terminal_refresh();
 
+	//roughdraft until I figure out a better way to do this
 	int mouseClicks = 0;
 	int xCursor = 0;
 	int yCursor = 0;
 	coord current = {0, 0};
 	coord next = {0, 0};
+	bool clicked = false;
+	bool moveInit = false;
 
 	bool running = true;
 	coord boardOffset{ 2, 5 };
@@ -126,8 +129,6 @@ int main()
 	while (running) {
 		bool drawBoard = false;
 		bool drawPieces = false;
-
-		//roughdraft until I figure out a better way to do this
 
  		// Check for input. termnial_read() is blocking, meaning the
 		// program will wait until it reads a key press.
@@ -156,23 +157,34 @@ int main()
 		 		yCursor = terminal_state(TK_MOUSE_Y);
 				break;
 			case TK_MOUSE_LEFT:
-				mouseClicks++;
-				if(mouseClicks == 1)
+				mouseClicks++; //amount of time something is clicked 
+
+				//if the clicked square has something then set the object clicked flag to true and set the current coordinate
+				if (Chessboard.isOccupied({ (xCursor - boardOffset.x), (yCursor - boardOffset.y) }) == true) 
 				{
-					//select the piece
-					current = {(xCursor - boardOffset.x), (yCursor - boardOffset.y)};
+					current = { (xCursor - boardOffset.x), (yCursor - boardOffset.y) };
 					std::cout << "first click" << current.x << "," << current.y << std::endl;
+					clicked = true;
+					std::cout << mouseClicks;
 				}
-				else if(mouseClicks == 2)
+				//if clicked flag is false and there is nothing on the board don't do anything
+				else if(Chessboard.isOccupied({ (xCursor - boardOffset.x), (yCursor - boardOffset.y) }) == false && clicked == false)
+				{
+					current = { -1, -1 };
+					std::cout << "nothing was clicked" << std::endl;
+					mouseClicks = 0;
+				}
+				//mouseClicks has to be higher than 1 to perform the move function. clicked flag also has to be true
+				if(clicked == true && mouseClicks > 1)
 				{
 					//do something with that piece
 					next = {(xCursor - boardOffset.x), (yCursor - boardOffset.y)};
 					std::cout << "second click" << next.x << "," << next.y << std::endl;
 					Chessboard.movePiece(current, next);
+					clicked = false;
+					std::cout << mouseClicks;
 					mouseClicks = 0;
 				}
-
-
 				break;
 			default:
 				terminal_print(1, 2, "The key pressed has no function.");

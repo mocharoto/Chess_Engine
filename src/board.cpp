@@ -50,6 +50,7 @@ bool board::placePiece(PieceType piece, coord pos, TeamColor color)
 
 bool board::movePiece(coord oldPos, coord newPos)
 {
+	std::cout << "TEST1" ;
 	//  Input validation
 	if (oldPos.x > boardSize::x || oldPos.x < 0) {
 		std::cout << "Old position X out of bounds (0, " << boardSize::x << ")" << std::endl;
@@ -67,6 +68,12 @@ bool board::movePiece(coord oldPos, coord newPos)
 		std::cout << "Old position Y out of bounds (0, " << boardSize::y << ")" << std::endl;
 		return false;
 	}
+	std::cout << "TEST2" ;
+
+	if (oldPos == newPos) {
+		std::cout << "Not Valid both same items " << std::endl;
+		return false;
+	}
 
 	auto oldS = &squares[oldPos.x][oldPos.y];
 	if (oldS->pieces.empty()) {
@@ -75,7 +82,7 @@ bool board::movePiece(coord oldPos, coord newPos)
 	}
 
 	auto newS = &squares[newPos.x][newPos.y];
-
+	std::cout << "TEST3" ;
 	// Get the moves for the piece located in the old square
 	auto availableMoves = oldS->pieces.front()->calculateMoves({boardSize::x, boardSize::y}, squares);
 	if (availableMoves.empty()) {

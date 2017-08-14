@@ -11,7 +11,6 @@ class Pawn : public Pieces
 {
 	public:
 		Pawn(coord pos, TeamColor color);
-
 		coordList calculateMoves(coord boundary, const squareGrid& square) const override;
 };
 

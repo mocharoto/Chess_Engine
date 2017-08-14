@@ -26,9 +26,17 @@ coordList Rook::calculateMoves(coord boundary, const squareGrid& square) const
 		coord newPos = position + move;
 
 		// Loop each direction to the edge of the map.
-		while((newPos.x <= boundary.x && newPos.y <= boundary.y) && (newPos.x >= 0 && newPos.y >= 0)) {
-			validMoves.push_back(newPos);
-			newPos = newPos + move;
+		while((newPos.x < boundary.x && newPos.y < boundary.y) && (newPos.x >= 0 && newPos.y >= 0)) {
+			if (!square[newPos.x][newPos.y].occupied()){
+				validMoves.push_back(newPos);
+				newPos = newPos + move;
+			}
+			else {
+				if(square[newPos.x][newPos.y].pieces.front()->getTeamColor() != team){
+					validMoves.push_back(newPos);
+				}
+				break;
+			}
 		}
 	}
 

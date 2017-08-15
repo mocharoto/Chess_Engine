@@ -12,6 +12,16 @@ using namespace std;
 
 Pieces::Pieces() : team(TeamColor::None), type(PieceType::None), position({0, 0}) { }
 
+void Pieces::increaseMove()
+{
+	moveCounter++;
+}
+
+int Pieces::getMove()
+{
+	return moveCounter;
+}
+
 void Pieces::setPosition(coord newPos)
 {
 	position = newPos;

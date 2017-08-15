@@ -120,7 +120,8 @@ bool board::movePiece(coord oldPos, coord newPos)
 			std::cout << pos.x << pos.y;
 		*/
 		std::cout << "Successful move. " << colorToString(newS->pieces.front()->getTeamColor()) << " " << pieceToString(newS->pieces.front()->getPieceType()) << " was moved to (" << newPos.x << ", " << newPos.y << ")" << std::endl;
-
+		newS->pieces.front()->increaseMove();
+		std::cout << "Move Counter is " << newS->pieces.front()->getMove() << std::endl;
 		/*
 			call promote if a Pawn Piece type reaches a y coordinate of 0 or 7 depending on their color
 		*/

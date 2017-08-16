@@ -24,13 +24,22 @@ coordList Knight::calculateMoves(coord boundary, const squareGrid& square) const
 
 	for (auto& move : moves) {
 		// Check if the move is valid.
-		if (position.x + move.x < boundary.x && position.x + move.x < boundary.x) {
+		auto newPos = position + move;
 
-			validMoves.push_back(position + move);
+		if ((newPos.x < boundary.x && newPos.y < boundary.y) && (newPos.x >= 0 && newPos.y >= 0)) {
+
+			if (!square[newPos.x][newPos.y].occupied() || square[newPos.x][newPos.y].pieces.front()->getTeamColor() != team){
+				validMoves.push_back(newPos);
+			}
+
 		}
 		// Check if the swapped move is valid.
-		if (position.x + move.y < boundary.x && position.x + move.y < boundary.x) {
-			validMoves.push_back(position + move.swap());
+		newPos = position + move.swap();
+		if ((newPos.x < boundary.x && newPos.y < boundary.y) && (newPos.x >= 0 && newPos.y >= 0)) {
+
+			if (!square[newPos.x][newPos.y].occupied() || square[newPos.x][newPos.y].pieces.front()->getTeamColor() != team){
+				validMoves.push_back(newPos);
+			}
 		}
 	}
 

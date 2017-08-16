@@ -9,6 +9,12 @@
 board::board() : squares()
 { }
 
+/*void board::updateAttacks(coord pos, TeamColor color)
+{
+
+
+}*/
+
 void board::promote(coord pos, TeamColor color)
 {
 	auto current = &squares[pos.x][pos.y];
@@ -50,7 +56,6 @@ bool board::placePiece(PieceType piece, coord pos, TeamColor color)
 
 bool board::movePiece(coord oldPos, coord newPos)
 {
-	std::cout << "TEST1" ;
 	//  Input validation
 	if (oldPos.x > boardSize::x || oldPos.x < 0) {
 		std::cout << "Old position X out of bounds (0, " << boardSize::x << ")" << std::endl;
@@ -68,38 +73,33 @@ bool board::movePiece(coord oldPos, coord newPos)
 		std::cout << "Old position Y out of bounds (0, " << boardSize::y << ")" << std::endl;
 		return false;
 	}
-	std::cout << "TEST2" ;
-
 	if (oldPos ==  newPos) {
 		std::cout << "Not Valid both same items " << std::endl;
 		return false;
 	}
 
+	//Check if there is a piece
 	auto oldS = &squares[oldPos.x][oldPos.y];
 	if (oldS->pieces.empty()) {
 		std::cout << "No piece to move at (" << oldPos.x << ", " << oldPos.y << ")" << std::endl;
 		return false;
 	}
 
-	auto newS = &squares[newPos.x][newPos.y];
-	std::cout << "TEST3" ;
 	// Get the moves for the piece located in the old square
+	auto newS = &squares[newPos.x][newPos.y];
 	auto availableMoves = oldS->pieces.front()->calculateMoves({boardSize::x, boardSize::y}, squares);
 	if (availableMoves.empty()) {
 		std::cout << "No available moves for (" << oldPos.x << ", " << oldPos.y << ")" << std::endl;
 		return false;
 	}
-	/*
-	for (auto move : availableMoves) {
-		std::cout << "(" << move.x << ", " << move.y << ") ";
-	}
-	std::cout << std::endl;
-	*/
+
+	// Find if the new move is in the availableMoves
 	if (std::find(availableMoves.begin(), availableMoves.end(), newPos) != availableMoves.end()) {
-		// move to newpos.
 		std::cout << colorToString(oldS->pieces.front()->getTeamColor()) << " " << pieceToString(oldS->pieces.front()->getPieceType()) << " Attempting to move to (" << newPos.x << ", " << newPos.y << ")" << std::endl;
 
 		if (!newS->pieces.empty()) {
+
+			//NOT requried for final. All pieces have this in them
 			if (newS->pieces.front()->getTeamColor() == oldS->pieces.front()->getTeamColor()) {
 				 std::cout << "Friendly piece at (" << newPos.x << ", " << newPos.y << "), against the rules." << std::endl;
 				 return false;
@@ -107,6 +107,8 @@ bool board::movePiece(coord oldPos, coord newPos)
 
 			std::cout << "(" << newPos.x << ", " << newPos.y << ") " << "is occupied by " << colorToString(newS->pieces.front()->getTeamColor()) << " "  << pieceToString(newS->pieces.front()->getPieceType()) << std::endl;
 			std::cout << colorToString(newS->pieces.front()->getTeamColor()) << " " << pieceToString(newS->pieces.front()->getPieceType()) << " destroyed by " << colorToString(oldS->pieces.front()->getTeamColor()) << " " << pieceToString(oldS->pieces.front()->getPieceType()) << " at (" << newPos.x << ", " << newPos.y << ")" << std::endl;
+
+			//Delete the current piece in the square
 			newS->pieces.clear();
 		}
 

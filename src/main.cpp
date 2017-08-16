@@ -44,21 +44,6 @@ int main()
 	Chessboard->placePiece(PieceType::Queen, {3, 7}, TeamColor::Black);
 	Chessboard->placePiece(PieceType::King, { 4,7 }, TeamColor::Black);
 
-	Chessboard->placePiece(PieceType::Pawn, { 2,3 }, TeamColor::Black);
-
-
-	Chessboard->movePiece({ 1,1 }, { 1,2 }); //success
-	Chessboard->movePiece({ 1,2 }, { 2,3 }); //success
-	Chessboard->movePiece({ 2,3 }, { 3,3 }); //fail
-
-	Chessboard->placePiece(PieceType::Pawn, { 3,4 }, TeamColor::Black);
-	Chessboard->movePiece({ 3,4 }, { 2,3 }); //success
-
-	Chessboard->placePiece(PieceType::Pawn, { 1,2 }, TeamColor::White);
-	Chessboard->movePiece({ 2,3 }, { 1,2 });
-	//Chessboard->movePiece({ 1,2 }, { 0,1 });
-	//Chessboard->movePiece({ 0,1 }, { 1,0 });
-	//Chessboard->movePiece({ 1,1 }, { 1,0 });
 
 
 	/*

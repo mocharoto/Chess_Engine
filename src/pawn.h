@@ -9,13 +9,10 @@
 
 class Pawn : public Pieces
 {
-	private:
-		bool doubleMove = FALSE;
 	public:
 		Pawn(coord pos, TeamColor color);
 		coordList calculateMoves(coord boundary, const squareGrid& square) const override;
-		bool getDoubleMove();
-		void setDoubleMove(bool newDoubleMove);
+		bool doubleMove = false;
 };
 
 #endif

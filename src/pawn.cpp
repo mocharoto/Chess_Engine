@@ -79,13 +79,3 @@ coordList Pawn::calculateMoves(coord boundary, const squareGrid& square) const
 
 	return validMoves;
 }
-
-bool Pawn::getDoubleMove()
-{
-	return doubleMove;
-}
-
-bool Pawn::setDoubleMove(bool newDoubleMove)
-{
-	doubleMove = newDoubleMove;
-}

@@ -136,6 +136,10 @@ bool board::movePiece(coord oldPos, coord newPos)
 				promote(newPos, TeamColor::Black);
 			}
 		}
+		/*
+			calls en passant if a pawn double jumps and another pawn is right next to it.
+		*/
+
 
 
 	} else {

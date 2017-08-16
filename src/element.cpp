@@ -2,7 +2,7 @@
 #include "defs.h"
 #include "BearLibTerminal.h"
 
-void boardElement::draw(coord pos) {
+void BoardElement::draw(coord pos) {
 	coord boardOffset = pos;
 
 	// Draw the board background.
@@ -11,7 +11,7 @@ void boardElement::draw(coord pos) {
 
 	int checker = 0x2588; // Unicode character for a full tile.
 	for (int y = 0; y < boardSize::y; y++) {
-		//int chiecker = 0xB7; // Unicode for a centered dot.
+		//int checker = 0xB7; // Unicode for a centered dot.
 		for (int x = 0; x < boardSize::x; x++) {
 			/*
 			Checkerboard pattern can be made by (y % 2) XNOR (x % 2). XNOR is the same as ==
@@ -40,4 +40,20 @@ void boardElement::draw(coord pos) {
 			}
 		}
 	}
+}
+
+void TitleElement::draw(coord pos) {
+	// Default alignement is to the left.
+	coord alignedPos = pos;
+
+	if (align == Alignment::Right) {
+		// Move to left the message length +2 to account for end characters.
+		alignedPos.x = pos.x + 2 - message.length();
+	} else if (align == Alignment::Centered) {
+		// Move left half of the message length.
+		alignedPos.x = pos.x - int(message.length() / 2);
+	}
+
+	terminal_color(color_from_name(color.c_str()));
+	terminal_print(alignedPos.x, alignedPos.y, message.c_str());
 }

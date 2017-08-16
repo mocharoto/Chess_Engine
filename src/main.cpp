@@ -79,7 +79,7 @@ int main()
 	std::string settings =
 		"window:"
 			"title='Chess',"
-			"size='46x24';"
+			"size='" + std::to_string(windowSize::x) + "x" + std::to_string(windowSize::y) + "';"
 		"font: ./font/FSEX300.ttf,"
 			"size=32x32;"
 		"palette:"
@@ -94,19 +94,21 @@ int main()
 	    "mouse-cursor = true,"
 	    "filter=[keyboard, mouse];";
 
-ui::config(settings);
+
+	 ui::config(settings);
 
 	// Print intro text.
-	terminal_print(1, 1, "Chess Engine");
-	terminal_print(4, 2, "by Julian Yi, Sean Brock, and Simon Kim");
-	terminal_print(1, 4, "Press Enter to start...");
+	//terminal_print(1, 1, "Chess Engine");
+	//terminal_print(4, 2, "by Julian Yi, Sean Brock, and Simon Kim");
+	//terminal_print(1, 4, "Press Enter to start...");
 	terminal_refresh();
 
 	// Create UI manager
 	ui UIManager;
 	// Register the chessboard in a board element.
-	UIManager.addElement(std::make_shared<boardElement>(Chessboard), { 2, 5 });
-
+	UIManager.addElement(std::make_shared<BoardElement>(Chessboard), { 2, 5 });
+	// Create title screen
+	UIManager.addElement(std::make_shared<TitleElement>("Chess Engine", "white", Alignment::Centered), {12, 1});
 	//roughdraft until I figure out a better way to do this
 	int mouseClicks = 0;
 	int xCursor = 0;

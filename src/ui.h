@@ -11,6 +11,11 @@
 #include <memory>
 #include "element.h"
 
+namespace windowSize {
+		static constexpr int x = 46;
+		static constexpr int y = 24;
+}
+
 class ui
 {
 public:

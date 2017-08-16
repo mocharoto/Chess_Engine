@@ -25,6 +25,7 @@ struct Square {
 	std::vector< std::shared_ptr<Pieces> > pieces;
 	int whiteAttack = 0;
 	int blackAttack = 0;
+	std::vector<std::shared_ptr<Square>> blockedPieces;
 	bool occupied() const {
 		return !pieces.empty();
 	}

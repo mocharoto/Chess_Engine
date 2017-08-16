@@ -20,10 +20,12 @@ void ui::config(std::string settings) {
 
 void ui::draw() {
 	if (!elements.empty()) {
+		//terminal_clear();
 		for (auto& e : elements) {
 			// Call the draw function of each element, at its respective position.
 			e.elementPtr->draw(e.pos);
 		}
+		//terminal_refresh();
 	}
 }
 
@@ -41,4 +43,8 @@ bool ui::removeElement(coord pos) {
 		}
 	}
 	return false;
+}
+
+void ui::clear() {
+	elements.clear();
 }

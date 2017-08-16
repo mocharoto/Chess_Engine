@@ -43,7 +43,13 @@ public:
 
 	//// Draw logic ////
 
+	// Draws all ui elements.
 	void draw();
+
+	//// UI element management ////
+
+	// Clears UI element list, destroying all single referenced element shared pointers.
+	void clear();
 
 private:
 	// Attaches a position to a ui element.

@@ -28,7 +28,7 @@ void BoardElement::draw(coord pos) {
 	}
 
 	// Draw the pieces.
-	terminal_layer(1);
+	terminal_layer(TerminalLayer::Pieces);
 	for (int y = 0; y < boardSize::y; y++) {
 		for (int x = 0; x < boardSize::x; x++) {
 			auto currentType = boardRef->getSquareType({x, y});
@@ -53,7 +53,7 @@ void TitleElement::draw(coord pos) {
 		// Move left half of the message length.
 		alignedPos.x = pos.x - int(message.length() / 2);
 	}
-
+	terminal_layer(TerminalLayer::Messages);
 	terminal_color(color_from_name(color.c_str()));
 	terminal_print(alignedPos.x, alignedPos.y, message.c_str());
 }

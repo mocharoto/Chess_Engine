@@ -99,16 +99,70 @@ int main()
 
 	// Print intro text.
 	//terminal_print(1, 1, "Chess Engine");
-	//terminal_print(4, 2, "by Julian Yi, Sean Brock, and Simon Kim");
+	//terminal_print(4, 2, "by C");
 	//terminal_print(1, 4, "Press Enter to start...");
-	terminal_refresh();
+
 
 	// Create UI manager
 	ui UIManager;
-	// Register the chessboard in a board element.
-	UIManager.addElement(std::make_shared<BoardElement>(Chessboard), { 2, 5 });
+
 	// Create title screen
-	UIManager.addElement(std::make_shared<TitleElement>("Chess Engine", "white", Alignment::Centered), {12, 1});
+	UIManager.addElement(
+		std::make_shared<TitleElement>(
+			"Chess Engine",
+			"white",
+			Alignment::Centered
+		),
+		{windowSize::x / 2, (windowSize::y / 2) - 5}
+	);
+	UIManager.addElement(
+		std::make_shared<TitleElement>(
+			"by Julian Yi, Sean Brock,",
+			"grey",
+			Alignment::Centered
+		),
+		{windowSize::x / 2, (windowSize::y / 2) - 3}
+	);
+	UIManager.addElement(
+		std::make_shared<TitleElement>(
+			"Simon Kim, and Consquigi", // hue
+			"grey",
+			Alignment::Centered
+		),
+		{windowSize::x / 2, (windowSize::y / 2) - 2}
+	);
+	UIManager.addElement(
+		std::make_shared<TitleElement>(
+			"Press Enter",
+			"red",
+			Alignment::Centered
+		),
+		{windowSize::x / 2, (windowSize::y / 2) + 1}
+	);
+
+	// Draw Initial Screen
+	UIManager.draw();
+	terminal_refresh();
+
+	// Wait for Enter key press to continue.
+	for (bool wait = true; wait;) {
+		auto key = terminal_read();
+		if (key == TK_ENTER)
+			wait = false;
+	}
+
+	// Clear title screen and continue.
+	UIManager.clear();
+
+	// Set flag to prevent waiting for terminal_read on first loop.
+	bool firstLoop = true;
+
+	// Register the chessboard in a board element.
+	coord boardPos;
+	boardPos.x = (windowSize::x / 2) - (boardSize::x / 2);
+	boardPos.y = (windowSize::y / 2) - (boardSize::y / 2);
+	UIManager.addElement(std::make_shared<BoardElement>(Chessboard), { boardPos });
+
 	//roughdraft until I figure out a better way to do this
 	int mouseClicks = 0;
 	int xCursor = 0;
@@ -123,12 +177,17 @@ int main()
 	while (running) {
  		// Check for input. termnial_read() is blocking, meaning the
 		// program will wait until it reads a key press.
-		auto key = terminal_read();
+		auto key = TK_ENTER;
+		if (firstLoop) {
+			firstLoop = false;
+		} else {
+			key = terminal_read();
+		}
 		// Reset the terminal to blank state.
 		terminal_clear();
 
 		// Text goes on layer 3.
-		terminal_layer(3);
+		terminal_layer(TerminalLayer::Messages);
 
 		// Print instructions.
 		//terminal_print(1, 1, "Press Enter to start...");

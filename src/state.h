@@ -2,7 +2,9 @@
 #define STATE_HPP
 
 class ui;
-struct StateChange;
+
+enum class StateOperation { None, Add, Change, Pop };
+using StateChange = std::pair<State_Operation, std::string>;
 
 // State base class
 class State {

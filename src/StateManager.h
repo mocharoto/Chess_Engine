@@ -11,9 +11,8 @@ class State;
 
 class State_Manager {
 	public:
-	void add_state(std::string id);
-	void pop_state();
-	void change_state(std::string id); // Similar to a pop then add.
+	void addState(std::string id);
+	void popState();
 	
 	void update();
 	void draw();
@@ -21,7 +20,7 @@ class State_Manager {
 	bool empty() const;
 
 	private:
-	std::stack< std::shared_ptr<state> > states; 
+	std::stack< std::shared_ptr<State> > states; 
 };
 
 }

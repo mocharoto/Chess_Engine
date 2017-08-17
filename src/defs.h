@@ -16,6 +16,7 @@ namespace TerminalLayer
 	constexpr int Board					= 1;
 	constexpr int Pieces 				= 2;
 	constexpr int PiecesSelect 	= 3;
+	constexpr int Messages			= 4;
 };
 
 enum class PieceType

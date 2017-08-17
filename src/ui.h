@@ -11,6 +11,11 @@
 #include <memory>
 #include "element.h"
 
+namespace windowSize {
+		static constexpr int x = 46;
+		static constexpr int y = 24;
+}
+
 class ui
 {
 public:
@@ -38,7 +43,13 @@ public:
 
 	//// Draw logic ////
 
+	// Draws all ui elements.
 	void draw();
+
+	//// UI element management ////
+
+	// Clears UI element list, destroying all single referenced element shared pointers.
+	void clear();
 
 private:
 	// Attaches a position to a ui element.

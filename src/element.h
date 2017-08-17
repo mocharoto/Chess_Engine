@@ -8,6 +8,13 @@
 #include "coord.h"
 #include "board.h"
 
+// Drawing location prefernces for text and ui.
+enum class Alignment {
+	Centered,
+	Right,
+	Left
+};
+
 // UI element base class. To be handled by the ui class.
 struct element
 {
@@ -37,11 +44,11 @@ protected:
 
 // Board UI. Not technically ui, as it won't be interacted with from here.
 // Only UI for drawing purposes.
-class boardElement : public element
+class BoardElement : public element
 {
 public:
-	boardElement() = delete;
-	boardElement(std::shared_ptr<board> newBoardRef)
+	BoardElement() = delete;
+	BoardElement(std::shared_ptr<board> newBoardRef)
 		: element({boardSize::x, boardSize::y})
 		, boardRef(newBoardRef)
 	{ }
@@ -53,5 +60,28 @@ private:
 	// Const pointer. Used to draw the board.
 	std::shared_ptr<board> boardRef;
 };
+
+// Formatted display of a text message.
+// Ideally used as a splash screen or title.
+class TitleElement : public element
+{
+public:
+	TitleElement() = delete;
+	// Custom colors available through blt: white, black, red, etc...
+	TitleElement(std::string newMessage, std::string newColor, Alignment newAlignment)
+		: element({int(newMessage.length()), 1})
+		, message(newMessage)
+		, color(newColor)
+		, align(newAlignment) { }
+
+	// Inherited from element.
+	void draw(coord pos) override;
+
+private:
+	std::string message;
+	std::string color;
+	Alignment align;
+};
+
 
 #endif

@@ -5,3 +5,8 @@
 void State::draw() {
 	uiManager.draw();
 }
+
+// Override to provide behavior.
+void State::enter() { }
+void State::pause() { }
+void State::exit() { }

@@ -4,7 +4,7 @@
 #include "State.hpp"
 
 /* Uncomment when states have been defined
-std::shared_ptr<state> idToState(std::string id) {
+std::shared_ptr<State> idToState(std::string id) {
 	if (id == "Game") {
 	
 	} else if (id == "Menu") {

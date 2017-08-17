@@ -9,7 +9,7 @@ struct StateChange {
 	enum class Operation { None, Add, Pop };
 	
 	Operation operation;
-	std::string newState;
+	std::string id;
 };
 
 // State base class

@@ -1,5 +1,5 @@
-#ifndef STATE_MANAGER_HPP
-#define STATE_MANAGER_HPP
+#ifndef STATEMANAGER_HPP
+#define STATEMANAGER_HPP
 
 // State stack manager
 
@@ -9,7 +9,7 @@
 
 class State;
 
-class State_Manager {
+class StateManager {
 	public:
 	void addState(std::string id);
 	void popState();

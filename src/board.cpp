@@ -33,6 +33,7 @@ void board::promote(coord pos, TeamColor color)
 
 }
 
+
 bool board::placePiece(PieceType piece, coord pos, TeamColor color)
 {
 	auto current = &squares[pos.x][pos.y];
@@ -138,9 +139,6 @@ bool board::movePiece(coord oldPos, coord newPos)
 				promote(newPos, TeamColor::Black);
 			}
 		}
-		/*
-			calls en passant if a pawn double jumps and another pawn is right next to it.
-		*/
 
 
 

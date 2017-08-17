@@ -26,6 +26,7 @@ coordList Pawn::calculateMoves(coord boundary, const squareGrid& square) const
 	// List of possible
 	coordList validMoves;
 
+
 	// Vertical move.
 	if (team == TeamColor::White) {
 		if (position.y + 1 < boundary.y)
@@ -33,7 +34,8 @@ coordList Pawn::calculateMoves(coord boundary, const squareGrid& square) const
 			// only move when there are no pieces in front no need to check for team here.
 			if (position.y == 1)
 			{
-				validMoves.push_back(coord{ position.x, position.y + 2 });
+				if((square[position.x][position.y + 1].occupied == false) && (square[position.x][position.y + 2].occupied == false))
+					validMoves.push_back(coord{ position.x, position.y + 2 });
 			}
 			if ((square[position.x][position.y + 1].occupied() == false))
 			{
@@ -49,6 +51,17 @@ coordList Pawn::calculateMoves(coord boundary, const squareGrid& square) const
 			{
 				validMoves.push_back(coord{ position.x - 1, position.y + 1 });
 			}
+			//checks the squares adjacent to the pawn on the fifth row of the board.
+			/*if (position.y == 4)
+			{
+				if ((position.x + 1 < boundary.x) && square[position.x + 1][position.y + 1].occupied() == false && square[position.x + 1][4].pieces.front()->getTeamColor() == TeamColor::Black && square[position.x + 1][4].pieces.front()->getPieceType() == PieceType::Pawn )
+				{
+					if (square[position.x + 1][4].pieces.front()->getDoubleMove() == true)
+					{
+						validMoves.push_back(coord{ position.x + 1, position.y + 1 })
+					}
+				}
+			}*/
 		}
 	}
 	else if (team == TeamColor::Black) {
@@ -80,12 +93,12 @@ coordList Pawn::calculateMoves(coord boundary, const squareGrid& square) const
 	return validMoves;
 }
 
-bool Pawn::getDoubleMove()
-{
+bool Pawn::getDoubleMove() 
 	return doubleMove;
+{
 }
 
-bool Pawn::setDoubleMove(bool newDoubleMove)
+void Pawn::setDoubleMove(bool newDoubleMove)
 {
 	doubleMove = newDoubleMove;
 }

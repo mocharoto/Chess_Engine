@@ -20,11 +20,11 @@ class ui
 {
 public:
 	ui() = default;
-
 	//// Window creation and Config ////
 
 	// Opens the terminal window.
 	static void openWindow();
+	static void closeWindow();
 
 	// Changes window size for the UI elements.
 	// Needs to be accurately set, as the UI elements will change size/format.

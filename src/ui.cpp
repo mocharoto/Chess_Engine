@@ -8,6 +8,11 @@ coord ui::windowSize = { 0, 0 };
 
 void ui::openWindow() {
 	terminal_open();
+	terminal_refresh();
+}
+
+void ui::closeWindow() {
+	terminal_close();
 }
 
 void ui::setWindowSize(coord size) {

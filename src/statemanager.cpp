@@ -1,26 +1,29 @@
 #include <iostream>
 #include <exception>
-#include "StateManager.hpp"
-#include "State.hpp"
+#include "statemanager.h"
+#include "state.h"
+#include "introstate.h"
 
-/* Uncomment when states have been defined
+
 std::shared_ptr<State> idToState(std::string id) {
-	if (id == "Game") {
-	
-	} else if (id == "Menu") {
-	
-	} // etc...
+	std::shared_ptr<State> next;
+	if (id == "IntroState") {
+		next = std::make_shared<IntroState>();
+	} else {
+		std::cout << "E: Setting incorrect id " << id << " to IntroState" << std::endl;
+		next = std::make_shared<IntroState>();
+	}
+	return next;
 }
-*/
 
 void StateManager::addState(std::string id) {
-	// states.push(idToState(id));
+	states.push(idToState(id));
 }
 
 void StateManager::popState() {
 	// Call exit on currect state
 	auto statePtr = states.top();
-	state_ptr->exit();
+	statePtr->exit();
 
 	// Remove current state
 	try {
@@ -30,11 +33,16 @@ void StateManager::popState() {
 	}
 }
 
-void StateManager::update() {
-	auto statePtr = states.top();
-	auto nextState = statePtr->update();
+void StateManager::changeState(std::string id) {
+	popState();
+	addState(id);
+}
 
-	State_Operation op = nextState.operation;
+void StateManager::update(int event) {
+	auto statePtr = states.top();
+	auto nextState = statePtr->update(event);
+
+	StateChange::Operation op = nextState.operation;
 	std::string id = nextState.id;
 
 	if (op == StateChange::Operation::None) {
@@ -42,7 +50,7 @@ void StateManager::update() {
 	} else if (op == StateChange::Operation::Add) {
 		addState(id);
 	} else if (op == StateChange::Operation::Pop) {
-		popState(id);
+		popState();
 	}
 }
 

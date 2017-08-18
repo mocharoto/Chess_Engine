@@ -1,13 +1,16 @@
-#ifndef STATE_HPP
-#define STATE_HPP
+#ifndef STATE_H
+#define STATE_H
 
 #include <string>
-
-class ui;
+#include "ui.h"
 
 struct StateChange {
-	enum class Operation { None, Add, Pop };
-	
+	enum class Operation { None, Add, Pop, Change };
+
+	StateChange() : operation(Operation::None), id("") { }
+	StateChange(Operation newOp, std::string newId)
+		: operation(newOp), id(newId) { }
+
 	Operation operation;
 	std::string id;
 };
@@ -16,17 +19,17 @@ struct StateChange {
 class State {
 	public:
 	// Loop methods
-	virtual StateChange update() = 0;
+	virtual StateChange update(int event);
 	virtual void draw();
 
 	// Callback methods
 	virtual void enter();
-	virtual void pause(); 
+	virtual void pause();
 	virtual void exit();
 
 	protected:
 	State() = default;
-	
+
 	ui uiManager;
 };
 

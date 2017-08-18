@@ -1,5 +1,5 @@
-#ifndef STATEMANAGER_HPP
-#define STATEMANAGER_HPP
+#ifndef STATEMANAGER_H
+#define STATEMANAGER_H
 
 // State stack manager
 
@@ -13,16 +13,15 @@ class StateManager {
 	public:
 	void addState(std::string id);
 	void popState();
-	
-	void update();
+	void changeState(std::string id);
+
+	void update(int event);
 	void draw();
 
 	bool empty() const;
 
 	private:
-	std::stack< std::shared_ptr<State> > states; 
+	std::stack< std::shared_ptr<State> > states;
 };
-
-}
 
 #endif

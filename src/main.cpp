@@ -10,11 +10,46 @@
 #include "coord.h"
 #include "ui.h"
 #include "BearLibTerminal.h"
+#include "statemanager.h"
 
 void handleInput(board& Chessboard);
 
 int main()
 {
+	terminal_open();
+	//ui::openWindow();
+	std::string settings =
+		"window:"
+			"title='Chess',"
+			"size='" + std::to_string(windowSize::x) + "x" + std::to_string(windowSize::y) + "';"
+		"font: ./font/FSEX300.ttf,"
+			"size=32x32;"
+		"palette:"
+			"whitepiece=#C2CCCF,"
+			"blackpiece=#4D483C,"
+			"whitetile=#02171F,"
+			"blacktile=#000000;"
+		"input:"
+	    "cursor-symbol = 0x1F,"
+	    "cursor-blink-rate = 500,"
+	    "precise-mouse = false,"
+	    "mouse-cursor = true,"
+	    "filter=[keyboard, mouse];";
+	 //ui::config(settings);
+	 std::cout << "Window setup" << std::endl;
+	 StateManager stateMan;
+	 std::string test;
+	 std::cout << "Paused, please enter something:" << std::endl;
+	 std::cin >> test;
+	 stateMan.addState("IntroState");
+	 for (bool running = true; running == true;) {
+		 	auto event = terminal_read();
+			stateMan.update(event);
+			stateMan.draw();
+			// exit if empty stateMan
+	}
+
+	/*
 	// Initialize board.
 	auto Chessboard = std::make_shared<board>();
 	Chessboard->initializeBoard();
@@ -44,35 +79,6 @@ int main()
 	Chessboard->placePiece(PieceType::Queen, {3, 7}, TeamColor::Black);
 	Chessboard->placePiece(PieceType::King, { 4,7 }, TeamColor::Black);
 
-
-
-	/*
-	it all works
-	// Test an attack.
-	// Expected Output : success, knight is destroyed
-	Chessboard->movePiece({3, 4}, {1, 2});
-
-	// Test creating a piece into the occupied coordinate (same color)
-	// Expected Output : failure
-	Chessboard->placePiece(PieceType::Rook, { 3,3 }, TeamColor::White);
-	Chessboard->placePiece(PieceType::Pawn, { 3,3 }, TeamColor::White);
-
-	// Test creating a piece into the occupied coordinate (different color)
-	// Expected Output : failure
-	Chessboard->deletePiece({ 3,3 });
-	Chessboard->placePiece(PieceType::Pawn, { 3,3 }, TeamColor::White);
-	Chessboard->placePiece(PieceType::Bishop, { 3,3 }, TeamColor::Black);
-
-	// Test Moving a piece into the occupied coordinate (same color)
-	// Expected Output : failure
-	Chessboard->placePiece(PieceType::Pawn, { 3,2 }, TeamColor::White);
-	Chessboard->movePiece({ 3,2 }, { 3,3 });
-	*/
-
-	// Test Pawn's valid moves
-
-	// Open the terminal. Since no terminal_set() method is called,
-	// the terminal will use default settings.
 	ui::openWindow();
 
 	// Font setup. ./font/FSEX300.ttf
@@ -276,7 +282,7 @@ int main()
 				Chessboard->movePiece(current, next);
 			}
 		}
-		*/
+
 
 
 		// Commit the buffer and draw it.
@@ -289,4 +295,5 @@ int main()
 	terminal_close();
 
 	return 0;
+	*/
 }

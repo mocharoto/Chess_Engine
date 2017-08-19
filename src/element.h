@@ -83,5 +83,14 @@ private:
 	Alignment align;
 };
 
+class ListElement : public element {
+public:
+	ListElement() = default;
+
+	// Inherited from element.
+	void draw(coord pos) override;
+	void activate(coord pos) override;
+};
+
 
 #endif

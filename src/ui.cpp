@@ -50,6 +50,15 @@ bool ui::removeElement(coord pos) {
 	return false;
 }
 
+void ui::activateElement(coord elementPos, coord activatedPos) {
+	// Find an element matching elementPos and activate it with the relative position.
+	for (auto& e : elements) {
+		if (e.pos == elementPos) {
+			e.elementPtr->activate(activatedPos - elementPos);
+		}
+	}
+}
+
 void ui::clear() {
 	elements.clear();
 }

@@ -48,6 +48,9 @@ public:
 
 	//// UI element management ////
 
+	// Calls the activate method on an element, if one exists at that point.
+	void activateElement(coord elementPos, coord activatedPos); 
+
 	// Clears UI element list, destroying all single referenced element shared pointers.
 	void clear();
 

@@ -43,9 +43,10 @@ ChessState::ChessState() : State(), Chessboard() {
 StateChange ChessState::update(int event) {
 	StateChange nextState;
 
-	std::cout << "Chess event handling: " << std::endl;
+	//std::cout << "Chess event handling: " << std::endl;
 	switch (event) {
 		case TK_ESCAPE:
+			// Exit the game state.
 			nextState.operation = StateChange::Operation::Pop;
 			break;
 		case TK_ENTER:
@@ -98,7 +99,7 @@ void ChessState::draw() {
 
 	uiManager.draw();
 
-	std::cout << "Cursor: " << std::to_string(xCursor) << " " << std::to_string(yCursor) << std::endl;
+	//std::cout << "Cursor: " << std::to_string(xCursor) << " " << std::to_string(yCursor) << std::endl;
 	if((2 <= xCursor && xCursor <=9) && (5 <= yCursor && yCursor <= 12))
 	{
 		int select = 0x02C7;

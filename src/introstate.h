@@ -13,10 +13,6 @@ class IntroState : public State {
 	// Loop methods
 	StateChange update(int event) override;
 
-	// Callbacks
-	void enter() override;
-
-	void exit() override;
 };
 
 #endif

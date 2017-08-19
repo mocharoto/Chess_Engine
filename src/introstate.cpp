@@ -38,20 +38,11 @@ IntroState::IntroState() : State() {
 
 StateChange IntroState::update(int event) {
 	StateChange next; // default do nothing
-	std::cout << "Intro state updated" << std::endl;
+	
 	if (event == TK_ENTER) {
-		std::cout << "Chess State sent" << std::endl;
 		next.operation = StateChange::Operation::Change;
 		next.id = "ChessState";
 	}
 
 	return next;
-}
-
-void IntroState::enter() {
-	std::cout << "IntroState entered." << std::endl;
-}
-
-void IntroState::exit() {
-	std::cout << "IntroState exitted" << std::endl;
 }

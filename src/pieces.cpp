@@ -10,7 +10,7 @@
 
 using namespace std;
 
-Pieces::Pieces() : team(TeamColor::None), type(PieceType::None), position({0, 0}) { }
+Pieces::Pieces() : position({0, 0}), team(TeamColor::None), type(PieceType::None)  { }
 
 void Pieces::increaseMove()
 {

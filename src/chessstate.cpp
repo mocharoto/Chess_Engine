@@ -33,10 +33,12 @@ ChessState::ChessState() : State(), Chessboard() {
 
 
 	// Register the chessboard in a board element.
+	/*
 	coord boardPos;
-	boardPos.x = (windowSize::x / 2) - (boardSize::x / 2);
-	boardPos.y = (windowSize::y / 2) - (boardSize::y / 2);
-	uiManager.addElement(std::make_shared<BoardElement>(Chessboard), { boardPos });
+	boardOffset.x = (windowSize::x / 2) - (boardSize::x / 2);
+	boardOffset.y = (windowSize::y / 2) - (boardSize::y / 2);
+	*/
+	uiManager.addElement(std::make_shared<BoardElement>(Chessboard), { boardOffset });
 
 }
 
@@ -54,10 +56,12 @@ StateChange ChessState::update(int event) {
 		case TK_MOUSE_MOVE:
 			xCursor = terminal_state(TK_MOUSE_X);
 			yCursor = terminal_state(TK_MOUSE_Y);
+			std::cout << xCursor << "," << yCursor << std::endl;
+			std::cout << boardOffset.x << "," << boardOffset.y << std::endl;
 			break;
 		case TK_MOUSE_LEFT:
 			mouseClicks++; //amount of time something is clicked
-			if ((2 <= xCursor && xCursor <= 9) && (5 <= yCursor && yCursor <= 12)){
+			if ((boardOffset.x <= xCursor && xCursor <= (boardOffset.x + 7)) && (boardOffset.y <= yCursor && yCursor <= (boardOffset.y + 7))){
 			//if the clicked square has something then set the object clicked flag to true and set the current coordinate
 				if (Chessboard->occupied({ (xCursor - boardOffset.x), (yCursor - boardOffset.y) }) == true && (mouseClicks == 1))
 				{
@@ -100,7 +104,7 @@ void ChessState::draw() {
 	uiManager.draw();
 
 	//std::cout << "Cursor: " << std::to_string(xCursor) << " " << std::to_string(yCursor) << std::endl;
-	if((2 <= xCursor && xCursor <=9) && (5 <= yCursor && yCursor <= 12))
+	if((boardOffset.x <= xCursor && xCursor <= (boardOffset.x + 7)) && (boardOffset.y <= yCursor && yCursor <= (boardOffset.y + 7)))
 	{
 		int select = 0x02C7;
 		terminal_layer(TerminalLayer::PiecesSelect);

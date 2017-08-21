@@ -12,7 +12,7 @@ class ChessState : public State {
 	// Loop methods
 	StateChange update(int event) override;
 	void draw() override;
-	
+
 	// Callbacks
 
 	private:
@@ -25,7 +25,7 @@ class ChessState : public State {
 	coord next = {0, 0};
 	bool clicked = false;
 	bool running = true;
-	coord boardOffset{ 2, 5 };
+	coord boardOffset{ (windowSize::x / 2) - (boardSize::x / 2), (windowSize::y / 2) - (boardSize::y / 2) };
 };
 
 #endif
